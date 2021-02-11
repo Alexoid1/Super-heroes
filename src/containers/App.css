@@ -1,6 +1,6 @@
 .animated-background {
   
-  height: 2500px;
+  height: 1450px;
   background: url(../images/heroes2.jpg) repeat-x;
   
   -webkit-animation: animatebackground 120s linear infinite;

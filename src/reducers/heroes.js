@@ -2,13 +2,22 @@ import {
     FETCH_HEROES_FAILURE,
     FETCH_HEROES_REQUEST,
     FETCH_HEROES_SUCCESS,
+    NEXT_HEROES,
+    LAST_HEROES,
+    SEARCH_HEROES_FAILURE,
+    CHANGE_TEXT,
+    SEARCH_HEROES,
   } from '../action-types';
   
   const initialState = {
     hero: [],
     heroes: [],
+    sHeroes: [],
     loading: false,
     error: '',
+    startIndex: 0,
+    lastIndex: 5,
+    text: ''
   };
   
   const heroesReducer = (state = initialState, action) => {
@@ -22,7 +31,8 @@ import {
         return {
           ...state,
           loading: false,
-          books: action.payload,
+          heroes: action.payload,
+          sHeroes: action.payload,
           error: '',
         };
       case FETCH_HEROES_FAILURE:
@@ -31,9 +41,41 @@ import {
           loading: false,
           error: action.payload,
         };
+      case NEXT_HEROES:
+        return {
+          ...state,
+          startIndex: state.startIndex + 5,
+          lastIndex: state.lastIndex + 5,
+        };
+      case LAST_HEROES:
+        return {
+          ...state,
+          startIndex: state.startIndex - 5,
+          lastIndex: state.lastIndex - 5,
+        };
+      case CHANGE_TEXT:
+        return {
+          ...state,
+          text: action.payload,
+        };
+      case SEARCH_HEROES:
+        return {
+          ...state,
+          sHeroes: state.heroes.filter((hero)=>{
+            const regex= new RegExp(state.text,'gi')
+            return hero.name.match(regex)
+          }),
+          
+        };
+      case SEARCH_HEROES_FAILURE:
+        return {
+          ...state,
+          loading: false,
+          error: action.payload,
+        };   
     default:
         return state;
         }
-      };
+};
       
 export default heroesReducer;        

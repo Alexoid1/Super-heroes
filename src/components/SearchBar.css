@@ -1,0 +1,61 @@
+.filter {
+  text-align: center;
+}
+  
+  .formSe {
+    width: 80%;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  
+  .inputSearch input {
+    width: 600px;
+    height: 30px;
+    padding: 7px;
+    font-size: 17px;
+    border: 2px solid #121212;
+  }
+  
+  .searchBook {
+    background: #0290ff;
+    color: white;
+    font-size: 17px;
+    font-weight: bolder;
+    border: none;
+  }
+    
+  .searchBook:hover {
+    cursor: pointer;
+    border: 2px solid black;
+  }
+  
+  .boo {
+    margin-top: 30px;
+    padding: 70px;
+    color: black;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+    grid-gap: 10px;
+  }
+  
+  @media (max-width: 880px) {
+    .inputSearch input {
+      width: 300px;
+    }
+  
+    .boo {
+      padding: 10px;
+    }
+  }
+  
+  @media (max-width: 380px) {
+    .inputSearch input {
+      width: 200px;
+    }
+  
+    .boo {
+      padding: 10px;
+    }
+  }
