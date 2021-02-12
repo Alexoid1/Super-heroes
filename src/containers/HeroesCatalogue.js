@@ -28,7 +28,11 @@ function HeroesCatalogue({fetchHeroes,heroes, nextHeroes, lastHeroes}) {
     console.log(start,end,heroes.startIndex,heroes.lastIndex)
     setEnd(heroes.lastIndex)
     setStart(heroes.startIndex)
-    nextHeroes()
+    if(heroes.sHeroes[heroes.lastIndex+1]){
+      
+      nextHeroes()
+    }
+    
   }
 
   function handleDecrese(e){
@@ -36,7 +40,11 @@ function HeroesCatalogue({fetchHeroes,heroes, nextHeroes, lastHeroes}) {
     console.log(start,end,heroes.startIndex,heroes.lastIndex)
     setEnd(heroes.lastIndex)
     setStart(heroes.startIndex)
-    lastHeroes()
+    if(heroes.startIndex-5>=0){
+      
+      lastHeroes()
+    }
+    
   }
   
   // eslint-disable-next-line no-nested-ternary
@@ -55,6 +63,7 @@ function HeroesCatalogue({fetchHeroes,heroes, nextHeroes, lastHeroes}) {
             firstFive(heroes.sHeroes).map(hero => (
               <HeroCard
                 key={hero.id}
+                id={hero.id}
                 image={hero.images.sm}
                 name={hero.name}
               />

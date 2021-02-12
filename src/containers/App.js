@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import store from '../reducers/index';
 import HeroesCatalogue from '../containers/HeroesCatalogue';
+import HeroInfo from '../components/HeroInfo'
 import './App.css';
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
         <div className="animated-background">
           <Switch>
             <Route exact path="/" component={HeroesCatalogue} />
-            {/* <Route exact path="/library" component={Library} /> */}
+            <Route exact path="/hero/:id" component={HeroInfo} />
           </Switch>
         </div>
       </BrowserRouter>

@@ -1,4 +1,4 @@
-.butonCont {
+.butonCont2 {
     display: flex;
     justify-content: row;
     align-items: center;
@@ -6,16 +6,19 @@
     padding: 30px;
 }
 
-.butonCont button {
+.butonCont2 a {
     background: none;
     border-radius: 100%;
-    border: 2px solid white;
-    padding: 10px;
-    margin: 10px;
+    padding: 20px;
+    margin: 20px;
     color: white;
 }
 
-.butonCont button:hover{
-    background: white;
+.butonCont2 a:hover{   
     color: #D1B464;
+}
+
+.exit {
+    font-size: 29px;
+    font-weight: bolder;
 }

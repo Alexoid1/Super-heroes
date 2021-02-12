@@ -2,13 +2,11 @@ import { combineReducers, createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import heroesReducer from './heroes';
-// import filterReducer from './filter';
-
+import heroReducer from './hero';
 
 const rootReducer = combineReducers({
   heroes: heroesReducer,
-//   filter: filterReducer,
-  
+  hero: heroReducer,
 });
 const store = createStore(
   rootReducer, composeWithDevTools(applyMiddleware(thunk)),

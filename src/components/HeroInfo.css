@@ -1,0 +1,69 @@
+.superCont {
+  padding-top: 20px;
+  font-family: 'Electrolize', sans-serif;
+}
+
+.hero-container {
+  width: 1200px;
+  height: auto;
+  background: linear-gradient(90deg, rgba(23,86,124,0.9) 11%, rgba(2,4,10,0.9) 82%);;
+  margin: 50px auto;
+  border: 2px solid whitesmoke;
+  border-radius: 10px;
+}
+
+.heroTitle {
+  text-align: center;
+  font-family: 'Electrolize', sans-serif;
+  color:  white;
+  font-size: 30px;
+}
+
+.powerStats {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  margin: auto;
+}
+
+.imgCon {
+  width: 200px;
+  border: 1px solid white;
+}
+
+.powerT {
+  width: 500px;
+  color: white;
+}
+
+.powerT h3 {
+  
+  text-align: center;
+}
+.powerT p {
+  display: inline;
+  text-align: left;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+body {
+  background-color: #2b2b2b;
+  color: #FFF;
+  font-family: 'Roboto', sans-serif;
+}
+
+.imga {
+  width: 50%;
+}
+
+.imageCenter {
+  margin: auto;
+  text-align: center;
+}
+
+.apparenceC {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+

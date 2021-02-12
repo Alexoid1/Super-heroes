@@ -1,12 +1,17 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './HeroCard.css'
 
-function HeroCard({image,name}) {
+function HeroCard({id, image, name}) {
+  const rou=`/hero/${id}`
     return (
-      <div className="cardHero">
-        <img className="imgCont" src={image}/>
-        <h5>{name}</h5>
-      </div>
+      <Link to={rou}>
+        <div className="cardHero">
+          <img className="imgCont" src={image}/>
+          <h5>{name}</h5>
+        </div>
+      </Link>
+      
   
     );
 }

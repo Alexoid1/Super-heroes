@@ -4,13 +4,11 @@ import {
     FETCH_HEROES_SUCCESS,
     NEXT_HEROES,
     LAST_HEROES,
-    SEARCH_HEROES_FAILURE,
     CHANGE_TEXT,
     SEARCH_HEROES,
   } from '../action-types';
   
   const initialState = {
-    hero: [],
     heroes: [],
     sHeroes: [],
     loading: false,
@@ -61,18 +59,15 @@ import {
       case SEARCH_HEROES:
         return {
           ...state,
+          startIndex: 0,
+          lastIndex: 5,
           sHeroes: state.heroes.filter((hero)=>{
             const regex= new RegExp(state.text,'gi')
             return hero.name.match(regex)
           }),
+          text: '',        
           
-        };
-      case SEARCH_HEROES_FAILURE:
-        return {
-          ...state,
-          loading: false,
-          error: action.payload,
-        };   
+        };  
     default:
         return state;
         }

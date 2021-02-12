@@ -16,9 +16,6 @@ const SearchBar = ({  heroes, changeText, searchHeroes }) => {
     searchHeroes();
   };
 
-  
-  
-
 return (
     <>
       <div>
@@ -28,19 +25,12 @@ return (
               type="text"
               value={text}
               onChange={handleTextChange}
-              placeholder="Book Name"
+              placeholder="Hero Name"
             />
           </div>
 
           
         </form>
-      </div>
-
-      <div className="boo">
-        {/* { search.heroes.map(book => (
-         
-        } */}
-
       </div>
     </>
 );

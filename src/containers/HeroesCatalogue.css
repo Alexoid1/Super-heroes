@@ -7,24 +7,3 @@
     margin: auto;
 }
 
-.butonCont {
-    display: flex;
-    justify-content: row;
-    align-items: center;
-    justify-content: center;
-    padding: 30px;
-}
-
-.butonCont button {
-    background: none;
-    border-radius: 100%;
-    border: 2px solid white;
-    padding: 10px;
-    margin: 10px;
-    color: white;
-}
-
-.butonCont button:hover{
-    background: white;
-    color: #D1B464;
-}
