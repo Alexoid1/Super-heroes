@@ -6,7 +6,7 @@
     padding: 30px;
 }
 
-.butonCont button {
+.butonCont a {
     background: none;
     border-radius: 100%;
     border: 2px solid white;
@@ -15,7 +15,7 @@
     color: white;
 }
 
-.butonCont button:hover{
+.butonCont a:hover{
     background: white;
     color: #D1B464;
 }

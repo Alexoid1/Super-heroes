@@ -17,28 +17,17 @@
   border: 2px solid #121212;
 }
   
-  
-    
-  
-  
- 
-  
   @media (max-width: 880px) {
     .inputSearch input {
       width: 300px;
-    }
-  
-    .boo {
-      padding: 10px;
     }
   }
   
   @media (max-width: 380px) {
     .inputSearch input {
       width: 200px;
+      margin: 5px;
     }
   
-    .boo {
-      padding: 10px;
-    }
+    
   }

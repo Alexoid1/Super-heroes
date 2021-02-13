@@ -8,4 +8,3 @@ export const CHANGE_TEXT = 'CHANGE_TEXT';
 export const SEARCH_HEROES = 'SEARCH_HEROES';
 export const NEXT_HEROES = 'NEXT_HEROES';
 export const LAST_HEROES = 'LAST_HEROES';
-

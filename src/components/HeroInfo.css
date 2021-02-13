@@ -1,6 +1,7 @@
 .superCont {
   padding-top: 20px;
   font-family: 'Electrolize', sans-serif;
+  width: 100%;
 }
 
 .hero-container {
@@ -28,7 +29,7 @@
 
 .imgCon {
   width: 200px;
-  border: 1px solid white;
+  border: 5px solid white;
 }
 
 .powerT {
@@ -37,7 +38,6 @@
 }
 
 .powerT h3 {
-  
   text-align: center;
 }
 .powerT p {
@@ -67,3 +67,68 @@ body {
   grid-template-columns: 1fr 1fr;
 }
 
+.closeX {
+  color: white;
+  font-size: 30px;
+  float: right;
+  font-weight: bolder;
+  border: 2px solid white;
+  border-radius: 50%;
+  padding: 10px 18px;
+  margin: 10px;
+}
+
+.closeX:hover {
+  color: black;
+  background: white;
+}
+
+@media (max-width: 1225px) {
+  .hero-container {
+    width: 800px;
+  }
+}
+
+@media (max-width: 725px) {
+  .hero-container {
+    width: 500px;
+    margin: 10px auto;
+  }
+
+  .powerStats {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    margin: auto;
+  }
+
+  .powerT{
+    margin: auto;
+  }
+
+  .imgCon {
+    width: 150px;
+    border: 5px solid white;
+  }
+}
+
+@media (max-width: 475px) {
+  .superCont {
+    width: 100%;
+  }
+  .hero-container {
+    width: 420px;
+    margin: 10px auto;
+  }
+  .apparenceC {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+  }
+  .powerT {
+    width: 300px;
+    color: white;
+  }
+}

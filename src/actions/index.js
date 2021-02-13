@@ -13,17 +13,17 @@ import {
 } from '../action-types';
 
 const fetchHeroesRequest = () => ({
-    type: FETCH_HEROES_REQUEST,
+  type: FETCH_HEROES_REQUEST,
 });
-  
+
 const fetchHeroesSuccess = heroes => ({
-    type: FETCH_HEROES_SUCCESS,
-    payload: heroes,
+  type: FETCH_HEROES_SUCCESS,
+  payload: heroes,
 });
-  
+
 const fetchHeroesFailure = error => ({
-    type: FETCH_HEROES_FAILURE,
-    payload: error,
+  type: FETCH_HEROES_FAILURE,
+  payload: error,
 });
 
 const heroRequest = () => ({
@@ -35,20 +35,19 @@ const heroSuccess = hero => ({
   payload: hero,
 });
 
- const heroFailure = error => ({
+const heroFailure = error => ({
   type: HERO_FAILURE,
   payload: error,
 });
 
-export const changeText = (text) => ({
+export const changeText = text => ({
   type: CHANGE_TEXT,
-  payload: text
+  payload: text,
 });
 
 export const searchHeroes = () => ({
   type: SEARCH_HEROES,
 });
-
 
 export const nextHeroes = () => ({
   type: NEXT_HEROES,
@@ -59,27 +58,25 @@ export const lastHeroes = () => ({
 });
 
 export const fetchHeroes = () => dispatch => {
-    dispatch(fetchHeroesRequest);
-    axios.get(`https://akabab.github.io/superhero-api/api/all.json`)
-      .then(response => {
-        
-        const heroes = response.data;
-        console.log(heroes)
-  
-        dispatch(fetchHeroesSuccess(heroes));
-      })
-      .catch(error => {
-        dispatch(fetchHeroesFailure(error.message));
-      });
+  dispatch(fetchHeroesRequest);
+  axios.get('https://akabab.github.io/superhero-api/api/all.json')
+    .then(response => {
+      const heroes = response.data;
+      console.log(heroes);
+
+      dispatch(fetchHeroesSuccess(heroes));
+    })
+    .catch(error => {
+      dispatch(fetchHeroesFailure(error.message));
+    });
 };
 
-export const fetchHero = (id) => dispatch => {
+export const fetchHero = id => dispatch => {
   dispatch(heroRequest);
   axios.get(`https://akabab.github.io/superhero-api/api/id/${id}.json`)
     .then(response => {
-      
       const hero = response.data;
-      console.log(hero)
+      console.log(hero);
 
       dispatch(heroSuccess(hero));
     })
@@ -87,4 +84,3 @@ export const fetchHero = (id) => dispatch => {
       dispatch(heroFailure(error.message));
     });
 };
-

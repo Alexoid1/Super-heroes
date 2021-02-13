@@ -1,65 +1,57 @@
-import React, { useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { fetchHeroes, nextHeroes, lastHeroes } from '../actions/index';
 import PropTypes from 'prop-types';
-import HeroCard from '../components/HeroCard'
-import Spinner from '../components/Spinner'
-import MenuSelect from '../components/MenuSelect'
-import SearchBar from '../components/SearchBar'
-import './HeroesCatalogue.css'
+import { fetchHeroes, nextHeroes, lastHeroes } from '../actions/index';
+import HeroCard from '../components/HeroCard';
+import Spinner from '../components/Spinner';
+import MenuSelect from '../components/MenuSelect';
+import SearchBar from '../components/SearchBar';
+import './HeroesCatalogue.css';
 
-
-function HeroesCatalogue({fetchHeroes,heroes, nextHeroes, lastHeroes}) {
-  const [start,setStart] = useState(heroes.startIndex)
-  const[end,setEnd] = useState(heroes.lastIndex)
-  const [arry, setArry] = useState([])
+function HeroesCatalogue({
+  fetchHeroes, heroes, nextHeroes, lastHeroes,
+}) {
+  const [start, setStart] = useState(heroes.startIndex);
+  const [end, setEnd] = useState(heroes.lastIndex);
   useEffect(() => {
     fetchHeroes();
   }, []);
-  function firstFive(array){
-    const arr=array.slice(start,end)
-    console.log(arr)
-    return arr
-
+  function firstFive(array) {
+    const arr = array.slice(start, end);
+    return arr;
   }
 
-  function handleIncrease(e){
+  function handleIncrease(e) {
     e.preventDefault();
-    console.log(start,end,heroes.startIndex,heroes.lastIndex)
-    setEnd(heroes.lastIndex)
-    setStart(heroes.startIndex)
-    if(heroes.sHeroes[heroes.lastIndex+1]){
-      
-      nextHeroes()
+    setEnd(heroes.lastIndex);
+    setStart(heroes.startIndex);
+    if (heroes.sHeroes[heroes.lastIndex + 1]) {
+      nextHeroes();
     }
-    
   }
 
-  function handleDecrese(e){
+  function handleDecrese(e) {
     e.preventDefault();
-    console.log(start,end,heroes.startIndex,heroes.lastIndex)
-    setEnd(heroes.lastIndex)
-    setStart(heroes.startIndex)
-    if(heroes.startIndex-5>=0){
-      
-      lastHeroes()
+    setEnd(heroes.lastIndex);
+    setStart(heroes.startIndex);
+    if (heroes.startIndex - 5 >= 0) {
+      lastHeroes();
     }
-    
   }
-  
+
   // eslint-disable-next-line no-nested-ternary
   return (heroes.loading ? (
     <>
-      <Spinner/>
+      <Spinner />
     </>
   ) : heroes.error ? (
     <h2 className="error">{heroes.error}</h2>
   ) : (
     <>
-      <SearchBar/>
+      <SearchBar />
       <div className="header-container">
         {
-            
+
             firstFive(heroes.sHeroes).map(hero => (
               <HeroCard
                 key={hero.id}
@@ -69,30 +61,28 @@ function HeroesCatalogue({fetchHeroes,heroes, nextHeroes, lastHeroes}) {
               />
             ))
           }
-          
+
       </div>
-      <MenuSelect handleNext={handleIncrease} handleLast={handleDecrese}/>
-    
+      <MenuSelect handleNext={handleIncrease} handleLast={handleDecrese} />
+
     </>
   ));
-
-
 }
-
 
 HeroesCatalogue.propTypes = {
   heroes: PropTypes.arrayOf(PropTypes.string),
   fetchHeroes: PropTypes.func.isRequired,
- 
+  nextHeroes: PropTypes.func.isRequired,
+  lastHeroes: PropTypes.func.isRequired,
 };
 
 HeroesCatalogue.defaultProps = {
   heroes: {},
 };
-const mapDispatchToProps = dispatch => ({ 
+const mapDispatchToProps = dispatch => ({
   fetchHeroes: () => dispatch(fetchHeroes()),
-  nextHeroes: ()=> dispatch(nextHeroes()),
-  lastHeroes: ()=> dispatch(lastHeroes())
+  nextHeroes: () => dispatch(nextHeroes()),
+  lastHeroes: () => dispatch(lastHeroes()),
 });
 
 const mapStateToProps = state => ({

@@ -1,7 +1,7 @@
 .container {
     max-width: 400px;
     margin: 10px 0;
-  }
+}
   
 .container .progressbar-container {
   position: relative;
@@ -36,5 +36,11 @@
   0% { background-color: #dd5f25; }
   50% { background-color: #607e9e; }
   100% { background-color: #dd5f25; }
+}
+
+@media (max-width: 525px) {
+    .progressbar-container {
+        width: 200px
+    }
 }
   

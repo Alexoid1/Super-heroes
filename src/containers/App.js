@@ -2,8 +2,8 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import store from '../reducers/index';
-import HeroesCatalogue from '../containers/HeroesCatalogue';
-import HeroInfo from '../components/HeroInfo'
+import HeroesCatalogue from './HeroesCatalogue';
+import HeroInfo from '../components/HeroInfo';
 import './App.css';
 
 function App() {
