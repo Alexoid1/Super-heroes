@@ -1,24 +1,24 @@
 .butonCont2 {
-    display: flex;
-    justify-content: row;
-    align-items: center;
-    justify-content: center;
-    padding: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
 }
 
 .butonCont2 a {
-    background: none;
-    border-radius: 100%;
-    padding: 20px;
-    margin: 20px;
-    color: white;
+  background: none;
+  border-radius: 100%;
+  padding: 20px;
+  margin: 20px;
+  color: white;
 }
 
-.butonCont2 a:hover{   
-    color: #D1B464;
+.butonCont2 a:hover {
+  color: #d1b464;
 }
 
 .exit {
-    font-size: 29px;
-    font-weight: bolder;
+  font-size: 29px;
+  font-weight: bolder;
 }

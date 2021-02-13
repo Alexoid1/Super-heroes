@@ -7,7 +7,7 @@
 .hero-container {
   width: 1200px;
   height: auto;
-  background: linear-gradient(90deg, rgba(23,86,124,0.9) 11%, rgba(2,4,10,0.9) 82%);;
+  background: linear-gradient(90deg, rgba(23, 86, 124, 0.9) 11%, rgba(2, 4, 10, 0.9) 82%);
   margin: 50px auto;
   border: 2px solid whitesmoke;
   border-radius: 10px;
@@ -16,7 +16,7 @@
 .heroTitle {
   text-align: center;
   font-family: 'Electrolize', sans-serif;
-  color:  white;
+  color: white;
   font-size: 30px;
 }
 
@@ -40,6 +40,7 @@
 .powerT h3 {
   text-align: center;
 }
+
 .powerT p {
   display: inline;
   text-align: left;
@@ -49,7 +50,7 @@
 
 body {
   background-color: #2b2b2b;
-  color: #FFF;
+  color: #fff;
   font-family: 'Roboto', sans-serif;
 }
 
@@ -104,7 +105,7 @@ body {
     margin: auto;
   }
 
-  .powerT{
+  .powerT {
     margin: auto;
   }
 
@@ -118,15 +119,18 @@ body {
   .superCont {
     width: 100%;
   }
+
   .hero-container {
     width: 420px;
     margin: 10px auto;
   }
+
   .apparenceC {
     display: flex;
     flex-direction: column-reverse;
     justify-content: center;
   }
+
   .powerT {
     width: 300px;
     color: white;

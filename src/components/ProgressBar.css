@@ -1,13 +1,13 @@
 .container {
-    max-width: 400px;
-    margin: 10px 0;
+  max-width: 400px;
+  margin: 10px 0;
 }
-  
+
 .container .progressbar-container {
   position: relative;
   width: 90%;
   height: 20px;
-  border: 1px solid #FFF;
+  border: 1px solid #fff;
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -16,22 +16,20 @@
 }
 
 .progressbar-complete {
-    position: absolute;
-    left: 0;
-    top: 0px;
-    height: 100%;
-    background-color: #dd5f25;
-    border-radius: 10px;
-    animation: g 2500ms infinite ease-in-out;
-    z-index: 2;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background-color: #dd5f25;
+  border-radius: 10px;
+  animation: g 2500ms infinite ease-in-out;
+  z-index: 2;
 }
-  
-      
+
 .progress {
-    z-index: 2;
+  z-index: 2;
 }
-  
-  
+
 @keyframes g {
   0% { background-color: #dd5f25; }
   50% { background-color: #607e9e; }
@@ -39,8 +37,7 @@
 }
 
 @media (max-width: 525px) {
-    .progressbar-container {
-        width: 200px
-    }
+  .progressbar-container {
+    width: 200px;
+  }
 }
-  
