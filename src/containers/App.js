@@ -1,23 +1,15 @@
 import React from 'react';
-import { Provider } from 'react-redux';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import store from '../reducers/index';
-import HeroesCatalogue from './HeroesCatalogue';
-import HeroInfo from '../components/HeroInfo';
+import { BrowserRouter } from 'react-router-dom';
+import Routes from './Routes.js'
 import './App.css';
 
 function App() {
   return (
-    <Provider store={store}>
       <BrowserRouter>
-        <div className="animated-background">
-          <Switch>
-            <Route exact path="/" component={HeroesCatalogue} />
-            <Route exact path="/hero/:id" component={HeroInfo} />
-          </Switch>
+        <div className="animated-background" data-testid="website_name">
+          <Routes/>
         </div>
       </BrowserRouter>
-    </Provider>
   );
 }
 
