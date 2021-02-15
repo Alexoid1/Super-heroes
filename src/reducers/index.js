@@ -1,12 +1,11 @@
 import { combineReducers, createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-
 import heroesReducer from './heroes';
-import heroReducer from './hero';
+import filterReducer from './filter';
 
 const rootReducer = combineReducers({
   heroes: heroesReducer,
-  hero: heroReducer,
+  filter: filterReducer,
 });
 const initialState = {};
 const store = createStore(

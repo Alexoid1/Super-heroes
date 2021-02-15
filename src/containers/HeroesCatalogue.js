@@ -6,10 +6,11 @@ import HeroCard from '../components/HeroCard';
 import Spinner from '../components/Spinner';
 import MenuSelect from '../components/MenuSelect';
 import SearchBar from '../components/SearchBar';
+import CategoryFilter from '../components/CategoryFilter';
 import './HeroesCatalogue.css';
 
 function HeroesCatalogue({
-  fetchHeroes, heroes, nextHeroes, lastHeroes,
+  fetchHeroes, heroes, nextHeroes, lastHeroes, filter,
 }) {
   const [start, setStart] = useState(heroes.startIndex);
   const [end, setEnd] = useState(heroes.lastIndex);
@@ -29,7 +30,13 @@ function HeroesCatalogue({
       nextHeroes();
     }
   }
+  function filterByRace(sHeroes, filter) {
+    if (filter === 'All') {
+      return sHeroes;
+    }
 
+    return sHeroes.filter(hero => hero.appearance.race === filter);
+  }
   function handleDecrese(e) {
     e.preventDefault();
     setEnd(heroes.lastIndex);
@@ -49,10 +56,11 @@ function HeroesCatalogue({
   ) : (
     <>
       <SearchBar />
+      <CategoryFilter />
       <div className="header-container">
         {
 
-            firstFive(heroes.sHeroes).map(hero => (
+            firstFive(filterByRace(heroes.sHeroes, filter)).map(hero => (
               <HeroCard
                 key={hero.id}
                 id={hero.id}
@@ -74,10 +82,12 @@ HeroesCatalogue.propTypes = {
   fetchHeroes: PropTypes.func.isRequired,
   nextHeroes: PropTypes.func.isRequired,
   lastHeroes: PropTypes.func.isRequired,
+  filter: PropTypes.string.isRequired,
 };
 
 HeroesCatalogue.defaultProps = {
   heroes: {},
+
 };
 const mapDispatchToProps = dispatch => ({
   fetchHeroes: () => dispatch(fetchHeroes()),
@@ -87,6 +97,7 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = state => ({
   heroes: state.heroes,
+  filter: state.filter,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HeroesCatalogue);

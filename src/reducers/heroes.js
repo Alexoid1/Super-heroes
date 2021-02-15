@@ -68,6 +68,7 @@ const heroesReducer = (state = initialState, action) => {
         text: '',
 
       };
+
     default:
       return state;
   }

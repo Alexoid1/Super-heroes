@@ -1,0 +1,17 @@
+.filter {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.selectFilter {
+  width: 190px;
+  height: 38px;
+  padding: 7px;
+  font-size: 17px;
+  border: 2px solid #121212;
+}
+
+.selectFilter option {
+  color: black;
+  font-size: 17px;
+}

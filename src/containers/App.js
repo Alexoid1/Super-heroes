@@ -1,15 +1,15 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import Routes from './Routes.js'
+import Routes from './Routes';
 import './App.css';
 
 function App() {
   return (
-      <BrowserRouter>
-        <div className="animated-background" data-testid="website_name">
-          <Routes/>
-        </div>
-      </BrowserRouter>
+    <BrowserRouter>
+      <div className="animated-background" data-testid="website_name">
+        <Routes />
+      </div>
+    </BrowserRouter>
   );
 }
 

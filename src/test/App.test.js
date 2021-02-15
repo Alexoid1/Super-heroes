@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import React from 'react';
 import App from '../containers/App';
 import store from '../reducers/index';
+
 const renderer = new ShallowRenderer();
 
 test('renders website name', () => {
@@ -18,9 +19,10 @@ test('renders website name', () => {
 });
 
 it('should render App correctly', () => {
-  renderer.render(<Provider store={store}>
-                    <App />
-                  </Provider>
-                  );
+  renderer.render(
+    <Provider store={store}>
+      <App />
+    </Provider>,
+  );
   expect(renderer.getRenderOutput()).toMatchSnapshot();
 });
