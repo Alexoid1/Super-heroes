@@ -5,7 +5,7 @@ import { changeFilter } from '../actions/index';
 import './CategoryFilter.css';
 
 const CategoryFilter = ({ changeFilter }) => {
-  const heroesCategories = ['All', 'Human',
+  const heroesCategories = ['Human',
     'Icthyo Sapien',
     'Ungaran',
     'Cosmic Entity',
@@ -28,7 +28,6 @@ const CategoryFilter = ({ changeFilter }) => {
     'Human / Clone',
     'Human / Radiation',
     'Human-Kree',
-    'Inhuman',
     'Dathomirian Zabrak',
     'Human / Cosmic',
     'Human / Altered',
@@ -50,7 +49,6 @@ const CategoryFilter = ({ changeFilter }) => {
     'Bolovaxian',
     'Animal',
     'Czarnian',
-    'Human-Kree',
     'Martian',
     'Spartoi',
     'Luphomoid',

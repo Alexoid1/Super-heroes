@@ -51,8 +51,6 @@ export const fetchHeroes = () => dispatch => {
   axios.get('https://akabab.github.io/superhero-api/api/all.json')
     .then(response => {
       const heroes = response.data;
-      console.log(heroes);
-
       dispatch(fetchHeroesSuccess(heroes));
     })
     .catch(error => {

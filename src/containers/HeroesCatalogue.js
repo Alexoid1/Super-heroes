@@ -45,20 +45,18 @@ function HeroesCatalogue({
       lastHeroes();
     }
   }
-
-  // eslint-disable-next-line no-nested-ternary
-  return (heroes.loading ? (
-    <>
-      <Spinner />
-    </>
-  ) : heroes.error ? (
-    <h2 className="error">{heroes.error}</h2>
-  ) : (
-    <>
-      <SearchBar />
-      <CategoryFilter />
-      <div className="header-container">
-        {
+  let comp;
+  if (heroes.loading) {
+    comp = <Spinner />;
+  } else if (heroes.error) {
+    comp = <h2 className="error">{heroes.error}</h2>;
+  } else {
+    comp = (
+      <>
+        <SearchBar />
+        <CategoryFilter />
+        <div className="header-container">
+          {
 
             firstFive(filterByRace(heroes.sHeroes, filter)).map(hero => (
               <HeroCard
@@ -70,15 +68,27 @@ function HeroesCatalogue({
             ))
           }
 
-      </div>
-      <MenuSelect handleNext={handleIncrease} handleLast={handleDecrese} />
+        </div>
+        <MenuSelect handleNext={handleIncrease} handleLast={handleDecrese} />
 
-    </>
-  ));
+      </>
+
+    );
+  }
+
+  return comp;
 }
 
 HeroesCatalogue.propTypes = {
-  heroes: PropTypes.arrayOf(PropTypes.string),
+  heroes: PropTypes.shape({
+    loading: PropTypes.bool.isRequired,
+    heroes: PropTypes.arrayOf(PropTypes.object),
+    sHeroes: PropTypes.arrayOf(PropTypes.object),
+    error: PropTypes.string.isRequired,
+    startIndex: PropTypes.number.isRequired,
+    lastIndex: PropTypes.number.isRequired,
+    text: PropTypes.string.isRequired,
+  }),
   fetchHeroes: PropTypes.func.isRequired,
   nextHeroes: PropTypes.func.isRequired,
   lastHeroes: PropTypes.func.isRequired,

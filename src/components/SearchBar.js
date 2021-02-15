@@ -32,7 +32,15 @@ const SearchBar = ({ heroes, changeText, searchHeroes }) => {
 };
 
 SearchBar.propTypes = {
-  heroes: PropTypes.arrayOf(PropTypes.object),
+  heroes: PropTypes.shape({
+    loading: PropTypes.bool.isRequired,
+    heroes: PropTypes.arrayOf(PropTypes.object),
+    sHeroes: PropTypes.arrayOf(PropTypes.object),
+    error: PropTypes.string.isRequired,
+    startIndex: PropTypes.number.isRequired,
+    lastIndex: PropTypes.number.isRequired,
+    text: PropTypes.string.isRequired,
+  }),
   changeText: PropTypes.func.isRequired,
   searchHeroes: PropTypes.func.isRequired,
 };
