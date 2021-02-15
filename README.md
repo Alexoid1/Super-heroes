@@ -1,8 +1,8 @@
-# React Bookstore
+# Super Heroes Capstone React Redux
+SuperHeroes is a web application give information about All SuperHeroes and Villains data from all universes under a single API. It is a fast and reliable app developed using React and Redux and fetches data from a standard API called SuperHeroes API.
 
-
-![screenshot](./img/screen2.png)
-![screenshot](./img/search.png)
+![screenshot](./img/heroes.png)
+![screenshot](./img/screen.png)
 
 
 ## Built With
@@ -17,7 +17,7 @@
 - ES6.
 
 ## Live Demo
-[Live Demo Link](https://react-bookstorre.herokuapp.com)
+[Live Demo Link](https://super-heroess.herokuapp.com)
 
 ### Test
 - `npm run test`
@@ -31,8 +31,8 @@ Internet
 
 To get a local copy up and running follow these simple example steps:
 
-- Go to https://github.com/Alexoid1/Bookstore-react and clone the repo using: <br>
-`https://github.com/Alexoid1/Bookstore-react.git` in your terminal.
+- Go to https://github.com/Alexoid1/Super-heroes and clone the repo using: <br>
+`https://github.com/Alexoid1/Super-heroes.git` in your terminal.
 
 ### Github Actions
 
@@ -55,7 +55,7 @@ To make sure the linters' checks using Github Actions work properly, you should 
 
 Contributions, issues and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/Alexoid1/Bookstore-react/issues).
+Feel free to check the [issues page](https://github.com/Alexoid1/Super-heroes/issues).
 
 ## Show your support
 
