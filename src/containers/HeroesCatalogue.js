@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { fetchHeroes, nextHeroes, lastHeroes } from '../actions/index';
+import {
+  fetchHeroes,
+  nextHeroes,
+  lastHeroes,
+} from '../actions/index';
 import HeroCard from '../components/HeroCard';
 import Spinner from '../components/Spinner';
 import MenuSelect from '../components/MenuSelect';
@@ -10,7 +14,7 @@ import CategoryFilter from '../components/CategoryFilter';
 import './HeroesCatalogue.css';
 
 function HeroesCatalogue({
-  fetchHeroes, heroes, nextHeroes, lastHeroes, filter,
+  fetchHeroes, heroes, nextHeroes, lastHeroes,
 }) {
   const [start, setStart] = useState(heroes.startIndex);
   const [end, setEnd] = useState(heroes.lastIndex);
@@ -29,13 +33,6 @@ function HeroesCatalogue({
     if (heroes.sHeroes[heroes.lastIndex + 1]) {
       nextHeroes();
     }
-  }
-  function filterByRace(sHeroes, filter) {
-    if (filter === 'All') {
-      return sHeroes;
-    }
-
-    return sHeroes.filter(hero => hero.appearance.race === filter);
   }
   function handleDecrese(e) {
     e.preventDefault();
@@ -57,8 +54,7 @@ function HeroesCatalogue({
         <CategoryFilter />
         <div className="header-container">
           {
-
-            firstFive(filterByRace(heroes.sHeroes, filter)).map(hero => (
+            firstFive(heroes.sHeroes).map(hero => (
               <HeroCard
                 key={hero.id}
                 id={hero.id}
@@ -92,7 +88,6 @@ HeroesCatalogue.propTypes = {
   fetchHeroes: PropTypes.func.isRequired,
   nextHeroes: PropTypes.func.isRequired,
   lastHeroes: PropTypes.func.isRequired,
-  filter: PropTypes.string.isRequired,
 };
 
 HeroesCatalogue.defaultProps = {
@@ -107,7 +102,6 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = state => ({
   heroes: state.heroes,
-  filter: state.filter,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HeroesCatalogue);

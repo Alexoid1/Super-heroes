@@ -7,7 +7,8 @@ import {
   SEARCH_HEROES,
   LAST_HEROES,
   NEXT_HEROES,
-  CHANGE_FILTER,
+  FILTER_CHANGE,
+  SEARCH_BY_FILTER,
 } from '../action-types';
 
 const fetchHeroesRequest = () => ({
@@ -42,8 +43,12 @@ export const lastHeroes = () => ({
 });
 
 export const changeFilter = value => ({
-  type: CHANGE_FILTER,
-  value,
+  type: FILTER_CHANGE,
+  payload: value,
+});
+
+export const searchByFilter = () => ({
+  type: SEARCH_BY_FILTER,
 });
 
 export const fetchHeroes = () => dispatch => {
