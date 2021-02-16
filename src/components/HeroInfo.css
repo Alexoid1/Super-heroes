@@ -1,0 +1,138 @@
+.superCont {
+  padding-top: 20px;
+  font-family: 'Electrolize', sans-serif;
+  width: 100%;
+}
+
+.hero-container {
+  width: 1200px;
+  height: auto;
+  background: linear-gradient(90deg, rgba(23, 86, 124, 0.9) 11%, rgba(2, 4, 10, 0.9) 82%);
+  margin: 50px auto;
+  border: 2px solid whitesmoke;
+  border-radius: 10px;
+}
+
+.heroTitle {
+  text-align: center;
+  font-family: 'Electrolize', sans-serif;
+  color: white;
+  font-size: 30px;
+}
+
+.powerStats {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  margin: auto;
+}
+
+.imgCon {
+  width: 200px;
+  border: 5px solid white;
+}
+
+.powerT {
+  width: 500px;
+  color: white;
+}
+
+.powerT h3 {
+  text-align: center;
+}
+
+.powerT p {
+  display: inline;
+  text-align: left;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+body {
+  background-color: #2b2b2b;
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
+}
+
+.imga {
+  width: 50%;
+}
+
+.imageCenter {
+  margin: auto;
+  text-align: center;
+}
+
+.apparenceC {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.closeX {
+  color: white;
+  font-size: 30px;
+  float: right;
+  font-weight: bolder;
+  border: 2px solid white;
+  border-radius: 50%;
+  padding: 10px 18px;
+  margin: 10px;
+}
+
+.closeX:hover {
+  color: black;
+  background: white;
+}
+
+@media (max-width: 1225px) {
+  .hero-container {
+    width: 800px;
+  }
+}
+
+@media (max-width: 725px) {
+  .hero-container {
+    width: 500px;
+    margin: 10px auto;
+  }
+
+  .powerStats {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    margin: auto;
+  }
+
+  .powerT {
+    margin: auto;
+  }
+
+  .imgCon {
+    width: 150px;
+    border: 5px solid white;
+  }
+}
+
+@media (max-width: 475px) {
+  .superCont {
+    width: 100%;
+  }
+
+  .hero-container {
+    width: 420px;
+    margin: 10px auto;
+  }
+
+  .apparenceC {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+  }
+
+  .powerT {
+    width: 300px;
+    color: white;
+  }
+}

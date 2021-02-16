@@ -1,0 +1,21 @@
+.butonCont {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+}
+
+.butonCont button {
+  background: none;
+  border-radius: 100%;
+  border: 2px solid white;
+  padding: 10px;
+  margin: 10px;
+  color: white;
+}
+
+.butonCont button:hover {
+  background: white;
+  color: #d1b464;
+}

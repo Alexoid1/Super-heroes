@@ -1,0 +1,31 @@
+.filter {
+  text-align: center;
+}
+
+.formSe {
+  width: 80%;
+  text-align: center;
+  margin: auto;
+}
+
+.inputSearch input {
+  margin: 50px;
+  width: 600px;
+  height: 30px;
+  padding: 7px;
+  font-size: 17px;
+  border: 2px solid #121212;
+}
+
+@media (max-width: 880px) {
+  .inputSearch input {
+    width: 300px;
+  }
+}
+
+@media (max-width: 380px) {
+  .inputSearch input {
+    width: 200px;
+    margin: 5px;
+  }
+}

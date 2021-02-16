@@ -1,0 +1,64 @@
+.animated-background {
+  height: 1450px;
+  background: url(../images/heroes2.jpg) repeat-x;
+  -webkit-animation: animatebackground 120s linear infinite;
+  animation: animatebackground 120s linear infinite;
+  -ms-animation: animatebackground 120s linear infinite;
+  -moz-animation: animatebackground 120s linear infinite;
+}
+
+@keyframes animatebackground {
+  0% {
+    background-position: 0 0;
+  }
+
+  50% {
+    background-position: -1000px 0;
+  }
+
+  100% {
+    background-position: 0 0;
+  }
+}
+
+@-webkit-keyframes animatebackground {
+  0% {
+    background-position: 0 0;
+  }
+
+  50% {
+    background-position: -1000px 0;
+  }
+
+  100% {
+    background-position: 0 0;
+  }
+}
+
+@-ms-keyframes animatebackground {
+  0% {
+    background-position: 0 0;
+  }
+
+  50% {
+    background-position: -1000px 0;
+  }
+
+  100% {
+    background-position: 0 0;
+  }
+}
+
+@-moz-keyframes animatebackground {
+  0% {
+    background-position: 0 0;
+  }
+
+  50% {
+    background-position: -1000px 0;
+  }
+
+  100% {
+    background-position: 0 0;
+  }
+}
