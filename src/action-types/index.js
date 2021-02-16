@@ -5,4 +5,5 @@ export const CHANGE_TEXT = 'CHANGE_TEXT';
 export const SEARCH_HEROES = 'SEARCH_HEROES';
 export const NEXT_HEROES = 'NEXT_HEROES';
 export const LAST_HEROES = 'LAST_HEROES';
-export const CHANGE_FILTER = 'CHANGE_FILTER';
+export const FILTER_CHANGE = 'FILTER_CHANGE';
+export const SEARCH_BY_FILTER = 'SEARCH_BY_FILTER';

@@ -6,6 +6,8 @@ import {
   LAST_HEROES,
   CHANGE_TEXT,
   SEARCH_HEROES,
+  FILTER_CHANGE,
+  SEARCH_BY_FILTER,
 } from '../action-types';
 
 const initialState = {
@@ -16,6 +18,7 @@ const initialState = {
   startIndex: 0,
   lastIndex: 5,
   text: '',
+  filter: 'All',
 };
 
 const heroesReducer = (state = initialState, action) => {
@@ -67,6 +70,24 @@ const heroesReducer = (state = initialState, action) => {
         }),
         text: '',
 
+      };
+    case FILTER_CHANGE:
+      return {
+        ...state,
+        filter: action.payload,
+      };
+    case SEARCH_BY_FILTER:
+      return {
+        ...state,
+        startIndex: 0,
+        lastIndex: 5,
+        sHeroes: state.heroes.filter(hero => {
+          if (state.filter === 'All') {
+            return state.heroes;
+          }
+          return hero.appearance.race === state.filter;
+        }),
+        text: '',
       };
 
     default:

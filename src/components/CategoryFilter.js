@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { changeFilter } from '../actions/index';
+import { changeFilter, searchByFilter } from '../actions/index';
 import './CategoryFilter.css';
 
-const CategoryFilter = ({ changeFilter }) => {
+const CategoryFilter = ({ changeFilter, searchByFilter }) => {
   const heroesCategories = ['Human',
     'Icthyo Sapien',
     'Ungaran',
@@ -67,6 +67,7 @@ const CategoryFilter = ({ changeFilter }) => {
     const { target: { value } } = e;
     setText(value);
     changeFilter(value);
+    searchByFilter();
   };
 
   return (
@@ -95,12 +96,16 @@ const CategoryFilter = ({ changeFilter }) => {
 
 CategoryFilter.propTypes = {
   changeFilter: PropTypes.func.isRequired,
+  searchByFilter: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = dispatch => ({ changeFilter: value => dispatch(changeFilter(value)) });
+const mapDispatchToProps = dispatch => ({
+  changeFilter: value => dispatch(changeFilter(value)),
+  searchByFilter: () => dispatch(searchByFilter()),
+});
 
 const mapStateToProps = state => ({
-  filter: state.filter,
+  filter: state.heroes.filter,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CategoryFilter);
