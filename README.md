@@ -19,8 +19,6 @@ SuperHeroes is a web application give information about All SuperHeroes and Vill
 ## Live Demo
 [Live Demo Link](https://super-heroess.herokuapp.com)
 
-## Video
-[Video](https://www.loom.com/share/08ec44fe57be469ba5e34b36b3c9af47)
 
 ### Test
 - `npm run test`
