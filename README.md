@@ -1,5 +1,5 @@
 # Super Heroes Capstone React Redux
-SuperHeroes is a web application give information about All SuperHeroes and Villains data from all universes under a single API. It is a fast and reliable app developed using React and Redux and fetches data from a standard API called SuperHeroes API.
+SuperHeroes is a web application give information about All SuperHeroes and Villains data from all universes. Built with React and Redux and fetches data from a standard API called SuperHeroes API.
 
 ![screenshot](./img/heroes.png)
 ![screenshot](./img/screen.png)
