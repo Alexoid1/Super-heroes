@@ -6,8 +6,7 @@ import {
   LAST_HEROES,
   CHANGE_TEXT,
   SEARCH_HEROES,
-  FILTER_CHANGE,
-  SEARCH_BY_FILTER,
+  FILTER_CHANGE
 } from '../action-types';
 
 const initialState = {
@@ -45,14 +44,14 @@ const heroesReducer = (state = initialState, action) => {
     case NEXT_HEROES:
       return {
         ...state,
-        startIndex: state.startIndex + 5,
-        lastIndex: state.lastIndex + 5,
+        startIndex: state.startIndex + action.payload,
+        lastIndex: state.lastIndex + action.payload,
       };
     case LAST_HEROES:
       return {
         ...state,
-        startIndex: state.startIndex - 5,
-        lastIndex: state.lastIndex - 5,
+        startIndex: state.startIndex - action.payload,
+        lastIndex: state.lastIndex - action.payload,
       };
     case CHANGE_TEXT:
       return {
@@ -76,19 +75,7 @@ const heroesReducer = (state = initialState, action) => {
         ...state,
         filter: action.payload,
       };
-    case SEARCH_BY_FILTER:
-      return {
-        ...state,
-        startIndex: 0,
-        lastIndex: 5,
-        sHeroes: state.heroes.filter(hero => {
-          if (state.filter === 'All') {
-            return state.heroes;
-          }
-          return hero.appearance.race === state.filter;
-        }),
-        text: '',
-      };
+   
 
     default:
       return state;

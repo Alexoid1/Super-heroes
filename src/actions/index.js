@@ -1,4 +1,4 @@
-import axios from 'axios';
+
 import {
   FETCH_HEROES_FAILURE,
   FETCH_HEROES_REQUEST,
@@ -15,12 +15,12 @@ const fetchHeroesRequest = () => ({
   type: FETCH_HEROES_REQUEST,
 });
 
-const fetchHeroesSuccess = heroes => ({
+export const fetchHeroesSuccess = heroes => ({
   type: FETCH_HEROES_SUCCESS,
   payload: heroes,
 });
 
-const fetchHeroesFailure = error => ({
+export const fetchHeroesFailure = error => ({
   type: FETCH_HEROES_FAILURE,
   payload: error,
 });
@@ -34,31 +34,20 @@ export const searchHeroes = () => ({
   type: SEARCH_HEROES,
 });
 
-export const nextHeroes = () => ({
+export const nextHeroes = (num) => ({
   type: NEXT_HEROES,
+  payload: num
 });
 
-export const lastHeroes = () => ({
+export const lastHeroes = (num) => ({
   type: LAST_HEROES,
+  payload: num
 });
 
 export const changeFilter = value => ({
   type: FILTER_CHANGE,
-  payload: value,
+  payload: value
 });
 
-export const searchByFilter = () => ({
-  type: SEARCH_BY_FILTER,
-});
 
-export const fetchHeroes = () => dispatch => {
-  dispatch(fetchHeroesRequest);
-  axios.get('https://akabab.github.io/superhero-api/api/all.json')
-    .then(response => {
-      const heroes = response.data;
-      dispatch(fetchHeroesSuccess(heroes));
-    })
-    .catch(error => {
-      dispatch(fetchHeroesFailure(error.message));
-    });
-};
+

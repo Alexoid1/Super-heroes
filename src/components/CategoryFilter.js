@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { changeFilter, searchByFilter } from '../actions/index';
+import { changeFilter } from '../actions/index';
 import './CategoryFilter.css';
 
-const CategoryFilter = ({ changeFilter, searchByFilter }) => {
+const CategoryFilter = ({ changeFilter, onChange }) => {
   const heroesCategories = ['Human',
     'Icthyo Sapien',
     'Ungaran',
@@ -65,11 +65,13 @@ const CategoryFilter = ({ changeFilter, searchByFilter }) => {
 
   const handleTextChange = e => {
     const { target: { value } } = e;
+    onChange(value)
     setText(value);
     changeFilter(value);
-    searchByFilter();
+    
   };
 
+  
   return (
     <div className="filter">
       <select
@@ -96,12 +98,10 @@ const CategoryFilter = ({ changeFilter, searchByFilter }) => {
 
 CategoryFilter.propTypes = {
   changeFilter: PropTypes.func.isRequired,
-  searchByFilter: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = dispatch => ({
-  changeFilter: value => dispatch(changeFilter(value)),
-  searchByFilter: () => dispatch(searchByFilter()),
+  changeFilter: value => dispatch(changeFilter(value))
 });
 
 const mapStateToProps = state => ({

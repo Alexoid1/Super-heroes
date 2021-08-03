@@ -1,14 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FaArrowLeft,FaArrowRight,
+  FaAngleDoubleRight,FaAngleDoubleLeft} from 'react-icons/fa';
 import './MenuSelect.css';
 
-function MenuSelect({ handleNext, handleLast }) {
+function MenuSelect({ handleNext, handleLast, handleOneLast, handleOneNext}) {
   /* eslint-disable jsx-a11y/control-has-associated-label */
   return (
     <div className="butonCont">
-      <button type="button" onClick={handleLast}><i className="fa fa-arrow-left fa-2x" aria-hidden="true" /></button>
-      <button type="button" onClick={handleNext}><i className="fa fa-arrow-right fa-2x" aria-hidden="true" /></button>
+      <button type="button" onClick={handleLast}><FaAngleDoubleLeft className="iconSize"/></button>
+      <button type="button" onClick={handleOneLast}><FaArrowLeft  className="iconSize" /></button>
+      <button type="button" onClick={handleOneNext}><FaArrowRight  className="iconSize" /></button>
+      <button type="button" onClick={handleNext}><FaAngleDoubleRight  className="iconSize" /></button>
     </div>
+    
 
   );
 }

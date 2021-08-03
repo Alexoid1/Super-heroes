@@ -6,4 +6,4 @@ export const SEARCH_HEROES = 'SEARCH_HEROES';
 export const NEXT_HEROES = 'NEXT_HEROES';
 export const LAST_HEROES = 'LAST_HEROES';
 export const FILTER_CHANGE = 'FILTER_CHANGE';
-export const SEARCH_BY_FILTER = 'SEARCH_BY_FILTER';
+
