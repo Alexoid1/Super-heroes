@@ -40,7 +40,22 @@ function HeroesCatalogue({
     });
   }, []);
   function firstFive(array) {
-    const arr = array.slice(start, end);
+    let arr
+    let delimiter=0
+    let anex
+    if(array.length<5)
+      arr = array.slice(start, array.length);
+    else{
+      if(array[start+5]){
+        arr = array.slice(start, start+5);
+      }else{
+        delimiter = start+5-array.length
+        arr = array.slice(start, array.length);
+        anex=array.slice(0,delimiter)
+        arr=arr.concat(anex)
+      }
+      
+    }
     return arr;
   }
 
@@ -73,19 +88,30 @@ function HeroesCatalogue({
 
   function handleOneIncrese(e) {
     e.preventDefault();
-    setEnd(end+1);
-    setStart(start+1);
-    if (heroess[end + 1]) {
-      nextHeroes(1);
+    
+    if (start+5>heroesC.length+3) {
+      setStart(0)
+      
+    }else{
+      setEnd(end+1);
+      setStart(start+1);
     }
   }
 
 
   const searchHeroes  = (filte) => {
     const cloneHeroes = heroess
-    const her=cloneHeroes.filter((hero)=>{
-      return hero.appearance.race===filte})
-      setHeroesC(her)
+    let her;
+    if(filte==='All'){
+      her=heroess
+    }else{
+     her=cloneHeroes.filter((hero)=>{
+      return hero.appearance.race===filte
+    })}
+    setHeroesC(her)
+    setEnd(5)
+    setStart(0)
+
   }
   let comp;
   if (heroes.loading) {
@@ -96,7 +122,7 @@ function HeroesCatalogue({
     comp = (
       <>
         <SearchBar />
-        <CategoryFilter onChange={searchHeroes}  />
+        <CategoryFilter onChange={searchHeroes}   />
         <div className="header-container">
           {
             firstFive(heroesC).map(hero => (
@@ -110,12 +136,25 @@ function HeroesCatalogue({
           }
 
         </div>
-        <MenuSelect 
-        handleNext={handleIncrease} 
-        handleLast={handleDecrese} 
-        handleOneLast={handleOneDecrese} 
-        handleOneNext={handleOneIncrese} 
-        />
+        <div>
+        {
+          heroesC.length>5?
+            (<MenuSelect 
+              handleNext={handleIncrease} 
+              handleLast={handleDecrese} 
+              handleOneLast={handleOneDecrese} 
+              handleOneNext={handleOneIncrese} 
+              />
+            ):(
+              null
+            )
+            
+          }
+        
+
+        </div>
+       
+        
 
       </>
 
@@ -151,7 +190,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = state => ({
-  filte: state.heroes.filte,
+  filte: state.heroes.filter,
   heroes: state.heroes,
 });
 
