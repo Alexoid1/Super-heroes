@@ -19,10 +19,10 @@ import './HeroesCatalogue.css';
 function HeroesCatalogue({
   fetchHeroesFailure, heroes, filte,fetchHeroesSuccess
 }) {
+  const cardsNumber=5
   const [heroess,setHeroes]= useState([]);
   const [heroesC, setHeroesC] = useState([]);
   const [start, setStart] = useState(0);
-  const [end, setEnd] = useState(5);
   useEffect(() => {
     fetch(`${baseUrl}`, { mode: 'cors' })
     .then(res => {
@@ -43,16 +43,21 @@ function HeroesCatalogue({
     let arr
     let delimiter=0
     let anex
-    if(array.length<5)
+    if(array.length<cardsNumber)
       arr = array.slice(start, array.length);
     else{
-      if(array[start+5]){
-        arr = array.slice(start, start+5);
-      }else{
-        delimiter = start+5-array.length
+      if(!array[start+cardsNumber]){
+        delimiter = start+cardsNumber-array.length
         arr = array.slice(start, array.length);
         anex=array.slice(0,delimiter)
         arr=arr.concat(anex)
+        
+      }else if(start<0){
+        delimiter=start+cardsNumber
+        arr=array.slice(start,array.length).concat(array.slice(0,delimiter))
+
+         } else{
+        arr = array.slice(start, start+cardsNumber);
       }
       
     }
@@ -61,28 +66,30 @@ function HeroesCatalogue({
 
   function handleIncrease(e) {
     e.preventDefault();
-    setEnd(end+5);
-    setStart(start+5);
-    if (heroess[end + 1]) {
+  
+    setStart(start+cardsNumber);
+    if (heroess[start+5 + 1]) {
       nextHeroes(5);
     }
   }
 
   function handleDecrese(e) {
     e.preventDefault();
-    setEnd(end-5);
-    setStart(start-5);
-    if (heroes.startIndex - 5 >= 0) {
+   
+    setStart(start-cardsNumber);
+    if (heroes.startIndex - cardsNumber >= 0) {
       lastHeroes(5);
     }
   }
 
   function handleOneDecrese(e) {
     e.preventDefault();
-    setEnd(end-1);
-    setStart(start-1);
-    if (heroes.startIndex - 5 >= 0) {
-      lastHeroes(1);
+    
+    if (start<-cardsNumber+1) {
+      setStart(heroesC.length-cardsNumber)
+      
+    }else{
+      setStart(start-1);
     }
   }
 
@@ -93,7 +100,7 @@ function HeroesCatalogue({
       setStart(0)
       
     }else{
-      setEnd(end+1);
+      
       setStart(start+1);
     }
   }
@@ -109,7 +116,6 @@ function HeroesCatalogue({
       return hero.appearance.race===filte
     })}
     setHeroesC(her)
-    setEnd(5)
     setStart(0)
 
   }
