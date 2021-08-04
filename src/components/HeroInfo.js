@@ -9,7 +9,7 @@ import './HeroInfo.css';
 
 function HeroInfo({ heroes }) {
   const { id } = useParams();
-
+ 
   const herou = heroes.heroes.filter(hero => hero.id === id * 1)[0];
 
   let heroRender;

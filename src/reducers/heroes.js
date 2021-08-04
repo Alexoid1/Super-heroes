@@ -31,7 +31,7 @@ const heroesReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        heroes: action.payload,
+        heroes: [...action.payload],
         sHeroes: action.payload,
         error: '',
       };

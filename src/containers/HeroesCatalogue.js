@@ -192,7 +192,7 @@ const mapDispatchToProps = dispatch => ({
   fetchHeroesFailure: () => dispatch(fetchHeroesFailure()),
   nextHeroes: () => dispatch(nextHeroes()),
   lastHeroes: () => dispatch(lastHeroes()),
-  fetchHeroesSuccess: () => dispatch(fetchHeroesSuccess()),
+  fetchHeroesSuccess: (heroes) => dispatch(fetchHeroesSuccess(heroes)),
 });
 
 const mapStateToProps = state => ({
