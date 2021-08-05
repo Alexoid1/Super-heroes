@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './MenuHero.css';
 
-function MenuHero({ preview }) {
+function MenuHero({ preview ,category}) {
   const a = preview * 1 + 1;
   const b = preview * 1 - 1;
-  const rounext = `/hero/${a}`;
-  const roulast = `/hero/${b}`;
+  const rounext = `/hero/${category}/${a}`;
+  const roulast = `/hero/${category}/${b}`;
   return (
     <div className="butonCont2">
       <Link to="/" className="exit">EXIT</Link>

@@ -116,6 +116,7 @@ function HeroesCatalogue({
       return hero.appearance.race===filte
     })}
     setHeroesC(her)
+    fetchHeroesSuccess(her)
     setStart(0)
 
   }
@@ -131,12 +132,15 @@ function HeroesCatalogue({
         <CategoryFilter onChange={searchHeroes}   />
         <div className="header-container">
           {
-            firstFive(heroesC).map(hero => (
+            firstFive(heroesC).map((hero,index) => (
               <HeroCard
                 key={hero.id}
                 id={hero.id}
                 image={hero.images.sm}
                 name={hero.name}
+                index={index}
+                category={filte}
+
               />
             ))
           }

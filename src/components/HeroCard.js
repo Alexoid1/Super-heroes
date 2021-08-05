@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './HeroCard.css';
 
-function HeroCard({ id, image, name }) {
-  const rou = `/hero/${id}`;
+function HeroCard({ id, image, name, index, category }) {
+  const rou = `/hero/${category}/${index}`;
   return (
-    <Link to={rou}>
+    <Link to={rou} >
       <div className="cardHero">
         <img className="imgCont" src={image} alt="heroimage" />
         <h5>{name}</h5>

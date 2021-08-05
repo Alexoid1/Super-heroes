@@ -8,9 +8,14 @@ import MenuHero from './MenuHero';
 import './HeroInfo.css';
 
 function HeroInfo({ heroes }) {
-  const { id } = useParams();
+  const { category } = useParams();
+  const { index } = useParams();
  
-  const herou = heroes.heroes.filter(hero => hero.id === id * 1)[0];
+
+  
+  
+  const herou = heroes.heroes[index];
+  
 
   let heroRender;
   if (herou.length === 0) {
@@ -108,7 +113,7 @@ function HeroInfo({ heroes }) {
                 </p>
               </div>
             </div>
-            <MenuHero preview={id} />
+            <MenuHero preview={index} category={category}  />
           </div>
         </div>
       </>
@@ -116,6 +121,7 @@ function HeroInfo({ heroes }) {
   }
   return heroRender;
 }
+
 
 const mapStateToProps = state => ({
   heroes: state.heroes,
