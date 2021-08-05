@@ -120,6 +120,16 @@ function HeroesCatalogue({
     setStart(0)
 
   }
+
+  const searchByText = (text) => {
+    const regex = new RegExp(text, 'gi');
+    const cloneH = heroess
+    const filterBy = cloneH.filter(hero => {   
+      return hero.name.match(regex);
+    })
+    setHeroesC(filterBy)
+  }
+
   let comp;
   if (heroes.loading) {
     comp = setInterval(()=>{<Spinner />},1000);
@@ -128,7 +138,7 @@ function HeroesCatalogue({
   } else {
     comp = (
       <>
-        <SearchBar />
+        <SearchBar onChange={searchByText}/>
         <CategoryFilter onChange={searchHeroes}   />
         <div className="header-container">
           {
@@ -157,17 +167,10 @@ function HeroesCatalogue({
               />
             ):(
               null
-            )
-            
+            )  
           }
-        
-
         </div>
-       
-        
-
       </>
-
     );
   }
 

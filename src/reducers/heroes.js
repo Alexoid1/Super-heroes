@@ -58,18 +58,6 @@ const heroesReducer = (state = initialState, action) => {
         ...state,
         text: action.payload,
       };
-    case SEARCH_HEROES:
-      return {
-        ...state,
-        startIndex: 0,
-        lastIndex: 5,
-        sHeroes: state.heroes.filter(hero => {
-          const regex = new RegExp(state.text, 'gi');
-          return hero.name.match(regex);
-        }),
-        text: '',
-
-      };
     case FILTER_CHANGE:
       return {
         ...state,
