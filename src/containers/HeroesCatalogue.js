@@ -67,9 +67,9 @@ function HeroesCatalogue({
   function handleIncrease(e) {
     e.preventDefault();
   
-    setStart(start+cardsNumber);
-    if (heroess[start+5 + 1]) {
-      nextHeroes(5);
+    setStart(start+ cardsNumber);
+    if (heroess[start+ cardsNumber + 1]) {
+      nextHeroes(cardsNumber);
     }
   }
 
@@ -78,7 +78,7 @@ function HeroesCatalogue({
    
     setStart(start-cardsNumber);
     if (heroes.startIndex - cardsNumber >= 0) {
-      lastHeroes(5);
+      lastHeroes(cardsNumber);
     }
   }
 
@@ -130,6 +130,8 @@ function HeroesCatalogue({
     setHeroesC(filterBy)
   }
 
+ 
+
   let comp;
   if (heroes.loading) {
     comp = setInterval(()=>{<Spinner />},1000);
@@ -150,7 +152,6 @@ function HeroesCatalogue({
                 name={hero.name}
                 index={index}
                 category={filte}
-
               />
             ))
           }

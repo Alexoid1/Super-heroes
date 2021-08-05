@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 import './HeroCard.css';
 
 function HeroCard({ id, image, name, index, category }) {
-  const rou = `/hero/${category}/${index}`;
+
+  const rou = `/hero/${category}/${id}`;
+  
   return (
     <Link to={rou} >
       <div className="cardHero">
