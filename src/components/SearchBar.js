@@ -6,11 +6,10 @@ import './SearchBar.css';
 
 const SearchBar = ({ heroes, changeText, onChange }) => {
   const [text, setText] = useState(heroes.text);
-  const handleTextChange = event => {
+  const handleTextChange = (event) => {
     setText(event.target.value);
-    onChange(event.target.value)
+    onChange(event.target.value);
     changeText(event.target.value);
-
   };
 
   return (
@@ -43,19 +42,18 @@ SearchBar.propTypes = {
     text: PropTypes.string.isRequired,
   }),
   changeText: PropTypes.func.isRequired,
-  searchHeroes: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 SearchBar.defaultProps = {
   heroes: [],
 };
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   heroes: state.heroes,
 });
 
-const mapDispatchToProps = dispatch => ({
-  changeText: text => dispatch(changeText(text)),
-  
+const mapDispatchToProps = (dispatch) => ({
+  changeText: (text) => dispatch(changeText(text)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);

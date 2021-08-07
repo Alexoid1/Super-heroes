@@ -63,15 +63,13 @@ const CategoryFilter = ({ changeFilter, onChange }) => {
     'Tamaranean'];
   const [text, setText] = useState('All');
 
-  const handleTextChange = e => {
+  const handleTextChange = (e) => {
     const { target: { value } } = e;
-    onChange(value)
+    onChange(value);
     setText(value);
     changeFilter(value);
-    
   };
 
-  
   return (
     <div className="filter">
       <select
@@ -81,7 +79,7 @@ const CategoryFilter = ({ changeFilter, onChange }) => {
       >
         <option value="All">All</option>
         {
-          heroesCategories.map(book => (
+          heroesCategories.map((book) => (
             <option
               key={book}
               value={book}
@@ -98,13 +96,14 @@ const CategoryFilter = ({ changeFilter, onChange }) => {
 
 CategoryFilter.propTypes = {
   changeFilter: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = dispatch => ({
-  changeFilter: value => dispatch(changeFilter(value))
+const mapDispatchToProps = (dispatch) => ({
+  changeFilter: (value) => dispatch(changeFilter(value)),
 });
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   filter: state.heroes.filter,
 });
 

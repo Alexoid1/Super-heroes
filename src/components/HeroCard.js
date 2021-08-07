@@ -3,12 +3,13 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './HeroCard.css';
 
-function HeroCard({ id, image, name, category }) {
-
+function HeroCard({
+  id, image, name, category,
+}) {
   const rou = `/hero/${category}/${id}`;
-  
+
   return (
-    <Link to={rou} >
+    <Link to={rou}>
       <div className="cardHero">
         <img className="imgCont" src={image} alt="heroimage" />
         <h5>{name}</h5>
@@ -22,6 +23,7 @@ HeroCard.propTypes = {
   id: PropTypes.number.isRequired,
   image: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
 };
 
 export default HeroCard;

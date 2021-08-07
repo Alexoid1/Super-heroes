@@ -10,12 +10,9 @@ import './HeroInfo.css';
 function HeroInfo({ heroes }) {
   const { category } = useParams();
   const { id } = useParams();
- 
 
-  const index=heroes.findIndex((hero)=>{
-    return hero.id.toString()===id
-  });
-  
+  const index = heroes.findIndex((hero) => hero.id.toString() === id);
+
   const herou = heroes[index];
 
   let heroRender;
@@ -114,10 +111,11 @@ function HeroInfo({ heroes }) {
                 </p>
               </div>
             </div>
-            <MenuHero 
-            preview={index} 
-            category={category} 
-            categoryLength={heroes.length} />
+            <MenuHero
+              preview={index}
+              category={category}
+              categoryLength={heroes.length}
+            />
           </div>
         </div>
       </>
@@ -126,8 +124,7 @@ function HeroInfo({ heroes }) {
   return heroRender;
 }
 
-
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   heroes: state.heroes.heroes,
 });
 

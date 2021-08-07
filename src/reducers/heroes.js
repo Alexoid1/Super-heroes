@@ -1,12 +1,10 @@
 import {
   FETCH_HEROES_FAILURE,
-  FETCH_HEROES_REQUEST,
   FETCH_HEROES_SUCCESS,
   NEXT_HEROES,
   LAST_HEROES,
   CHANGE_TEXT,
-  SEARCH_HEROES,
-  FILTER_CHANGE
+  FILTER_CHANGE,
 } from '../action-types';
 
 const initialState = {
@@ -22,11 +20,6 @@ const initialState = {
 
 const heroesReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_HEROES_REQUEST:
-      return {
-        ...state,
-        loading: true,
-      };
     case FETCH_HEROES_SUCCESS:
       return {
         ...state,
@@ -63,7 +56,6 @@ const heroesReducer = (state = initialState, action) => {
         ...state,
         filter: action.payload,
       };
-   
 
     default:
       return state;
