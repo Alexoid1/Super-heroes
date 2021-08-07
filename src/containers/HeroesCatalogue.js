@@ -61,19 +61,16 @@ function HeroesCatalogue({
 
   function handleIncrease(e) {
     e.preventDefault();
+    
+    setDealCards('takeCards')
     setTimeout(() => {
-      setDealCards('takeCards')
-      
-    })
-    setTimeout(() => {
-      if(dealCards){
-        if (start + cardsNumber > heroesC.length - 1) {
+   
+      if (start + cardsNumber > heroesC.length - 1) {
           setStart(0);
-        } else {
+      } else {
           setStart(start + cardsNumber);
-        }
-  
-      }    
+      }
+    
     },1000)
     
     setTimeout(() => {
@@ -86,12 +83,17 @@ function HeroesCatalogue({
 
   function handleDecrese(e) {
     e.preventDefault();
-
-    if (start < 0) {
-      setStart(heroesC.length - 5);
-    } else {
-      setStart(start - cardsNumber);
-    }
+    setDealCards('takeCards')
+    setTimeout(() => {
+      if (start < 0) {
+        setStart(heroesC.length - 5);
+      } else {
+        setStart(start - cardsNumber);
+      }
+    },1000)
+    setTimeout(() => {
+      setDealCards('dealCards')
+    }, 1500);
   }
 
   function handleOneDecrese(e) {
@@ -188,7 +190,6 @@ function HeroesCatalogue({
             )
           }
         </div>
-        <button type="button" onClick={dealingCards}>deal</button>
       </>
     );
   }
