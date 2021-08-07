@@ -24,7 +24,7 @@
 }
 
 .inputSearch input::placeholder{
-  color: rgb(255, 196, 0);
+  color: rgb(255, 166, 0);
   font-size: 17px;
   font-weight: bolder;
 }

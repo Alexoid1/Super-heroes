@@ -23,6 +23,7 @@ function HeroesCatalogue({
   const [heroess, setHeroes] = useState([]);
   const [heroesC, setHeroesC] = useState([]);
   const [start, setStart] = useState(0);
+  const [dealCards, setDealCards] = useState('dealCards');
   useEffect(() => {
     fetch(`${baseUrl}`, { mode: 'cors' })
       .then((res) => {
@@ -60,11 +61,25 @@ function HeroesCatalogue({
 
   function handleIncrease(e) {
     e.preventDefault();
-    if (start + cardsNumber > heroesC.length - 1) {
-      setStart(0);
-    } else {
-      setStart(start + cardsNumber);
-    }
+    setTimeout(() => {
+      setDealCards('takeCards')
+      
+    })
+    setTimeout(() => {
+      if(dealCards){
+        if (start + cardsNumber > heroesC.length - 1) {
+          setStart(0);
+        } else {
+          setStart(start + cardsNumber);
+        }
+  
+      }    
+    },1000)
+    
+    setTimeout(() => {
+      setDealCards('dealCards')
+      
+    }, 1500);
 
     nextHeroes(cardsNumber);
   }
@@ -112,12 +127,23 @@ function HeroesCatalogue({
     setStart(0);
   };
 
+  let transition = 0;
+
   const searchByText = (text) => {
     const regex = new RegExp(text, 'gi');
     const cloneH = heroess;
     const filterBy = cloneH.filter((hero) => hero.name.match(regex));
     setHeroesC(filterBy);
   };
+  const dealingCards = () => {
+  
+    setTimeout(() => {
+      setDealCards('takeCards')
+    }, 1000);
+  
+    
+  };
+  
 
   let comp;
   if (heroes.loading) {
@@ -131,15 +157,19 @@ function HeroesCatalogue({
         <CategoryFilter onChange={searchHeroes} />
         <div className="header-container">
           {
-            firstFive(heroesC).map((hero) => (
-              <HeroCard
-                key={hero.id}
-                id={hero.id}
-                image={hero.images.sm}
-                name={hero.name}
-                category={filte}
-              />
-            ))
+            firstFive(heroesC).map((hero) => {
+              transition += 1;
+              return (
+                <div key={hero.id} className={`${dealCards} deal card${transition}`}>
+                  <HeroCard
+                    id={hero.id}
+                    image={hero.images.sm}
+                    name={hero.name}
+                    category={filte}
+                  />
+                </div>
+              );
+            })
           }
 
         </div>
@@ -158,6 +188,7 @@ function HeroesCatalogue({
             )
           }
         </div>
+        <button type="button" onClick={dealingCards}>deal</button>
       </>
     );
   }

@@ -10,6 +10,10 @@ function HeroCard({
 
   return (
     <Link to={rou}>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
       <div className="cardHero">
         <img className="imgCont" src={image} alt="heroimage" />
         <h5>{name}</h5>

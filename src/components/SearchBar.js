@@ -23,7 +23,7 @@ const SearchBar = ({ heroes, changeText, onChange }) => {
                 type="text"
                 value={text}
                 onChange={handleTextChange}
-                placeholder="Write the Hero Name"
+                placeholder="Write a Hero Name"
               />
             </Link>
           </div>

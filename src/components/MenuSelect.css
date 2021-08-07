@@ -9,7 +9,7 @@
 .butonCont button {
   background: none;
   border-radius: 100%;
-  border: 2px solid white;
+  border: 3px solid rgba(100, 200, 200, 1);
   padding: 10px;
   margin: 10px;
   color: white;

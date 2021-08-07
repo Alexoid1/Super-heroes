@@ -6,6 +6,47 @@
   margin: auto;
 }
 
+.takeCards {
+  transform: translateY(-200px);
+  opacity: 0;
+  visibility: hidden;
+}
+.defaultCards {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.deal {
+  transition: transform .5s cubic-bezier(.25,0,.28,1.43),opacity .3s linear,visibility .5s;
+}
+
+.dealCards {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.card1{
+  transition-delay: 0s;
+}
+
+.card2{
+  transition-delay: 0.15s;
+}
+
+.card3{
+  transition-delay: 0.30s;
+}
+
+.card4{
+  transition-delay: 0.45s;
+}
+
+.card5{
+  transition-delay: 0.60s;
+}
+
 @media (max-width: 1200px) {
   .header-container {
     width: 900px;
