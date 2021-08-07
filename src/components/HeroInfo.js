@@ -14,13 +14,9 @@ function HeroInfo({ heroes }) {
 
   const index=heroes.findIndex((hero)=>{
     return hero.id.toString()===id
-  })
- 
-
-  
+  });
   
   const herou = heroes[index];
-  
 
   let heroRender;
   if (herou.length === 0) {
