@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { changeText } from '../actions/index';
@@ -17,14 +18,15 @@ const SearchBar = ({ heroes, changeText, onChange }) => {
       <div>
         <form className="formSe">
           <div className="inputSearch">
-            <input
-              type="text"
-              value={text}
-              onChange={handleTextChange}
-              placeholder="Hero Name"
-            />
+            <Link to="#0" className="underline">
+              <input
+                type="text"
+                value={text}
+                onChange={handleTextChange}
+                placeholder="Write the Hero Name"
+              />
+            </Link>
           </div>
-
         </form>
       </div>
     </>
