@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { changeText, searchHeroes } from '../actions/index';
+import { changeText } from '../actions/index';
 import './SearchBar.css';
 
-const SearchBar = ({ heroes, changeText, searchHeroes }) => {
+const SearchBar = ({ heroes, changeText, onChange }) => {
   const [text, setText] = useState(heroes.text);
-  const handleTextChange = event => {
+  const handleTextChange = (event) => {
     setText(event.target.value);
+    onChange(event.target.value);
     changeText(event.target.value);
-    searchHeroes();
   };
 
   return (
@@ -42,19 +42,18 @@ SearchBar.propTypes = {
     text: PropTypes.string.isRequired,
   }),
   changeText: PropTypes.func.isRequired,
-  searchHeroes: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 SearchBar.defaultProps = {
   heroes: [],
 };
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   heroes: state.heroes,
 });
 
-const mapDispatchToProps = dispatch => ({
-  changeText: text => dispatch(changeText(text)),
-  searchHeroes: () => dispatch(searchHeroes()),
+const mapDispatchToProps = (dispatch) => ({
+  changeText: (text) => dispatch(changeText(text)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);

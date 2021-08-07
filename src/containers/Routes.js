@@ -5,7 +5,7 @@ import HeroInfo from '../components/HeroInfo';
 const Routes = () => (
   <Switch>
     <Route exact path="/" component={HeroesCatalogue} />
-    <Route exact path="/hero/:id" component={HeroInfo} />
+    <Route exact path="/hero/:category/:id" component={HeroInfo} />
   </Switch>
 );
 

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { changeFilter, searchByFilter } from '../actions/index';
+import { changeFilter } from '../actions/index';
 import './CategoryFilter.css';
 
-const CategoryFilter = ({ changeFilter, searchByFilter }) => {
+const CategoryFilter = ({ changeFilter, onChange }) => {
   const heroesCategories = ['Human',
     'Icthyo Sapien',
     'Ungaran',
@@ -63,11 +63,11 @@ const CategoryFilter = ({ changeFilter, searchByFilter }) => {
     'Tamaranean'];
   const [text, setText] = useState('All');
 
-  const handleTextChange = e => {
+  const handleTextChange = (e) => {
     const { target: { value } } = e;
+    onChange(value);
     setText(value);
     changeFilter(value);
-    searchByFilter();
   };
 
   return (
@@ -79,7 +79,7 @@ const CategoryFilter = ({ changeFilter, searchByFilter }) => {
       >
         <option value="All">All</option>
         {
-          heroesCategories.map(book => (
+          heroesCategories.map((book) => (
             <option
               key={book}
               value={book}
@@ -96,15 +96,14 @@ const CategoryFilter = ({ changeFilter, searchByFilter }) => {
 
 CategoryFilter.propTypes = {
   changeFilter: PropTypes.func.isRequired,
-  searchByFilter: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = dispatch => ({
-  changeFilter: value => dispatch(changeFilter(value)),
-  searchByFilter: () => dispatch(searchByFilter()),
+const mapDispatchToProps = (dispatch) => ({
+  changeFilter: (value) => dispatch(changeFilter(value)),
 });
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   filter: state.heroes.filter,
 });
 
