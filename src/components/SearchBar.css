@@ -55,7 +55,7 @@
   }
 }
 
-@media (max-width: 380px) {
+@media (max-width: 420px) {
   .inputSearch input {
     width: 200px;
     margin: 5px;

@@ -9,11 +9,7 @@ function HeroCard({
   const rou = `/hero/${category}/${id}`;
 
   return (
-    <Link to={rou}>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
+    <Link to={rou} className="linkContainer">
       <div className="cardHero">
         <img className="imgCont" src={image} alt="heroimage" />
         <h5>{name}</h5>
