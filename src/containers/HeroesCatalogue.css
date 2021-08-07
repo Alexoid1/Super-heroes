@@ -47,6 +47,10 @@
   transition-delay: 0.60s;
 }
 
+.mobileCont {
+  display: none;
+}
+
 @media (max-width: 1200px) {
   .header-container {
     width: 900px;
@@ -65,9 +69,12 @@
 }
 
 @media (max-width: 470px) {
-  .header-container {
-    width: 300px;
-    grid-template-columns: 1fr;
-    grid-gap: 10px;
+  
+  .mobiledisplay {
+    display: none;
+  }
+
+  .mobileCont {
+    display: block;
   }
 }

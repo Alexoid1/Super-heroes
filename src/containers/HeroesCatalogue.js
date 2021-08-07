@@ -24,6 +24,8 @@ function HeroesCatalogue({
   const [heroesC, setHeroesC] = useState([]);
   const [start, setStart] = useState(0);
   const [dealCards, setDealCards] = useState('dealCards');
+  const [indexMobile, setIndexMobile] = useState(0);
+
   useEffect(() => {
     fetch(`${baseUrl}`, { mode: 'cors' })
       .then((res) => {
@@ -40,6 +42,7 @@ function HeroesCatalogue({
         fetchHeroesFailure(error);
       });
   }, []);
+
   function firstFive(array) {
     let arr;
     let delimiter = 0;
@@ -58,6 +61,19 @@ function HeroesCatalogue({
     }
     return arr;
   }
+
+  function oneByOne(array){
+    const cardOne=array[indexMobile]
+    return(
+      <HeroCard 
+      id={cardOne.id}
+      image={cardOne.images.sm}
+      name={cardOne.name}
+      category={filte}
+      />
+    )
+  }
+
 
   function handleIncrease(e) {
     e.preventDefault();
@@ -137,14 +153,6 @@ function HeroesCatalogue({
     const filterBy = cloneH.filter((hero) => hero.name.match(regex));
     setHeroesC(filterBy);
   };
-  const dealingCards = () => {
-  
-    setTimeout(() => {
-      setDealCards('takeCards')
-    }, 1000);
-  
-    
-  };
   
 
   let comp;
@@ -157,7 +165,12 @@ function HeroesCatalogue({
       <>
         <SearchBar onChange={searchByText} />
         <CategoryFilter onChange={searchHeroes} />
-        <div className="header-container">
+        <div className="mobileCont">
+          {
+            oneByOne(heroesC)
+          }
+        </div>
+        <div className="header-container mobiledisplay">
           {
             firstFive(heroesC).map((hero) => {
               transition += 1;
@@ -175,7 +188,7 @@ function HeroesCatalogue({
           }
 
         </div>
-        <div>
+        <div className="mobiledisplay">
           {
           heroesC.length > 5
             ? (
