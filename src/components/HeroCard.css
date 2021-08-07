@@ -6,6 +6,7 @@
     radial-gradient(ellipse farthest-corner at left top, #fff 0%, #ffffac 8%, #d1b464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
   border-radius: 7px;
   text-align: center;
+  margin: auto;
 }
 
 .imgCont {
@@ -27,5 +28,6 @@
   .linkContainer {
     display: block;
     margin: auto;
+    text-align: center;
   }
 }
