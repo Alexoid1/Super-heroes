@@ -56,7 +56,7 @@ function HeroesCatalogue({
         delimiter=start+cardsNumber
         arr=array.slice(start,array.length).concat(array.slice(0,delimiter))
 
-         } else{
+      } else{
         arr = array.slice(start, start+cardsNumber);
       }
       
@@ -66,19 +66,23 @@ function HeroesCatalogue({
 
   function handleIncrease(e) {
     e.preventDefault();
-  
-    setStart(start+ cardsNumber);
-    if (heroess[start+ cardsNumber + 1]) {
-      nextHeroes(cardsNumber);
+    if (start+cardsNumber>heroesC.length-1) {
+      setStart(0);
+    }else{
+      setStart(start+ cardsNumber);
     }
+ 
+      nextHeroes(cardsNumber);
+    
   }
 
   function handleDecrese(e) {
     e.preventDefault();
    
-    setStart(start-cardsNumber);
-    if (heroes.startIndex - cardsNumber >= 0) {
-      lastHeroes(cardsNumber);
+    if (start<0) {
+      setStart(heroesC.length-5);
+    }else{
+      setStart(start-cardsNumber);
     }
   }
 
@@ -86,7 +90,7 @@ function HeroesCatalogue({
     e.preventDefault();
     
     if (start<-cardsNumber+1) {
-      setStart(heroesC.length-cardsNumber)
+      setStart(heroesC.length-cardsNumber+1)
       
     }else{
       setStart(start-1);
@@ -144,13 +148,13 @@ function HeroesCatalogue({
         <CategoryFilter onChange={searchHeroes}   />
         <div className="header-container">
           {
-            firstFive(heroesC).map((hero,index) => (
+            firstFive(heroesC).map((hero) => (
               <HeroCard
                 key={hero.id}
                 id={hero.id}
                 image={hero.images.sm}
                 name={hero.name}
-                index={index}
+                
                 category={filte}
               />
             ))

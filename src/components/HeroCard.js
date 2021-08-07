@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './HeroCard.css';
 
-function HeroCard({ id, image, name, index, category }) {
+function HeroCard({ id, image, name, category }) {
 
   const rou = `/hero/${category}/${id}`;
   
