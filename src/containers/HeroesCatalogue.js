@@ -26,7 +26,6 @@ function HeroesCatalogue({
   const [heroesC, setHeroesC] = useState([]);
   const [start, setStart] = useState(0);
   const [dealCards, setDealCards] = useState('dealCards');
-
   const isDesktop = useMediaQuery({ query: '(min-width: 470px)' })
   const isMobile = useMediaQuery({ query: '(max-width: 470px)' })
 
@@ -108,6 +107,26 @@ function HeroesCatalogue({
       setDealCards('dealCards')
     }, 1500);
   }
+  function handleOneDecreseMobile(e) {
+    e.preventDefault();
+
+    if (start < 0) {
+      setStart(heroesC-1);
+    } else {
+      setStart(start - 1);
+    }
+  }
+
+  function handleOneIncreseMobile(e) {
+    e.preventDefault();
+
+    if (start > heroesC.length -1) {
+      setStart(0);
+    } else {
+      setStart(start + 1);
+    }
+  }
+
 
   function handleOneDecrese(e) {
     e.preventDefault();
@@ -212,8 +231,8 @@ function HeroesCatalogue({
             {
               isMobile && 
               <MenuSelectMobile 
-              handleOneLast={handleOneDecrese}
-              handleOneNext={handleOneIncrese}
+              handleOneLast={handleOneDecreseMobile}
+              handleOneNext={handleOneIncreseMobile}
               />
             }
           </div>
