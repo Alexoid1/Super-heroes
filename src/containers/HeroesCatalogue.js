@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import PropTypes from 'prop-types';
+import DotLoader from 'react-spinners/ClipLoader';
 import {
   nextHeroes,
   fetchHeroesFailure,
@@ -9,7 +10,6 @@ import {
 } from '../actions/index';
 import baseUrl from '../helpers/base-url';
 import HeroCard from '../components/HeroCard';
-import Spinner from '../components/Spinner';
 import MenuSelect from '../components/MenuSelect';
 import MenuSelectMobile from '../components/MenuSelectMobile';
 import SearchBar from '../components/SearchBar';
@@ -168,7 +168,7 @@ function HeroesCatalogue({
 
   let comp;
   if (heroes.loading) {
-    comp = setInterval(() => { <Spinner />; }, 1000);
+    comp = setInterval(() => { <DotLoader />; }, 1000);
   } else if (heroes.error) {
     comp = <h2 className="error">{heroes.error}</h2>;
   } else {
