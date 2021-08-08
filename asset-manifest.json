@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/Super-heroes/static/css/main.93336d3d.chunk.css",
-    "main.js": "/Super-heroes/static/js/main.b9bff32a.chunk.js",
-    "main.js.map": "/Super-heroes/static/js/main.b9bff32a.chunk.js.map",
+    "main.js": "/Super-heroes/static/js/main.edd26c4f.chunk.js",
+    "main.js.map": "/Super-heroes/static/js/main.edd26c4f.chunk.js.map",
     "runtime-main.js": "/Super-heroes/static/js/runtime-main.216f5b72.js",
     "runtime-main.js.map": "/Super-heroes/static/js/runtime-main.216f5b72.js.map",
     "static/js/2.ab61fded.chunk.js": "/Super-heroes/static/js/2.ab61fded.chunk.js",
@@ -16,6 +16,6 @@
     "static/js/runtime-main.216f5b72.js",
     "static/js/2.ab61fded.chunk.js",
     "static/css/main.93336d3d.chunk.css",
-    "static/js/main.b9bff32a.chunk.js"
+    "static/js/main.edd26c4f.chunk.js"
   ]
 }
