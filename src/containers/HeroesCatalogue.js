@@ -3,9 +3,7 @@ import { connect } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import PropTypes from 'prop-types';
 import {
-
   nextHeroes,
-  lastHeroes,
   fetchHeroesFailure,
   fetchHeroesSuccess,
 } from '../actions/index';
@@ -81,12 +79,10 @@ function HeroesCatalogue({
         setStart(start + cardsNumber);
       }
     }, 1000);
-
+    nextHeroes(start);
     setTimeout(() => {
       setDealCards('dealCards');
     }, 1500);
-
-    nextHeroes(cardsNumber);
   }
 
   function handleDecrese(e) {
@@ -99,6 +95,7 @@ function HeroesCatalogue({
         setStart(start - cardsNumber);
       }
     }, 1000);
+    nextHeroes(start);
     setTimeout(() => {
       setDealCards('dealCards');
     }, 1500);
@@ -111,6 +108,7 @@ function HeroesCatalogue({
     } else {
       setStart(start - 1);
     }
+    nextHeroes(start);
   }
 
   function handleOneIncreseMobile(e) {
@@ -121,6 +119,7 @@ function HeroesCatalogue({
     } else {
       setStart(start + 1);
     }
+    nextHeroes(start);
   }
 
   function handleOneDecrese(e) {
@@ -131,6 +130,7 @@ function HeroesCatalogue({
     } else {
       setStart(start - 1);
     }
+    nextHeroes(start);
   }
 
   function handleOneIncrese(e) {
@@ -141,6 +141,7 @@ function HeroesCatalogue({
     } else {
       setStart(start + 1);
     }
+    nextHeroes(start);
   }
 
   const searchHeroes = (filte) => {
@@ -256,7 +257,6 @@ HeroesCatalogue.defaultProps = {
 const mapDispatchToProps = (dispatch) => ({
   fetchHeroesFailure: () => dispatch(fetchHeroesFailure()),
   nextHeroes: () => dispatch(nextHeroes()),
-  lastHeroes: () => dispatch(lastHeroes()),
   fetchHeroesSuccess: (heroes) => dispatch(fetchHeroesSuccess(heroes)),
 });
 
