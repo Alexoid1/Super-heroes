@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { useMediaQuery } from 'react-responsive'
+import { useMediaQuery } from 'react-responsive';
 import PropTypes from 'prop-types';
 import {
 
@@ -26,8 +26,8 @@ function HeroesCatalogue({
   const [heroesC, setHeroesC] = useState([]);
   const [start, setStart] = useState(0);
   const [dealCards, setDealCards] = useState('dealCards');
-  const isDesktop = useMediaQuery({ query: '(min-width: 470px)' })
-  const isMobile = useMediaQuery({ query: '(max-width: 470px)' })
+  const isDesktop = useMediaQuery({ query: '(min-width: 470px)' });
+  const isMobile = useMediaQuery({ query: '(max-width: 470px)' });
 
   useEffect(() => {
     fetch(`${baseUrl}`, { mode: 'cors' })
@@ -65,29 +65,25 @@ function HeroesCatalogue({
     return arr;
   }
 
-  function oneByOne(array){
-    let cardOne=array.slice(start, start+1);
-    return cardOne
+  function oneByOne(array) {
+    const cardOne = array.slice(start, start + 1);
+    return cardOne;
   }
-
 
   function handleIncrease(e) {
     e.preventDefault();
-    
-    setDealCards('takeCards')
+
+    setDealCards('takeCards');
     setTimeout(() => {
-   
       if (start + cardsNumber > heroesC.length - 1) {
-          setStart(0);
+        setStart(0);
       } else {
-          setStart(start + cardsNumber);
+        setStart(start + cardsNumber);
       }
-    
-    },1000)
-    
+    }, 1000);
+
     setTimeout(() => {
-      setDealCards('dealCards')
-      
+      setDealCards('dealCards');
     }, 1500);
 
     nextHeroes(cardsNumber);
@@ -95,23 +91,23 @@ function HeroesCatalogue({
 
   function handleDecrese(e) {
     e.preventDefault();
-    setDealCards('takeCards')
+    setDealCards('takeCards');
     setTimeout(() => {
       if (start < 0) {
         setStart(heroesC.length - 5);
       } else {
         setStart(start - cardsNumber);
       }
-    },1000)
+    }, 1000);
     setTimeout(() => {
-      setDealCards('dealCards')
+      setDealCards('dealCards');
     }, 1500);
   }
   function handleOneDecreseMobile(e) {
     e.preventDefault();
 
     if (start < 0) {
-      setStart(heroesC-1);
+      setStart(heroesC - 1);
     } else {
       setStart(start - 1);
     }
@@ -120,13 +116,12 @@ function HeroesCatalogue({
   function handleOneIncreseMobile(e) {
     e.preventDefault();
 
-    if (start > heroesC.length -1) {
+    if (start > heroesC.length - 1) {
       setStart(0);
     } else {
       setStart(start + 1);
     }
   }
-
 
   function handleOneDecrese(e) {
     e.preventDefault();
@@ -169,7 +164,6 @@ function HeroesCatalogue({
     const filterBy = cloneH.filter((hero) => hero.name.match(regex));
     setHeroesC(filterBy);
   };
-  
 
   let comp;
   if (heroes.loading) {
@@ -182,11 +176,11 @@ function HeroesCatalogue({
         <div className="allContainer">
           <SearchBar onChange={searchByText} />
           <CategoryFilter onChange={searchHeroes} />
-          
+
           <div className="header-container">
-            {isDesktop && 
-              
-              firstFive(heroesC).map((hero) => {
+            {isDesktop
+
+              && firstFive(heroesC).map((hero) => {
                 transition += 1;
                 return (
                   <div key={hero.id} className={`${dealCards} deal card${transition}`}>
@@ -198,25 +192,22 @@ function HeroesCatalogue({
                     />
                   </div>
                 );
-              })
-            }
-            {isMobile&&
-              oneByOne(heroesC).map((hero)=>{
-                return (
-                  <HeroCard
-                      id={hero.id}
-                      image={hero.images.sm}
-                      name={hero.name}
-                      category={filte}
-                    />
-                )
-              })
-            }
+              })}
+            {isMobile
+              && oneByOne(heroesC).map((hero) => (
+                <HeroCard
+                  key={`${hero.id}mobile`}
+                  id={hero.id}
+                  image={hero.images.sm}
+                  name={hero.name}
+                  category={filte}
+                />
+              ))}
 
           </div>
-          <div >
-            {isDesktop && 
-            heroesC.length > 5
+          <div>
+            {isDesktop
+            && heroesC.length > 5
               ? (
                 <MenuSelect
                   handleNext={handleIncrease}
@@ -226,14 +217,15 @@ function HeroesCatalogue({
                 />
               ) : (
                 null
-              )
-            }
+              )}
             {
-              isMobile && 
-              <MenuSelectMobile 
-              handleOneLast={handleOneDecreseMobile}
-              handleOneNext={handleOneIncreseMobile}
+              isMobile
+              && (
+              <MenuSelectMobile
+                handleOneLast={handleOneDecreseMobile}
+                handleOneNext={handleOneIncreseMobile}
               />
+              )
             }
           </div>
         </div>

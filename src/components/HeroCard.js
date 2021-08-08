@@ -17,7 +17,7 @@ function HeroCard({
         </div>
       </Link>
     </div>
-    
+
   );
 }
 
