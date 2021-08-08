@@ -21,10 +21,10 @@ function MenuHero({
   const roulast = `/hero/${category}/${b}`;
   return (
     <div className="butonCont2">
-      <Link to="/Super-heroes" className="exit">EXIT</Link>
+      <Link to="/https://alexoid1.github.io/Super-heroes/" className="exit">EXIT</Link>
 
-      {preview * 1 - 1 < 0 ? null : <Link to={roulast}><i className="fa fa-arrow-left fa-3x" aria-hidden="true" /></Link>}
-      {preview * 1 + 1 > categoryLength - 1 ? null : <Link to={rounext}><i className="fa fa-arrow-right fa-3x" aria-hidden="true" /></Link>}
+      {preview * 1 - 1 < 0 ? null : <Link to={'https://alexoid1.github.io/'+roulast}><i className="fa fa-arrow-left fa-3x" aria-hidden="true" /></Link>}
+      {preview * 1 + 1 > categoryLength - 1 ? null : <Link to={'https://alexoid1.github.io/'+rounext}><i className="fa fa-arrow-right fa-3x" aria-hidden="true" /></Link>}
     </div>
 
   );
