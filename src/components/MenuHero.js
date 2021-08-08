@@ -7,6 +7,7 @@ import './MenuHero.css';
 function MenuHero({
   preview, category, categoryLength, heroes,
 }) {
+  console.log(category);
   let a;
   let b;
   if (heroes[preview + 1]) {
@@ -17,14 +18,13 @@ function MenuHero({
     b = heroes[preview - 1].id;
   }
 
-  const rounext = `/hero/${category}/${a}`;
-  const roulast = `/hero/${category}/${b}`;
+  const rounext = `/${a}`;
+  const roulast = `/${b}`;
   return (
     <div className="butonCont2">
       <Link to="/https://alexoid1.github.io/Super-heroes/" className="exit">EXIT</Link>
-
-      {preview * 1 - 1 < 0 ? null : <Link to={'https://alexoid1.github.io/'+roulast}><i className="fa fa-arrow-left fa-3x" aria-hidden="true" /></Link>}
-      {preview * 1 + 1 > categoryLength - 1 ? null : <Link to={'https://alexoid1.github.io/'+rounext}><i className="fa fa-arrow-right fa-3x" aria-hidden="true" /></Link>}
+      {preview * 1 - 1 < 0 ? null : <Link to={roulast}><i className="fa fa-arrow-left fa-3x" aria-hidden="true" /></Link>}
+      {preview * 1 + 1 > categoryLength - 1 ? null : <Link to={rounext}><i className="fa fa-arrow-right fa-3x" aria-hidden="true" /></Link>}
     </div>
 
   );
