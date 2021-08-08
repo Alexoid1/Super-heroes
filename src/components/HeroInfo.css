@@ -96,6 +96,10 @@ body {
     margin: 10px auto;
   }
 
+  .apparenceC {
+    grid-gap: 15px;
+  }
+
   .powerStats {
     display: flex;
     flex-direction: column-reverse;
@@ -115,7 +119,7 @@ body {
   }
 }
 
-@media (max-width: 475px) {
+@media (max-width: 480px) {
   .superCont {
     width: 100%;
   }

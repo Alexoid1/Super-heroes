@@ -14,7 +14,39 @@
   height: 30px;
   padding: 7px;
   font-size: 17px;
-  border: 2px solid #121212;
+  font-weight: bolder;
+  font-family: 'Chakra Petch', sans-serif;
+  background: none;
+  color: rgb(255, 196, 0);
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.inputSearch input::placeholder{
+  color: rgb(255, 166, 0);
+  font-size: 17px;
+  font-weight: bolder;
+}
+
+.underline {
+  color: inherit;
+  text-decoration: none;
+}
+
+.underline {
+  background: 
+    linear-gradient(to right, rgba(100, 200, 200, 1), rgba(100, 200, 200, 1)),
+    linear-gradient(to right, rgba(255, 0, 0, 1), rgb(255, 102, 0), rgb(200, 197, 0));
+  background-size: 100% 0.1em, 0 0.1em;
+  background-position: 100% 100%, 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 400ms;
+}
+
+.underline:hover,
+.underline:focus {
+  background-size: 0 0.1em, 100% 0.1em;
 }
 
 @media (max-width: 880px) {
@@ -23,9 +55,13 @@
   }
 }
 
-@media (max-width: 380px) {
+@media (max-width: 470px) {
   .inputSearch input {
-    width: 200px;
-    margin: 5px;
+    width: 250px;
+    margin: auto;
+  }
+  .formSe {
+    width: 100%;
+    text-align: center;
   }
 }

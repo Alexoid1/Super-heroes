@@ -1,74 +1,236 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import { useMediaQuery } from 'react-responsive';
 import PropTypes from 'prop-types';
+import DotLoader from 'react-spinners/ClipLoader';
 import {
-  fetchHeroes,
   nextHeroes,
-  lastHeroes,
+  fetchHeroesFailure,
+  fetchHeroesSuccess,
 } from '../actions/index';
+import baseUrl from '../helpers/base-url';
 import HeroCard from '../components/HeroCard';
-import Spinner from '../components/Spinner';
 import MenuSelect from '../components/MenuSelect';
+import MenuSelectMobile from '../components/MenuSelectMobile';
 import SearchBar from '../components/SearchBar';
 import CategoryFilter from '../components/CategoryFilter';
 import './HeroesCatalogue.css';
 
 function HeroesCatalogue({
-  fetchHeroes, heroes, nextHeroes, lastHeroes,
+  fetchHeroesFailure, heroes, filte, fetchHeroesSuccess,
 }) {
-  const [start, setStart] = useState(heroes.startIndex);
-  const [end, setEnd] = useState(heroes.lastIndex);
+  const cardsNumber = 5;
+  const [heroess, setHeroes] = useState([]);
+  const [heroesC, setHeroesC] = useState([]);
+  const [start, setStart] = useState(0);
+  const [dealCards, setDealCards] = useState('dealCards');
+  const isDesktop = useMediaQuery({ query: '(min-width: 470px)' });
+  const isMobile = useMediaQuery({ query: '(max-width: 470px)' });
+
   useEffect(() => {
-    fetchHeroes();
+    fetch(`${baseUrl}`, { mode: 'cors' })
+      .then((res) => {
+        if (res.ok) {
+          res.json().then((jsonRes) => {
+            setHeroes(jsonRes);
+            fetchHeroesSuccess(jsonRes);
+            setHeroesC(jsonRes);
+          });
+        } else {
+          fetchHeroesFailure('and error while fetch favourites');
+        }
+      }).catch((error) => {
+        fetchHeroesFailure(error);
+      });
   }, []);
+
   function firstFive(array) {
-    const arr = array.slice(start, end);
+    let arr;
+    let delimiter = 0;
+    let anex;
+    if (array.length < cardsNumber) arr = array.slice(start, array.length);
+    else if (!array[start + cardsNumber]) {
+      delimiter = start + cardsNumber - array.length;
+      arr = array.slice(start, array.length);
+      anex = array.slice(0, delimiter);
+      arr = arr.concat(anex);
+    } else if (start < 0) {
+      delimiter = start + cardsNumber;
+      arr = array.slice(start, array.length).concat(array.slice(0, delimiter));
+    } else {
+      arr = array.slice(start, start + cardsNumber);
+    }
     return arr;
+  }
+
+  function oneByOne(array) {
+    const cardOne = array.slice(start, start + 1);
+    return cardOne;
   }
 
   function handleIncrease(e) {
     e.preventDefault();
-    setEnd(heroes.lastIndex);
-    setStart(heroes.startIndex);
-    if (heroes.sHeroes[heroes.lastIndex + 1]) {
-      nextHeroes();
-    }
+
+    setDealCards('takeCards');
+    setTimeout(() => {
+      if (start + cardsNumber > heroesC.length - 1) {
+        setStart(0);
+      } else {
+        setStart(start + cardsNumber);
+      }
+    }, 1000);
+    nextHeroes(start);
+    setTimeout(() => {
+      setDealCards('dealCards');
+    }, 1500);
   }
+
   function handleDecrese(e) {
     e.preventDefault();
-    setEnd(heroes.lastIndex);
-    setStart(heroes.startIndex);
-    if (heroes.startIndex - 5 >= 0) {
-      lastHeroes();
-    }
+    setDealCards('takeCards');
+    setTimeout(() => {
+      if (start < 0) {
+        setStart(heroesC.length - 5);
+      } else {
+        setStart(start - cardsNumber);
+      }
+    }, 1000);
+    nextHeroes(start);
+    setTimeout(() => {
+      setDealCards('dealCards');
+    }, 1500);
   }
+  function handleOneDecreseMobile(e) {
+    e.preventDefault();
+
+    if (start < 0) {
+      setStart(heroesC - 1);
+    } else {
+      setStart(start - 1);
+    }
+    nextHeroes(start);
+  }
+
+  function handleOneIncreseMobile(e) {
+    e.preventDefault();
+
+    if (start > heroesC.length - 1) {
+      setStart(0);
+    } else {
+      setStart(start + 1);
+    }
+    nextHeroes(start);
+  }
+
+  function handleOneDecrese(e) {
+    e.preventDefault();
+
+    if (start < -cardsNumber + 1) {
+      setStart(heroesC.length - cardsNumber + 1);
+    } else {
+      setStart(start - 1);
+    }
+    nextHeroes(start);
+  }
+
+  function handleOneIncrese(e) {
+    e.preventDefault();
+
+    if (start + 5 > heroesC.length + 3) {
+      setStart(0);
+    } else {
+      setStart(start + 1);
+    }
+    nextHeroes(start);
+  }
+
+  const searchHeroes = (filte) => {
+    const cloneHeroes = heroess;
+    let her;
+    if (filte === 'All') {
+      her = heroess;
+    } else {
+      her = cloneHeroes.filter((hero) => hero.appearance.race === filte);
+    }
+    setHeroesC(her);
+    fetchHeroesSuccess(her);
+    setStart(0);
+  };
+
+  let transition = 0;
+
+  const searchByText = (text) => {
+    const regex = new RegExp(text, 'gi');
+    const cloneH = heroess;
+    const filterBy = cloneH.filter((hero) => hero.name.match(regex));
+    setHeroesC(filterBy);
+  };
+
   let comp;
   if (heroes.loading) {
-    comp = <Spinner />;
+    comp = setInterval(() => { <DotLoader />; }, 1000);
   } else if (heroes.error) {
     comp = <h2 className="error">{heroes.error}</h2>;
   } else {
     comp = (
       <>
-        <SearchBar />
-        <CategoryFilter />
-        <div className="header-container">
-          {
-            firstFive(heroes.sHeroes).map(hero => (
-              <HeroCard
-                key={hero.id}
-                id={hero.id}
-                image={hero.images.sm}
-                name={hero.name}
+        <div className="allContainer">
+          <SearchBar onChange={searchByText} />
+          <CategoryFilter onChange={searchHeroes} />
+
+          <div className="header-container">
+            {isDesktop
+
+              && firstFive(heroesC).map((hero) => {
+                transition += 1;
+                return (
+                  <div key={hero.id} className={`${dealCards} deal card${transition}`}>
+                    <HeroCard
+                      id={hero.id}
+                      image={hero.images.sm}
+                      name={hero.name}
+                      category={filte}
+                    />
+                  </div>
+                );
+              })}
+            {isMobile
+              && oneByOne(heroesC).map((hero) => (
+                <HeroCard
+                  key={`${hero.id}mobile`}
+                  id={hero.id}
+                  image={hero.images.sm}
+                  name={hero.name}
+                  category={filte}
+                />
+              ))}
+
+          </div>
+          <div>
+            {isDesktop
+            && heroesC.length > 5
+              ? (
+                <MenuSelect
+                  handleNext={handleIncrease}
+                  handleLast={handleDecrese}
+                  handleOneLast={handleOneDecrese}
+                  handleOneNext={handleOneIncrese}
+                />
+              ) : (
+                null
+              )}
+            {
+              isMobile
+              && (
+              <MenuSelectMobile
+                handleOneLast={handleOneDecreseMobile}
+                handleOneNext={handleOneIncreseMobile}
               />
-            ))
-          }
-
+              )
+            }
+          </div>
         </div>
-        <MenuSelect handleNext={handleIncrease} handleLast={handleDecrese} />
-
       </>
-
     );
   }
 
@@ -81,26 +243,25 @@ HeroesCatalogue.propTypes = {
     heroes: PropTypes.arrayOf(PropTypes.object),
     sHeroes: PropTypes.arrayOf(PropTypes.object),
     error: PropTypes.string.isRequired,
-    startIndex: PropTypes.number.isRequired,
-    lastIndex: PropTypes.number.isRequired,
+
     text: PropTypes.string.isRequired,
   }),
-  fetchHeroes: PropTypes.func.isRequired,
+
   nextHeroes: PropTypes.func.isRequired,
   lastHeroes: PropTypes.func.isRequired,
 };
 
 HeroesCatalogue.defaultProps = {
   heroes: {},
-
 };
-const mapDispatchToProps = dispatch => ({
-  fetchHeroes: () => dispatch(fetchHeroes()),
+const mapDispatchToProps = (dispatch) => ({
+  fetchHeroesFailure: () => dispatch(fetchHeroesFailure()),
   nextHeroes: () => dispatch(nextHeroes()),
-  lastHeroes: () => dispatch(lastHeroes()),
+  fetchHeroesSuccess: (heroes) => dispatch(fetchHeroesSuccess(heroes)),
 });
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
+  filte: state.heroes.filter,
   heroes: state.heroes,
 });
 

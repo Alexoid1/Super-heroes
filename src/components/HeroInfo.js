@@ -1,20 +1,23 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import DotLoader from 'react-spinners/ClipLoader';
 import ProgressBar from './ProgressBar';
-import Spinner from './Spinner';
 import MenuHero from './MenuHero';
 
 import './HeroInfo.css';
 
 function HeroInfo({ heroes }) {
+  const { category } = useParams();
   const { id } = useParams();
 
-  const herou = heroes.heroes.filter(hero => hero.id === id * 1)[0];
+  const index = heroes.findIndex((hero) => hero.id.toString() === id);
+
+  const herou = heroes[index];
 
   let heroRender;
   if (herou.length === 0) {
-    heroRender = <Spinner />;
+    heroRender = <DotLoader />;
   } else {
     heroRender = (
       <>
@@ -108,7 +111,11 @@ function HeroInfo({ heroes }) {
                 </p>
               </div>
             </div>
-            <MenuHero preview={id} />
+            <MenuHero
+              preview={index}
+              category={category}
+              categoryLength={heroes.length}
+            />
           </div>
         </div>
       </>
@@ -117,8 +124,8 @@ function HeroInfo({ heroes }) {
   return heroRender;
 }
 
-const mapStateToProps = state => ({
-  heroes: state.heroes,
+const mapStateToProps = (state) => ({
+  heroes: state.heroes.heroes,
 });
 
 export default connect(mapStateToProps)(HeroInfo);
