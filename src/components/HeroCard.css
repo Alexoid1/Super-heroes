@@ -24,6 +24,7 @@
   display: inline-block;
 }
 
+
 @media (max-width: 470px) {
   .linkBox{
     display: block;

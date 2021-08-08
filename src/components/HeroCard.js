@@ -11,7 +11,7 @@ function HeroCard({
   return (
     <div className="linkBox">
       <Link to={rou} className="linkContainer">
-        <div className="cardHero">
+        <div className="cardHero gradient-border">
           <img className="imgCont" src={image} alt="heroimage" />
           <h5>{name}</h5>
         </div>
