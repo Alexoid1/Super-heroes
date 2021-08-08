@@ -2,18 +2,15 @@ import {
   FETCH_HEROES_FAILURE,
   FETCH_HEROES_SUCCESS,
   NEXT_HEROES,
-  LAST_HEROES,
   CHANGE_TEXT,
   FILTER_CHANGE,
 } from '../action-types';
 
 const initialState = {
   heroes: [],
-  sHeroes: [],
   loading: false,
   error: '',
   startIndex: 0,
-  lastIndex: 5,
   text: '',
   filter: 'All',
 };
@@ -25,7 +22,6 @@ const heroesReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         heroes: [...action.payload],
-        sHeroes: action.payload,
         error: '',
       };
     case FETCH_HEROES_FAILURE:
@@ -38,13 +34,6 @@ const heroesReducer = (state = initialState, action) => {
       return {
         ...state,
         startIndex: state.startIndex + action.payload,
-        lastIndex: state.lastIndex + action.payload,
-      };
-    case LAST_HEROES:
-      return {
-        ...state,
-        startIndex: state.startIndex - action.payload,
-        lastIndex: state.lastIndex - action.payload,
       };
     case CHANGE_TEXT:
       return {

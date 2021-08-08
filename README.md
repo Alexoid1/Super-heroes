@@ -50,7 +50,7 @@ To make sure the linters' checks using Github Actions work properly, you should 
 👤 **Pablo Alexis Zambrano Coral**
 - Github: [@Alexoid1](https://github.com/Alexoid1)
 - Twitter: [@Alexis Zambrano_acz](https://twitter.com/pablo_acz)
-- Linkedin: [linkedin](https://www.linkedin.com/in/pablo-alexis-zambrano-coral-7a614a189/)
+- Linkedin: [linkedin](https://www.linkedin.com/in/alexzambranocoral/)
 
 ## 🤝 Contributing
 
@@ -62,10 +62,7 @@ Feel free to check the [issues page](https://github.com/Alexoid1/Super-heroes/is
 
 Give a ⭐️ if you like this project!
 
-## Acknowledgments
-
-- Microverse
 
 ## 📝 License
 
-This project is [MIT]() licensed.
+This project is [MIT](./LICENSE) licensed.

@@ -2,7 +2,6 @@ import {
   FETCH_HEROES_FAILURE,
   FETCH_HEROES_SUCCESS,
   CHANGE_TEXT,
-  LAST_HEROES,
   NEXT_HEROES,
   FILTER_CHANGE,
 
@@ -25,11 +24,6 @@ export const changeText = (text) => ({
 
 export const nextHeroes = (num) => ({
   type: NEXT_HEROES,
-  payload: num,
-});
-
-export const lastHeroes = (num) => ({
-  type: LAST_HEROES,
   payload: num,
 });
 

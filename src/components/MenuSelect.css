@@ -9,7 +9,7 @@
 .butonCont button {
   background: none;
   border-radius: 100%;
-  border: 2px solid white;
+  border: 3px solid rgba(100, 200, 200, 1);
   padding: 10px;
   margin: 10px;
   color: white;
@@ -23,4 +23,18 @@
 .iconSize {
   font-size: 25px;
   font-weight: bolder;
+}
+
+.floatleft {
+  position: fixed;
+
+  top: 210px;
+  left: 20px;
+}
+
+.floatright {
+  position: fixed;
+ 
+  top: 210px;
+  right: 20px;
 }

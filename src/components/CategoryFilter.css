@@ -7,8 +7,15 @@
   width: 190px;
   height: 38px;
   padding: 7px;
+  border: 2px solid rgba(100, 200, 200);
   font-size: 17px;
-  border: 2px solid #121212;
+  font-weight: bolder;
+  font-family: 'Chakra Petch', sans-serif;
+  background: rgba(100, 200, 200);
+  border-radius: 3px;
+  color: white;
+  cursor: pointer;
+  outline: none;
 }
 
 .selectFilter option {

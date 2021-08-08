@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import { useMediaQuery } from 'react-responsive';
 import PropTypes from 'prop-types';
+import DotLoader from 'react-spinners/ClipLoader';
 import {
-
   nextHeroes,
-  lastHeroes,
   fetchHeroesFailure,
   fetchHeroesSuccess,
 } from '../actions/index';
 import baseUrl from '../helpers/base-url';
 import HeroCard from '../components/HeroCard';
-import Spinner from '../components/Spinner';
 import MenuSelect from '../components/MenuSelect';
+import MenuSelectMobile from '../components/MenuSelectMobile';
 import SearchBar from '../components/SearchBar';
 import CategoryFilter from '../components/CategoryFilter';
 import './HeroesCatalogue.css';
@@ -23,6 +23,10 @@ function HeroesCatalogue({
   const [heroess, setHeroes] = useState([]);
   const [heroesC, setHeroesC] = useState([]);
   const [start, setStart] = useState(0);
+  const [dealCards, setDealCards] = useState('dealCards');
+  const isDesktop = useMediaQuery({ query: '(min-width: 470px)' });
+  const isMobile = useMediaQuery({ query: '(max-width: 470px)' });
+
   useEffect(() => {
     fetch(`${baseUrl}`, { mode: 'cors' })
       .then((res) => {
@@ -39,6 +43,7 @@ function HeroesCatalogue({
         fetchHeroesFailure(error);
       });
   }, []);
+
   function firstFive(array) {
     let arr;
     let delimiter = 0;
@@ -58,25 +63,63 @@ function HeroesCatalogue({
     return arr;
   }
 
+  function oneByOne(array) {
+    const cardOne = array.slice(start, start + 1);
+    return cardOne;
+  }
+
   function handleIncrease(e) {
     e.preventDefault();
-    if (start + cardsNumber > heroesC.length - 1) {
-      setStart(0);
-    } else {
-      setStart(start + cardsNumber);
-    }
 
-    nextHeroes(cardsNumber);
+    setDealCards('takeCards');
+    setTimeout(() => {
+      if (start + cardsNumber > heroesC.length - 1) {
+        setStart(0);
+      } else {
+        setStart(start + cardsNumber);
+      }
+    }, 1000);
+    nextHeroes(start);
+    setTimeout(() => {
+      setDealCards('dealCards');
+    }, 1500);
   }
 
   function handleDecrese(e) {
     e.preventDefault();
+    setDealCards('takeCards');
+    setTimeout(() => {
+      if (start < 0) {
+        setStart(heroesC.length - 5);
+      } else {
+        setStart(start - cardsNumber);
+      }
+    }, 1000);
+    nextHeroes(start);
+    setTimeout(() => {
+      setDealCards('dealCards');
+    }, 1500);
+  }
+  function handleOneDecreseMobile(e) {
+    e.preventDefault();
 
     if (start < 0) {
-      setStart(heroesC.length - 5);
+      setStart(heroesC - 1);
     } else {
-      setStart(start - cardsNumber);
+      setStart(start - 1);
     }
+    nextHeroes(start);
+  }
+
+  function handleOneIncreseMobile(e) {
+    e.preventDefault();
+
+    if (start > heroesC.length - 1) {
+      setStart(0);
+    } else {
+      setStart(start + 1);
+    }
+    nextHeroes(start);
   }
 
   function handleOneDecrese(e) {
@@ -87,6 +130,7 @@ function HeroesCatalogue({
     } else {
       setStart(start - 1);
     }
+    nextHeroes(start);
   }
 
   function handleOneIncrese(e) {
@@ -97,6 +141,7 @@ function HeroesCatalogue({
     } else {
       setStart(start + 1);
     }
+    nextHeroes(start);
   }
 
   const searchHeroes = (filte) => {
@@ -112,6 +157,8 @@ function HeroesCatalogue({
     setStart(0);
   };
 
+  let transition = 0;
+
   const searchByText = (text) => {
     const regex = new RegExp(text, 'gi');
     const cloneH = heroess;
@@ -121,42 +168,67 @@ function HeroesCatalogue({
 
   let comp;
   if (heroes.loading) {
-    comp = setInterval(() => { <Spinner />; }, 1000);
+    comp = setInterval(() => { <DotLoader />; }, 1000);
   } else if (heroes.error) {
     comp = <h2 className="error">{heroes.error}</h2>;
   } else {
     comp = (
       <>
-        <SearchBar onChange={searchByText} />
-        <CategoryFilter onChange={searchHeroes} />
-        <div className="header-container">
-          {
-            firstFive(heroesC).map((hero) => (
-              <HeroCard
-                key={hero.id}
-                id={hero.id}
-                image={hero.images.sm}
-                name={hero.name}
-                category={filte}
-              />
-            ))
-          }
+        <div className="allContainer">
+          <SearchBar onChange={searchByText} />
+          <CategoryFilter onChange={searchHeroes} />
 
-        </div>
-        <div>
-          {
-          heroesC.length > 5
-            ? (
-              <MenuSelect
-                handleNext={handleIncrease}
-                handleLast={handleDecrese}
-                handleOneLast={handleOneDecrese}
-                handleOneNext={handleOneIncrese}
+          <div className="header-container">
+            {isDesktop
+
+              && firstFive(heroesC).map((hero) => {
+                transition += 1;
+                return (
+                  <div key={hero.id} className={`${dealCards} deal card${transition}`}>
+                    <HeroCard
+                      id={hero.id}
+                      image={hero.images.sm}
+                      name={hero.name}
+                      category={filte}
+                    />
+                  </div>
+                );
+              })}
+            {isMobile
+              && oneByOne(heroesC).map((hero) => (
+                <HeroCard
+                  key={`${hero.id}mobile`}
+                  id={hero.id}
+                  image={hero.images.sm}
+                  name={hero.name}
+                  category={filte}
+                />
+              ))}
+
+          </div>
+          <div>
+            {isDesktop
+            && heroesC.length > 5
+              ? (
+                <MenuSelect
+                  handleNext={handleIncrease}
+                  handleLast={handleDecrese}
+                  handleOneLast={handleOneDecrese}
+                  handleOneNext={handleOneIncrese}
+                />
+              ) : (
+                null
+              )}
+            {
+              isMobile
+              && (
+              <MenuSelectMobile
+                handleOneLast={handleOneDecreseMobile}
+                handleOneNext={handleOneIncreseMobile}
               />
-            ) : (
-              null
-            )
-          }
+              )
+            }
+          </div>
         </div>
       </>
     );
@@ -185,7 +257,6 @@ HeroesCatalogue.defaultProps = {
 const mapDispatchToProps = (dispatch) => ({
   fetchHeroesFailure: () => dispatch(fetchHeroesFailure()),
   nextHeroes: () => dispatch(nextHeroes()),
-  lastHeroes: () => dispatch(lastHeroes()),
   fetchHeroesSuccess: (heroes) => dispatch(fetchHeroesSuccess(heroes)),
 });
 

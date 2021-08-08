@@ -1,8 +1,8 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import DotLoader from 'react-spinners/ClipLoader';
 import ProgressBar from './ProgressBar';
-import Spinner from './Spinner';
 import MenuHero from './MenuHero';
 
 import './HeroInfo.css';
@@ -17,7 +17,7 @@ function HeroInfo({ heroes }) {
 
   let heroRender;
   if (herou.length === 0) {
-    heroRender = <Spinner />;
+    heroRender = <DotLoader />;
   } else {
     heroRender = (
       <>
