@@ -62,9 +62,6 @@ Feel free to check the [issues page](https://github.com/Alexoid1/Super-heroes/is
 
 Give a ⭐️ if you like this project!
 
-## Acknowledgments
-
-- Microverse
 
 ## 📝 License
 
