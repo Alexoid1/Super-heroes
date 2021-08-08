@@ -24,3 +24,17 @@
   font-size: 25px;
   font-weight: bolder;
 }
+
+.floatleft {
+  position: fixed;
+
+  top: 210px;
+  left: 20px;
+}
+
+.floatright {
+  position: fixed;
+ 
+  top: 210px;
+  right: 20px;
+}

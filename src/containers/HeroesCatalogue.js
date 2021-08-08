@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import { useMediaQuery } from 'react-responsive'
 import PropTypes from 'prop-types';
 import {
 
@@ -12,6 +13,7 @@ import baseUrl from '../helpers/base-url';
 import HeroCard from '../components/HeroCard';
 import Spinner from '../components/Spinner';
 import MenuSelect from '../components/MenuSelect';
+import MenuSelectMobile from '../components/MenuSelectMobile';
 import SearchBar from '../components/SearchBar';
 import CategoryFilter from '../components/CategoryFilter';
 import './HeroesCatalogue.css';
@@ -24,7 +26,9 @@ function HeroesCatalogue({
   const [heroesC, setHeroesC] = useState([]);
   const [start, setStart] = useState(0);
   const [dealCards, setDealCards] = useState('dealCards');
-  const [indexMobile, setIndexMobile] = useState(0);
+
+  const isDesktop = useMediaQuery({ query: '(min-width: 470px)' })
+  const isMobile = useMediaQuery({ query: '(max-width: 470px)' })
 
   useEffect(() => {
     fetch(`${baseUrl}`, { mode: 'cors' })
@@ -63,15 +67,8 @@ function HeroesCatalogue({
   }
 
   function oneByOne(array){
-    const cardOne=array[indexMobile]
-    return(
-      <HeroCard 
-      id={cardOne.id}
-      image={cardOne.images.sm}
-      name={cardOne.name}
-      category={filte}
-      />
-    )
+    let cardOne=array.slice(start, start+1);
+    return cardOne
   }
 
 
@@ -163,45 +160,63 @@ function HeroesCatalogue({
   } else {
     comp = (
       <>
-        <SearchBar onChange={searchByText} />
-        <CategoryFilter onChange={searchHeroes} />
-        <div className="mobileCont">
-          {
-            oneByOne(heroesC)
-          }
-        </div>
-        <div className="header-container mobiledisplay">
-          {
-            firstFive(heroesC).map((hero) => {
-              transition += 1;
-              return (
-                <div key={hero.id} className={`${dealCards} deal card${transition}`}>
+        <div className="allContainer">
+          <SearchBar onChange={searchByText} />
+          <CategoryFilter onChange={searchHeroes} />
+          
+          <div className="header-container">
+            {isDesktop && 
+              
+              firstFive(heroesC).map((hero) => {
+                transition += 1;
+                return (
+                  <div key={hero.id} className={`${dealCards} deal card${transition}`}>
+                    <HeroCard
+                      id={hero.id}
+                      image={hero.images.sm}
+                      name={hero.name}
+                      category={filte}
+                    />
+                  </div>
+                );
+              })
+            }
+            {isMobile&&
+              oneByOne(heroesC).map((hero)=>{
+                return (
                   <HeroCard
-                    id={hero.id}
-                    image={hero.images.sm}
-                    name={hero.name}
-                    category={filte}
-                  />
-                </div>
-              );
-            })
-          }
+                      id={hero.id}
+                      image={hero.images.sm}
+                      name={hero.name}
+                      category={filte}
+                    />
+                )
+              })
+            }
 
-        </div>
-        <div className="mobiledisplay">
-          {
-          heroesC.length > 5
-            ? (
-              <MenuSelect
-                handleNext={handleIncrease}
-                handleLast={handleDecrese}
-                handleOneLast={handleOneDecrese}
-                handleOneNext={handleOneIncrese}
+          </div>
+          <div >
+            {isDesktop && 
+            heroesC.length > 5
+              ? (
+                <MenuSelect
+                  handleNext={handleIncrease}
+                  handleLast={handleDecrese}
+                  handleOneLast={handleOneDecrese}
+                  handleOneNext={handleOneIncrese}
+                />
+              ) : (
+                null
+              )
+            }
+            {
+              isMobile && 
+              <MenuSelectMobile 
+              handleOneLast={handleOneDecrese}
+              handleOneNext={handleOneIncrese}
               />
-            ) : (
-              null
-            )
-          }
+            }
+          </div>
         </div>
       </>
     );

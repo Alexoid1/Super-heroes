@@ -24,10 +24,29 @@
   display: inline-block;
 }
 
-@media (max-width: 420px) {
-  .linkContainer {
+@media (max-width: 470px) {
+  .linkBox{
     display: block;
     margin: auto;
     text-align: center;
+    width: 100%;
+   
   }
+
+  .cardHero {
+    width: 180px;
+    height: 275px;
+    margin: auto;
+    text-align: center;
+  }
+
+  .imgCont {
+    width: 170px;
+    height: 210px;
+  }
+
+  h5 {
+    margin: 5px;
+  }
+  
 }

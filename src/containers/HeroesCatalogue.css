@@ -77,4 +77,19 @@
   .mobileCont {
     display: block;
   }
+  .allContainer {
+    width: 100%;
+    margin: auto;
+    min-width: 320px;
+    height: 500px;
+    overflow: hidden;
+  }
+  
+  .header-container{
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    grid-template-columns: 1fr;
+    grid-gap: 10px;
+  }
 }

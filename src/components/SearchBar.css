@@ -55,9 +55,13 @@
   }
 }
 
-@media (max-width: 420px) {
+@media (max-width: 470px) {
   .inputSearch input {
-    width: 200px;
-    margin: 5px;
+    width: 250px;
+    margin: auto;
+  }
+  .formSe {
+    width: 100%;
+    text-align: center;
   }
 }
