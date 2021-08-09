@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { ReactDOM } from 'react-dom';
+import ReactDOM from 'react-dom';
 
 const portalRoot = document.getElementById('portal')
 
@@ -16,16 +16,11 @@ export default class Portal extends Component{
     componentWillUnmount=()=>{
         portalRoot.removeChild(this.el)
     }
-    
-    render() {
-        
-        return(<nav className="navb">
-        <button className="buttonCreate" type="button">Create Hero</button>
-        </nav>
-        );
 
+    render() {
+        const { children } = this.props;
+        return ReactDOM.createPortal(children,this.el)
     }
     
 }
 
-export default Portal;
