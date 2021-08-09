@@ -8,8 +8,10 @@ function App() {
   return (
     <BrowserRouter>
       <div className="animated-background" data-testid="website_name">
-        <Navbar/>
-        <Routes />
+        <div>
+          <Navbar/>
+          <Routes />
+        </div>
       </div>
     </BrowserRouter>
   );
