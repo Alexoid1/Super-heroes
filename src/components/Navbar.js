@@ -1,10 +1,10 @@
 import React from 'react';
 import './Navbar.css';
 
-function Navbar() {
+function Navbar({onClick}) {
   return (
     <nav className="navb">
-      <button className="buttonCreate" type="button" onClick={}>Create Hero</button>
+      <button className="buttonCreate" type="button" onClick={onClick}>Create Hero</button>
     </nav>
 
   );

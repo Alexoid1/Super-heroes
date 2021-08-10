@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import Portal from "./Portal";
+import ModalForm from './ModalForm';
 
 
 export default class Modal extends Component{
 
     render() {
-        const { children, toggle, active } = this.props
+        const { toggle, active } = this.props
         
         return (
             <Portal>
@@ -13,7 +14,7 @@ export default class Modal extends Component{
                     <div style={styles.wrapper}>
                         <div style={styles.window}>
                             <button style={styles.closeBtn} onClick={toggle}>X</button>
-                            <div>{children}</div>
+                            <ModalForm/>
                         </div>
                     </div>
                 }
@@ -36,7 +37,7 @@ const styles = {
 
     window: {
         position: 'fixed',
-        background: '#fff',
+        background: 'rgba(23, 86, 124, 0.9)',
         borderRadius: 5,
         top: 200,
         left: '38%',

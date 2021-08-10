@@ -1,6 +1,7 @@
 import React,{useState} from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import Routes from './Routes';
+import Navbar from '../components/Navbar';
 import Modal from '../modals/Modal'
 import './App.css';
 
@@ -13,13 +14,10 @@ function App() {
     <BrowserRouter>
       <div className="animated-background" data-testid="website_name">
         <Modal active={active} toggle={toggle}>
-          <h1>hellloo</h1>
+          
         </Modal>
-        <nav className="navb">
-          <button className="buttonCreate" type="button" onClick={toggle}>Create Hero</button>
-        </nav>
-        <Routes />
-        
+        <Navbar onClick={toggle}/>
+        <Routes/>
       </div>
     </BrowserRouter>
   );

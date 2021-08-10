@@ -7,12 +7,6 @@
   -moz-animation: animatebackground 120s linear infinite;
 }
 
-.navb {
-  background: rgba(87, 86, 86, 0.507);
-  height: 50px;
-  text-align: right;
-}
-
 @keyframes animatebackground {
   0% {
     background-position: 0 0;
