@@ -1,0 +1,14 @@
+.inputHero {
+    background: none;
+    border: none;
+    outline: none;
+    font-family: 'Chakra Petch', sans-serif;
+    color: white;
+    font-size: 16px;
+}
+
+.labelHero {
+    font-family: 'Chakra Petch', sans-serif;
+    color: white;
+    font-size: 16px;
+}

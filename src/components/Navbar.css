@@ -1,0 +1,44 @@
+.navb {
+    background: rgba(0, 0, 0, 0.61);
+    height: 50px;
+    text-align: right;
+}
+
+.buttonCreate {
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    padding: 5px 14px;
+    margin: 5px 25px;
+    background: none;
+    border: 3px solid white;
+    background: white;
+    border-radius: 10px;
+}
+
+.buttonCreate:hover {
+    color: rgb(255, 196, 0);
+    border: 3px solid rgb(255, 196, 0);
+    
+}
+
+.anchorC {
+    position: relative;
+    display: inline-block;
+    color: black;
+    overflow: hidden;
+    background: linear-gradient(to right, rgb(255, 196, 0), rgb(255, 102, 0), 50%, black 50%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 100%;
+    background-position: 100%;
+    transition: background-position 275ms ease;
+    text-decoration: none;
+}
+
+
+
+.buttonCreate:hover > .anchorC {
+    background-position: 0 100%;
+}

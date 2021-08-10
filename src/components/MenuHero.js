@@ -1,5 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import {
+  FaArrowLeft, FaArrowRight
+} from 'react-icons/fa';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import './MenuHero.css';
@@ -23,8 +26,8 @@ function MenuHero({
     <div className="butonCont2">
       <Link to="/" className="exit">EXIT</Link>
 
-      {preview * 1 - 1 < 0 ? null : <Link to={roulast}><i className="fa fa-arrow-left fa-3x" aria-hidden="true" /></Link>}
-      {preview * 1 + 1 > categoryLength - 1 ? null : <Link to={rounext}><i className="fa fa-arrow-right fa-3x" aria-hidden="true" /></Link>}
+      {preview * 1 - 1 < 0 ? null : <Link to={roulast}><FaArrowLeft className="iconSize" /></Link>}
+      {preview * 1 + 1 > categoryLength - 1 ? null : <Link to={rounext}><FaArrowRight className="iconSize" /></Link>}
     </div>
 
   );

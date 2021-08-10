@@ -160,6 +160,7 @@ function HeroesCatalogue({
   let transition = 0;
 
   const searchByText = (text) => {
+    setStart(0)
     const regex = new RegExp(text, 'gi');
     const cloneH = heroess;
     const filterBy = cloneH.filter((hero) => hero.name.match(regex));
