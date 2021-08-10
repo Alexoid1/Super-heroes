@@ -7,6 +7,11 @@
   border-radius: 7px;
   text-align: center;
   margin: auto;
+  transition: linear 0.5s;
+}
+
+.cardHero:hover {
+  transform: scale(1.1);
 }
 
 .imgCont {
@@ -19,8 +24,6 @@
 .linkContainer {
   text-decoration: none;
   color: black;
-  width: 220px;
-  height: 320px;
   display: inline-block;
 }
 

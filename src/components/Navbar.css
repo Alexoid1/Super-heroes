@@ -19,7 +19,6 @@
 .buttonCreate:hover {
     color: rgb(255, 196, 0);
     border: 3px solid rgb(255, 196, 0);
-    
 }
 
 .anchorC {
@@ -36,8 +35,6 @@
     transition: background-position 275ms ease;
     text-decoration: none;
 }
-
-
 
 .buttonCreate:hover > .anchorC {
     background-position: 0 100%;

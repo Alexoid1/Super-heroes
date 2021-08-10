@@ -16,6 +16,7 @@ export default class Modal extends Component{
                             <button style={styles.closeBtn} onClick={toggle}>X</button>
                             <ModalForm/>
                         </div>
+                        <div onClick={toggle} style={styles.background}></div>
                     </div>
                 }
             </Portal>
@@ -32,7 +33,7 @@ const styles = {
         height: 1450,
         justifyContent: 'center',
         alignItems: 'center',
-        background: 'rgba(0, 0, 0, 0.68)'
+        
     },
 
     window: {
@@ -51,5 +52,13 @@ const styles = {
         position: 'absolute',
         top: 0,
         right: 0,
+    },
+    background: {
+        position:'absolute',
+        width: '100%',
+        height: 1450,
+        background: 'rgba(0, 0, 0, 0.68)',
+        top: 0,
+        left: 0,
     }
 }
