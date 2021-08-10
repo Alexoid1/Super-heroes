@@ -1,9 +1,18 @@
-import React,{Component} from 'react';
+import React,{useState} from 'react';
 import './ModalForm.css'
 
 
-export default class ModalForm extends Component{
-    render(){
+const ModalForm = ()=>{
+    const[file,setFile]=useState(null);
+
+    const changeFileHandler=(e)=>{
+        let selected = e.target.files[0];
+        if(selected){
+            setFile(selected)
+        }
+        console.log(selected);
+    }
+ 
         return (
             <div>
                 <form>
@@ -47,13 +56,18 @@ export default class ModalForm extends Component{
                         <label for="herocombat" className="labelHero">Combat:</label>
                         <input type="number" id="herocombat" className="inputHero" min="0" maxLength="5"></input>
                     </div>
+                    <div>
+                        <input type="file" onChange={changeFileHandler}/>
+                    </div>
                     <div>      
                         <button type="submit">Create</button>
                     </div> 
                 </form>
             </div>
         )
-    }      
+          
 }
+
+export default ModalForm
 
 
