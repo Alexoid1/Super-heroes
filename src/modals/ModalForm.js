@@ -40,8 +40,15 @@ export default class ModalForm extends Component{
                         <input type="number" id="herospeed" className="inputHero" min="0" maxLength="5"></input>
                     </div> 
                     <div>
-                        <label for="herocombat" className="labelHero">Power:</label>
+                        <label for="heropower" className="labelHero">Power:</label>
+                        <input type="number" id="heropower" className="inputHero" min="0" maxLength="5"></input>
+                    </div> 
+                    <div>
+                        <label for="herocombat" className="labelHero">Combat:</label>
                         <input type="number" id="herocombat" className="inputHero" min="0" maxLength="5"></input>
+                    </div>
+                    <div>      
+                        <input type="submit" id="submit" className="buttonSubmit" >Create</input>
                     </div> 
                 </form>
             </div>
