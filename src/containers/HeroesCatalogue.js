@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import PropTypes from 'prop-types';
 import DotLoader from 'react-spinners/ClipLoader';
+import { projectFirestore } from '../firebase/config'
 import {
   nextHeroes,
   fetchHeroesFailure,
@@ -26,11 +27,18 @@ function HeroesCatalogue({
   const [dealCards, setDealCards] = useState('dealCards');
   const isDesktop = useMediaQuery({ query: '(min-width: 470px)' });
   const isMobile = useMediaQuery({ query: '(max-width: 470px)' });
-
+ 
   useEffect(() => {
-    fetch(`${baseUrl}`, { mode: 'cors' })
+    if(heroes.heroes.length>0){
+      setHeroes(heroes.heroes);
+      fetchHeroesSuccess(heroes.heroes);
+      setHeroesC(heroes.heroes);
+    }else{
+      //projectFirestore.collection('images')
+      fetch(`${baseUrl}`, { mode: 'cors' })
       .then((res) => {
         if (res.ok) {
+          
           res.json().then((jsonRes) => {
             setHeroes(jsonRes);
             fetchHeroesSuccess(jsonRes);
@@ -42,6 +50,9 @@ function HeroesCatalogue({
       }).catch((error) => {
         fetchHeroesFailure(error);
       });
+
+    }
+    
   }, []);
 
   function firstFive(array) {

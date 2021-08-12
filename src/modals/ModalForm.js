@@ -14,6 +14,11 @@ const ModalForm = ()=>{
     const [alias, setAlias] = useState('');
     const [place, setPlace] = useState(null);
     const [age, setAge] = useState(null);
+    const [height, setHeight] = useState(null);
+    const [weight, setWeight] = useState(null);
+    const [gender, setGender] = useState(null);
+    const [race, setRace] = useState(null);
+    const [aligment, setAligment] = useState('Good');
     const [strength, setStrength] = useState(null);
     const [intelligence, setIntelligence] = useState(null);
     const [speed, setSpeed] = useState(null);
@@ -56,6 +61,26 @@ const ModalForm = ()=>{
         setAge(e.target.value);
     }
 
+    const handleHeightChange = (e) => {
+        setHeight(e.target.value);
+    }
+
+    const handleWeightChange = (e) => {
+        setWeight(e.target.value);
+    }
+
+    const handleGenderChange = (e) => {
+        setGender(e.target.value);
+    }
+
+    const handleAligmentChange = (e) => {
+        setAligment(e.target.value);
+    }
+
+    const handleRaceChange = (e) => {
+        setRace(e.target.value);
+    }
+
     const handleStrengthChange = (e) => {
         setStrength(e.target.value);
     }
@@ -87,7 +112,49 @@ const ModalForm = ()=>{
         },()=>{
             projectStorage.ref("images").child(file.name).getDownloadURL().then(url=>{
                 const createdAt = timestamp();
-                collectionRef.add({url, createdAt, heroname, alias, place, age, strength, intelligence, speed, power})
+                collectionRef.add({
+                    name:heroname,
+                    slug:heroname,
+                    powerstats:{
+                        intelligence,
+                        strength,
+                        speed,
+                        durability:strength,
+                        power,
+                        combat:power
+                    },
+                    appearance:{
+                        gender,
+                        race,
+                        height:[height],
+                        weight:[weight],
+                    },
+                    biography: {
+                        fullName: heroname,
+                        alterEgos: "No alter egos found.",
+                        aliases: [alias],
+                        placeOfBirth: place,
+                        firstAppearance: createdAt,
+                        publisher:"No published",
+                        aligment,
+                    },
+                    work: {
+                        occupation:"-",
+                        base:"-"
+                    },
+                    connections:{
+                        groupAffiliation: "-",
+                        relatives: "-",
+                    },
+                    images: {
+                        xs: url,
+                        sm: url,
+                        md: url,
+                        lg: url
+                    },
+                    createdAt
+
+                   })
                 setUrl(url)
             })
      
@@ -134,9 +201,45 @@ const ModalForm = ()=>{
                         onChange={handleAgeChange}/>
                     </div>
                     <div>
+                        <label for="heroheight" className="labelHero">Height:</label>
+                        <input type="number" 
+                        id="heroheight" 
+                        className="inputHero"  
+                        min="0" 
+                        maxlength="5"
+                        value={height+'cm'}
+                        onChange={handleHeightChange}/>
+                    </div>
+                    <div>
+                        <label for="heroWeight" className="labelHero">Weight:</label>
+                        <input type="number" 
+                        id="heroWeight" 
+                        className="inputHero"  
+                        min="0" 
+                        maxlength="5"
+                        value={weight+'kg'}
+                        onChange={handleWeightChange}/>
+                    </div>
+                    <div>
+                        <label for="heroGender" className="labelHero">Gender:</label>
+                        <input type="text" 
+                        id="heroGender" 
+                        className="inputHero"     
+                        value={gender}
+                        onChange={handleGenderChange}/>
+                    </div>
+                    <div>
+                        <label for="heroRace" className="labelHero">Race:</label>
+                        <input type="text" 
+                        id="heroRace"
+                        className="inputHero"     
+                        value={race}
+                        onChange={handleRaceChange}/>
+                    </div>
+                    <div>
                         <label for="herostrength" className="labelHero">Strength:</label>
                         <input type="number" 
-                        id="herostrength" 
+                        id="herostrength"
                         className="inputHero" 
                         min="0" 
                         maxlength="5" 
