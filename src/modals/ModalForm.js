@@ -140,7 +140,7 @@ const ModalForm = ()=>{
                     },
                     work: {
                         occupation:"-",
-                        base:"-"
+                        base:"-",
                     },
                     connections:{
                         groupAffiliation: "-",

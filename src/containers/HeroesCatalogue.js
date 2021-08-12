@@ -25,6 +25,7 @@ function HeroesCatalogue({
   const [heroesC, setHeroesC] = useState([]);
   const [start, setStart] = useState(0);
   const [dealCards, setDealCards] = useState('dealCards');
+  const [docs,setDocs] = useState([]);
   const isDesktop = useMediaQuery({ query: '(min-width: 470px)' });
   const isMobile = useMediaQuery({ query: '(max-width: 470px)' });
  
@@ -34,15 +35,31 @@ function HeroesCatalogue({
       fetchHeroesSuccess(heroes.heroes);
       setHeroesC(heroes.heroes);
     }else{
-      //projectFirestore.collection('images')
+      
       fetch(`${baseUrl}`, { mode: 'cors' })
       .then((res) => {
         if (res.ok) {
           
           res.json().then((jsonRes) => {
-            setHeroes(jsonRes);
-            fetchHeroesSuccess(jsonRes);
-            setHeroesC(jsonRes);
+            let apiheroes=[];
+            
+            const unsub = projectFirestore.collection('images')
+              .onSnapshot((snap)=>{
+                let documents = [];
+                snap.forEach(doc=> {
+                  documents.push({...doc.data(),id:doc.id})
+                })
+                
+                apiheroes=jsonRes.concat(documents)
+                console.log(apiheroes)
+                setHeroes(apiheroes)
+                fetchHeroesSuccess(apiheroes);
+                setHeroesC(apiheroes);
+                
+              });
+              return ()=> unsub()
+
+
           });
         } else {
           fetchHeroesFailure('and error while fetch favourites');
@@ -50,6 +67,8 @@ function HeroesCatalogue({
       }).catch((error) => {
         fetchHeroesFailure(error);
       });
+
+     
 
     }
     
