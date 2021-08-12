@@ -25,7 +25,6 @@ function HeroesCatalogue({
   const [heroesC, setHeroesC] = useState([]);
   const [start, setStart] = useState(0);
   const [dealCards, setDealCards] = useState('dealCards');
-  const [docs,setDocs] = useState([]);
   const isDesktop = useMediaQuery({ query: '(min-width: 470px)' });
   const isMobile = useMediaQuery({ query: '(max-width: 470px)' });
  
@@ -51,7 +50,6 @@ function HeroesCatalogue({
                 })
                 
                 apiheroes=jsonRes.concat(documents)
-                console.log(apiheroes)
                 setHeroes(apiheroes)
                 fetchHeroesSuccess(apiheroes);
                 setHeroesC(apiheroes);
