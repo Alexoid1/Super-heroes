@@ -18,7 +18,7 @@ const SearchBar = ({ heroes, changeText, onChange }) => {
       <div>
         <form className="formSe">
           <div className="inputSearch">
-            <Link to="#0" className="underline">
+            <Link to="#" className="underline">
               <input
                 type="text"
                 value={text}
