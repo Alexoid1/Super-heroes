@@ -1,7 +1,6 @@
 import React,{useState,useEffect} from 'react';
 import { projectStorage, projectFirestore, timestamp } from "../firebase/config";
 import ProgressBar2 from '../components/ProgressBar2';
-import useForm from './useForm';
 import './ModalForm.css'
 
 
@@ -11,6 +10,7 @@ const ModalForm = ()=>{
         heroname: '',
         alias: '',
         place: '',
+        occupation: '',
         heightt: '',
         weightt: '',
         gender: '',
@@ -100,7 +100,7 @@ const ModalForm = ()=>{
                         aligment:values.aligment,
                     },
                     work: {
-                        occupation:"-",
+                        occupation:values.occupation,
                         base:"-",
                     },
                     connections:{
@@ -156,12 +156,21 @@ const ModalForm = ()=>{
                         required="required"/>
                     </div>
                     <div>
+                        <label htmlFor="heroOccupation" className="labelHero" >Occupation:</label>
+                        <input type="text" 
+                        id="heroOccupation"
+                        name="occupation"
+                        className="inputHero"
+                        value={values.occupation}
+                        onChange={handleChange}
+                        />
+                    </div>
+                    <div>
                         <label htmlFor="heroplace" className="labelHero">Place of Birth:</label>
                         <input type="text" 
                         id="heroplace"
                         name="place"
-                        className="inputHero" 
-                        placeholder="City or Country"
+                        className="inputHero"
                         value={values.place}
                         onChange={handleChange}
                         required="required"/>
@@ -211,7 +220,7 @@ const ModalForm = ()=>{
                         name="strength"
                         className="inputHero" 
                         min="0" 
-                        maxlength="5" 
+                        maxLength="5" 
                         value={values.strength}
                         onChange={handleChange}/>
                     </div>
@@ -255,7 +264,7 @@ const ModalForm = ()=>{
                         <button type="submit">Create hero</button>
                     </div>
                     {error&&<div className="error">{error}</div>}
-                    {file&& <div>{file.name}</div>}
+                    
                     {uploading&& <ProgressBar2 progress={progress}/>}                   
                 </form>
             </div>
