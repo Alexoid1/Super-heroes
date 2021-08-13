@@ -7,44 +7,30 @@ import './ModalForm.css'
 
 
 const ModalForm = ()=>{
-    const {values,handleChange}= useForm()
+    const [values, setValues] = useState({
+        heroname: '',
+        alias: '',
+        place: '',
+        heightt: '',
+        weightt: '',
+        gender: '',
+        race: '',
+        strength: '',
+        intelligence: '',
+        aligment: 'good',
+        speed: '',
+        power: ''
+    });
     const[file,setFile] = useState(null);
     const[error, setError] = useState(null);
     const [progress, setProgress] = useState(0);
     const [url, setUrl] = useState(null);
     const [uploading, setUploading]=useState(false);
-    const [heroname,setHeroname] = useState(null);
-    const [occupation,setOccupation] = useState(null);
-    const [alias, setAlias] = useState(null);
-    const [place, setPlace] = useState(null);
-    const [heightt, setHeight] = useState(null);
-    const [weightt, setWeight] = useState(null);
-    const [gender, setGender] = useState(null);
-    const [race, setRace] = useState(null);
-    const [aligment, setAligment] = useState('Good');
-    const [strength, setStrength] = useState(null);
-    const [intelligence, setIntelligence] = useState(null);
-    const [speed, setSpeed] = useState(null);
-    const [power, setPower] = useState(null);
-
-
 
     const imgTypes = ['image/png','image/jpeg'];
     useEffect(()=>{
         setFile(null)
         setUploading(false)
-        setSpeed('');
-        setStrength('');
-        setWeight('');
-        setHeight('');
-        setGender('');
-        setRace('');
-        setSpeed('');
-        setIntelligence('');
-        setHeroname('');
-        setAlias('');
-        setPlace('');
-        setPower('');
     },[url])
 
 
@@ -60,94 +46,20 @@ const ModalForm = ()=>{
         }
     }
 
-    const handleHeroNameChange = (e) => {
-        setHeroname(e.target.value);
-    }
+    
 
-    const handleAliasChange = (e) => {
-        setAlias(e.target.value);
-    }
-
-    const handlePlaceChange = (e) => {
-        setPlace(e.target.value);
-    }
-
-    const handleOccupationChange = (e) => {
-        setOccupation(e.target.value);
-    }
-
-    const handleHeightChange = (e) => {
-        setHeight(e.target.value);
-    }
-
-    const handleWeightChange = (e) => {
-        setWeight(e.target.value);
-    }
-
-    const handleGenderChange = (e) => {
-        setGender(e.target.value);
-    }
-
-    const handleAligmentChange = (e) => {
-        setAligment(e.target.value);
-    }
-
-    const handleRaceChange = (e) => {
-        setRace(e.target.value);
-    }
-
-    const handleStrengthChange = (e) => {
-        setStrength(e.target.value);
-    }
-
-    const handleIntelligenceChange = (e) => {
-        setIntelligence(e.target.value);
-    }
-
-    const handleSpeedChange = (e) => {
-        setSpeed(e.target.value);
-    }
-
-    const handlePowerChange = (e) => {
-        setPower(e.target.value);
-    }
+    const handleChange = e => {
+        const { name, value } = e.target;
+        setValues({
+          ...values,
+          [name]: value
+        });
+    };
 
     const handleUpload = (e) => {
         e.preventDefault()
-        if(heroname&&alias&&place&&file){
+        if(file){
             setUploading(true)
-
-            if(!heightt){
-                setHeight('0cm');
-            }
-            
-            if(!weightt){
-                setWeight('0kg');
-            }
-
-            if(!strength){
-                setStrength('0');
-            }
-
-            if(!power){
-                setPower('0');
-            }
-
-            if(!speed){
-                setSpeed('0');
-            }
-
-            if(!intelligence){
-                setIntelligence('0');
-            }
-
-            if(!gender){
-                setGender('Unknow');
-            }
-
-            if(!race){
-                setRace('Unknow');
-            }
 
             const collectionRef = projectFirestore.collection("images");
             const storageRef = projectStorage.ref(`images/${file.name}`);
@@ -162,30 +74,30 @@ const ModalForm = ()=>{
             projectStorage.ref("images").child(file.name).getDownloadURL().then(url=>{
                 const createdAt = timestamp();
                 collectionRef.add({
-                    name:heroname,
-                    slug:heroname,
+                    name:values.heroname,
+                    slug:values.heroname,
                     powerstats:{
-                        intelligence,
-                        strength,
-                        speed,
-                        durability:strength,
-                        power,
-                        combat:power
+                        intelligence:values.intelligence,
+                        strength:values.strength,
+                        speed:values.speed,
+                        durability:values.strength,
+                        power:values.power,
+                        combat:values.power
                     },
                     appearance:{
-                        gender,
-                        race,
-                        height:[heightt],
-                        weight:[weightt]
+                        gender:values.gender,
+                        race:values.race,
+                        height:[values.heightt],
+                        weight:[values.weightt]
                     },
                     biography: {
-                        fullName: heroname,
+                        fullName: values.heroname,
                         alterEgos: "No alter egos found.",
-                        aliases: [alias],
-                        placeOfBirth: place,
+                        aliases: [values.alias],
+                        placeOfBirth: values.place,
                         firstAppearance: createdAt,
                         publisher:"No published",
-                        aligment,
+                        aligment:values.aligment,
                     },
                     work: {
                         occupation:"-",
@@ -220,7 +132,7 @@ const ModalForm = ()=>{
     }
         return (
             <div>
-                <form>
+                <form onSubmit={handleUpload}>
                     <div>
                         <label htmlFor="heroname" className="labelHero" >Hero Name:</label>
                         <input type="text" 
@@ -239,8 +151,8 @@ const ModalForm = ()=>{
                         name="alias"
                         className="inputHero" 
                         placeholder="Write Hero Alias"
-                        value={alias}
-                        onChange={handleAliasChange}
+                        value={values.alias}
+                        onChange={handleChange}
                         required="required"/>
                     </div>
                     <div>
@@ -250,8 +162,8 @@ const ModalForm = ()=>{
                         name="place"
                         className="inputHero" 
                         placeholder="City or Country"
-                        value={place}
-                        onChange={handlePlaceChange}
+                        value={values.place}
+                        onChange={handleChange}
                         required="required"/>
                     </div>
                     <div>
@@ -260,8 +172,8 @@ const ModalForm = ()=>{
                         id="heroheight"
                         name="heightt" 
                         className="inputHero"  
-                        value={heightt}
-                        onChange={handleHeightChange}
+                        value={values.heightt}
+                        onChange={handleChange}
                         required/>
                     </div>
                     <div>
@@ -270,8 +182,8 @@ const ModalForm = ()=>{
                         id="heroWeight"
                         name="weightt"
                         className="inputHero"  
-                        value={weightt}
-                        onChange={handleWeightChange}
+                        value={values.weightt}
+                        onChange={handleChange}
                         required/>
                     </div>
                     <div>
@@ -280,8 +192,8 @@ const ModalForm = ()=>{
                         id="heroGender"
                         name="gender"
                         className="inputHero"     
-                        value={gender}
-                        onChange={handleGenderChange}/>
+                        value={values.gender}
+                        onChange={handleChange}/>
                     </div>
                     <div>
                         <label htmFor="heroRace" className="labelHero">Race:</label>
@@ -289,8 +201,8 @@ const ModalForm = ()=>{
                         id="heroRace"
                         name="race"
                         className="inputHero"     
-                        value={race}
-                        onChange={handleRaceChange}/>
+                        value={values.race}
+                        onChange={handleChange}/>
                     </div>
                     <div>
                         <label htmlFor="herostrength" className="labelHero">Strength:</label>
@@ -300,8 +212,8 @@ const ModalForm = ()=>{
                         className="inputHero" 
                         min="0" 
                         maxlength="5" 
-                        value={strength}
-                        onChange={handleStrengthChange}/>
+                        value={values.strength}
+                        onChange={handleChange}/>
                     </div>
                     <div>
                         <label htmlFor="heroint" className="labelHero">Intelligence:</label>
@@ -311,8 +223,8 @@ const ModalForm = ()=>{
                         className="inputHero" 
                         min="0" 
                         maxLength="5"
-                        value={intelligence}
-                        onChange={handleIntelligenceChange}/>
+                        value={values.intelligence}
+                        onChange={handleChange}/>
                     </div>
                     <div>
                         <label htmlFor="herospeed" className="labelHero">Speed:</label>
@@ -322,8 +234,8 @@ const ModalForm = ()=>{
                         className="inputHero" 
                         min="0" 
                         maxLength="5"
-                        value={speed}
-                        onChange={handleSpeedChange}/>
+                        value={values.speed}
+                        onChange={handleChange}/>
                     </div> 
                     <div>
                         <label htmlFor="heropower" className="labelHero">Power:</label>
@@ -333,14 +245,14 @@ const ModalForm = ()=>{
                         className="inputHero" 
                         min="0" 
                         maxLength="5"
-                        value={power}
-                        onChange={handlePowerChange}/>
+                        value={values.power}
+                        onChange={handleChange}/>
                     </div>
                     <div>
                         <input type="file" onChange={changeFileHandler} required/>
                     </div>
                     <div>
-                        <button type="submit" onClick={handleUpload}>Create hero</button>
+                        <button type="submit">Create hero</button>
                     </div>
                     {error&&<div className="error">{error}</div>}
                     {file&& <div>{file.name}</div>}
