@@ -50,13 +50,13 @@ function HeroesCatalogue({
                 })
                 
                 apiheroes=jsonRes.concat(documents)
+                console.log(apiheroes)
                 setHeroes(apiheroes)
                 fetchHeroesSuccess(apiheroes);
                 setHeroesC(apiheroes);
                 
               });
               return ()=> unsub()
-
 
           });
         } else {
@@ -65,8 +65,6 @@ function HeroesCatalogue({
       }).catch((error) => {
         fetchHeroesFailure(error);
       });
-
-     
 
     }
     
