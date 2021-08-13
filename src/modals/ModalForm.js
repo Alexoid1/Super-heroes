@@ -1,10 +1,13 @@
 import React,{useState,useEffect} from 'react';
 import { projectStorage, projectFirestore, timestamp } from "../firebase/config";
 import ProgressBar2 from '../components/ProgressBar2';
+import useForm from './useForm';
 import './ModalForm.css'
 
 
+
 const ModalForm = ()=>{
+    const {values,handleChange}= useForm()
     const[file,setFile] = useState(null);
     const[error, setError] = useState(null);
     const [progress, setProgress] = useState(0);
@@ -225,15 +228,15 @@ const ModalForm = ()=>{
                         name="heroname"
                         className="inputHero" 
                         placeholder="Write Hero Name" 
-                        value={heroname}
-                        onChange={handleHeroNameChange}
+                        value={values.heroname}
+                        onChange={handleChange}
                         required="required"/>
                     </div>
                     <div>
                         <label htmlFor="heroalias" className="labelHero" >Hero Alias:</label>
                         <input type="text" 
                         id="heroalias"
-                        name="heroalias"
+                        name="alias"
                         className="inputHero" 
                         placeholder="Write Hero Alias"
                         value={alias}
@@ -244,7 +247,7 @@ const ModalForm = ()=>{
                         <label htmlFor="heroplace" className="labelHero">Place of Birth:</label>
                         <input type="text" 
                         id="heroplace"
-                        name="heroplace"
+                        name="place"
                         className="inputHero" 
                         placeholder="City or Country"
                         value={place}
@@ -255,7 +258,7 @@ const ModalForm = ()=>{
                         <label htmlFor="heroheight" className="labelHero">Height:</label>
                         <input type="text" 
                         id="heroheight"
-                        name="heroheight" 
+                        name="heightt" 
                         className="inputHero"  
                         value={heightt}
                         onChange={handleHeightChange}
@@ -265,7 +268,7 @@ const ModalForm = ()=>{
                         <label htmlFor="heroWeight" className="labelHero">Weight:</label>
                         <input type="text" 
                         id="heroWeight"
-                        name="heroWeight"
+                        name="weightt"
                         className="inputHero"  
                         value={weightt}
                         onChange={handleWeightChange}
@@ -275,7 +278,7 @@ const ModalForm = ()=>{
                         <label htmlFor="heroGender" className="labelHero">Gender:</label>
                         <input type="text" 
                         id="heroGender"
-                        name="heroGender"
+                        name="gender"
                         className="inputHero"     
                         value={gender}
                         onChange={handleGenderChange}/>
@@ -284,7 +287,7 @@ const ModalForm = ()=>{
                         <label htmFor="heroRace" className="labelHero">Race:</label>
                         <input type="text" 
                         id="heroRace"
-                        name="heroRace"
+                        name="race"
                         className="inputHero"     
                         value={race}
                         onChange={handleRaceChange}/>
@@ -293,7 +296,7 @@ const ModalForm = ()=>{
                         <label htmlFor="herostrength" className="labelHero">Strength:</label>
                         <input type="number" 
                         id="herostrength"
-                        name="herostrength"
+                        name="strength"
                         className="inputHero" 
                         min="0" 
                         maxlength="5" 
@@ -304,7 +307,7 @@ const ModalForm = ()=>{
                         <label htmlFor="heroint" className="labelHero">Intelligence:</label>
                         <input type="number" 
                         id="heroint"
-                        name="heroint"
+                        name="intelligence"
                         className="inputHero" 
                         min="0" 
                         maxLength="5"
@@ -315,7 +318,7 @@ const ModalForm = ()=>{
                         <label htmlFor="herospeed" className="labelHero">Speed:</label>
                         <input type="number" 
                         id="herospeed"
-                        name="herospeed" 
+                        name="speed" 
                         className="inputHero" 
                         min="0" 
                         maxLength="5"
@@ -326,7 +329,7 @@ const ModalForm = ()=>{
                         <label htmlFor="heropower" className="labelHero">Power:</label>
                         <input type="number" 
                         id="heropower"
-                        name="heropower"
+                        name="power"
                         className="inputHero" 
                         min="0" 
                         maxLength="5"
