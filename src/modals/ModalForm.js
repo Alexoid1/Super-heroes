@@ -221,7 +221,8 @@ const ModalForm = ()=>{
                     <div>
                         <label htmlFor="heroname" className="labelHero" >Hero Name:</label>
                         <input type="text" 
-                        id="heroname" 
+                        id="heroname"
+                        name="heroname"
                         className="inputHero" 
                         placeholder="Write Hero Name" 
                         value={heroname}
@@ -231,7 +232,8 @@ const ModalForm = ()=>{
                     <div>
                         <label htmlFor="heroalias" className="labelHero" >Hero Alias:</label>
                         <input type="text" 
-                        id="heroalias" 
+                        id="heroalias"
+                        name="heroalias"
                         className="inputHero" 
                         placeholder="Write Hero Alias"
                         value={alias}
@@ -241,7 +243,8 @@ const ModalForm = ()=>{
                     <div>
                         <label htmlFor="heroplace" className="labelHero">Place of Birth:</label>
                         <input type="text" 
-                        id="heroplace" 
+                        id="heroplace"
+                        name="heroplace"
                         className="inputHero" 
                         placeholder="City or Country"
                         value={place}
@@ -251,7 +254,8 @@ const ModalForm = ()=>{
                     <div>
                         <label htmlFor="heroheight" className="labelHero">Height:</label>
                         <input type="text" 
-                        id="heroheight" 
+                        id="heroheight"
+                        name="heroheight" 
                         className="inputHero"  
                         value={heightt}
                         onChange={handleHeightChange}
@@ -260,7 +264,8 @@ const ModalForm = ()=>{
                     <div>
                         <label htmlFor="heroWeight" className="labelHero">Weight:</label>
                         <input type="text" 
-                        id="heroWeight" 
+                        id="heroWeight"
+                        name="heroWeight"
                         className="inputHero"  
                         value={weightt}
                         onChange={handleWeightChange}
@@ -269,7 +274,8 @@ const ModalForm = ()=>{
                     <div>
                         <label htmlFor="heroGender" className="labelHero">Gender:</label>
                         <input type="text" 
-                        id="heroGender" 
+                        id="heroGender"
+                        name="heroGender"
                         className="inputHero"     
                         value={gender}
                         onChange={handleGenderChange}/>
@@ -278,6 +284,7 @@ const ModalForm = ()=>{
                         <label htmFor="heroRace" className="labelHero">Race:</label>
                         <input type="text" 
                         id="heroRace"
+                        name="heroRace"
                         className="inputHero"     
                         value={race}
                         onChange={handleRaceChange}/>
@@ -286,6 +293,7 @@ const ModalForm = ()=>{
                         <label htmlFor="herostrength" className="labelHero">Strength:</label>
                         <input type="number" 
                         id="herostrength"
+                        name="herostrength"
                         className="inputHero" 
                         min="0" 
                         maxlength="5" 
@@ -295,7 +303,8 @@ const ModalForm = ()=>{
                     <div>
                         <label htmlFor="heroint" className="labelHero">Intelligence:</label>
                         <input type="number" 
-                        id="heroint" 
+                        id="heroint"
+                        name="heroint"
                         className="inputHero" 
                         min="0" 
                         maxLength="5"
@@ -305,7 +314,8 @@ const ModalForm = ()=>{
                     <div>
                         <label htmlFor="herospeed" className="labelHero">Speed:</label>
                         <input type="number" 
-                        id="herospeed" 
+                        id="herospeed"
+                        name="herospeed" 
                         className="inputHero" 
                         min="0" 
                         maxLength="5"
@@ -315,7 +325,8 @@ const ModalForm = ()=>{
                     <div>
                         <label htmlFor="heropower" className="labelHero">Power:</label>
                         <input type="number" 
-                        id="heropower" 
+                        id="heropower"
+                        name="heropower"
                         className="inputHero" 
                         min="0" 
                         maxLength="5"
