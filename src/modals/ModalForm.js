@@ -11,6 +11,8 @@ const ModalForm = ()=>{
         alias: '',
         place: '',
         occupation: '',
+        eyeColor: '',
+        hairColor: '',
         heightt: '',
         weightt: '',
         gender: '',
@@ -36,6 +38,8 @@ const ModalForm = ()=>{
             alias: '',
             place: '',
             occupation: '',
+            eyeColor: '',
+            hairColor: '',
             heightt: '',
             weightt: '',
             gender: '',
@@ -107,7 +111,9 @@ const ModalForm = ()=>{
                         gender:values.gender,
                         race:values.race,
                         height:[values.heightt],
-                        weight:[values.weightt]
+                        weight:[values.weightt],
+                        eyeColor: values.eyeColor,
+                        hairColor: values.hairColor
                     },
                     biography: {
                         fullName: values.heroname,
@@ -136,13 +142,9 @@ const ModalForm = ()=>{
 
                    })
                
-                    setUrl(url);
-                    
+                    setUrl(url);           
 
-            })
-
-            
-            
+            })     
         })
         }else{
             return null
@@ -194,26 +196,24 @@ const ModalForm = ()=>{
                         required="required"/>
                     </div>
                     <div>
-                        <label htmlFor="heroheight" className="labelHero">Height:</label>
+                        <label htmlFor="heroeye" className="labelHero">Eye Color:</label>
                         <input type="text" 
-                        id="heroheight"
-                        name="heightt" 
-                        className="inputHero"  
-                        value={values.heightt}
+                        id="heroeye"
+                        name="eyeColor"
+                        className="inputHero"
+                        value={values.eyeColor}
                         onChange={handleChange}
-                        required="required"
-                        />
+                        required="required"/>
                     </div>
                     <div>
-                        <label htmlFor="heroWeight" className="labelHero">Weight:</label>
+                        <label htmlFor="herohair" className="labelHero">Hair Color:</label>
                         <input type="text" 
-                        id="heroWeight"
-                        name="weightt"
-                        className="inputHero"  
-                        value={values.weightt}
+                        id="herohair"
+                        name="hairColor"
+                        className="inputHero"
+                        value={values.hairColor}
                         onChange={handleChange}
-                        required="required"
-                        />
+                        required="required"/>
                     </div>
                     <div>
                         <label htmlFor="heroGender" className="labelHero">Gender:</label>
@@ -236,70 +236,108 @@ const ModalForm = ()=>{
                         required="required"/>
                     </div>
                     <div>
+                    <label htmlFor="heroaligment" className="labelHero">Aligment:</label>
+                        <select className="inputHero select" name="aligment" onChange={handleChange} value={values.aligment}>
+
+                            <option key value="good">good</option>
+                            <option value="bad">bad</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label htmlFor="heroheight" className="labelHero">Height:</label>
+                        <input type="text" 
+                        id="heroheight"
+                        name="heightt" 
+                        className="inputHero"  
+                        value={values.heightt}
+                        onChange={handleChange}
+                        required="required"
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="heroWeight" className="labelHero">Weight:</label>
+                        <input type="text" 
+                        id="heroWeight"
+                        name="weightt"
+                        className="inputHero"  
+                        value={values.weightt}
+                        onChange={handleChange}
+                        required="required"
+                        />
+                    </div>           
+                    <div className="rangeCont">
                         <label htmlFor="herostrength" className="labelHero rangeCont">Strength:</label>
-                        <span>0</span>
-                        <input type="range" 
-                        id="herostrength"
-                        name="strength"
-                        className="inputHero range" 
-                        min="0"
-                        max="1000"
-                        step="1"
-                        value={values.strength}
-                        onChange={handleChange}
-                        required="required"/>
-                        <span>1000</span>
+                        <div>
+                            <span>0</span>
+                            <input type="range" 
+                            id="herostrength"
+                            name="strength"
+                            className="inputHero range" 
+                            min="0"
+                            max="1000"
+                            step="1"
+                            value={values.strength}
+                            onChange={handleChange}
+                            required="required"/>
+                            <span>1000</span>
+                        </div>
                     </div>
-                    <div>
-                        <label htmlFor="heroint" className="labelHero rangeCont">Intelligence:</label>
-                        <span>0</span>
-                        <input type="range" 
-                        id="heroint"
-                        name="intelligence"
-                        className="inputHero range" 
-                        min="0"
-                        max="1000"
-                        step="1"
-                        value={values.intelligence}
-                        onChange={handleChange}
-                        required="required"/>
-                        <span>1000</span>
+                    <div className="rangeCont">
+                        <label htmlFor="heroint" className="labelHero">Intelligence:</label>
+                        <div>
+                            <span>0</span>
+                            <input type="range" 
+                            id="heroint"
+                            name="intelligence"
+                            className="inputHero range" 
+                            min="0"
+                            max="1000"
+                            step="1"
+                            value={values.intelligence}
+                            onChange={handleChange}
+                            required="required"/>
+                            <span>1000</span>
+                        </div>
                     </div>
-                    <div>
-                        <label htmlFor="herospeed" className="labelHero rangeCont">Speed:</label>
-                        <span>0</span>
-                        <input type="range" 
-                        id="herospeed"
-                        name="speed" 
-                        className="inputHero range" 
-                        min="0"
-                        max="1000"
-                        step="1"
-                        value={values.speed}
-                        onChange={handleChange}
-                        required="required"/>
-                        <span>1000</span>
+                    <div className="rangeCont">
+                        <label htmlFor="herospeed" className="labelHero">Speed:</label>
+                        <div>
+                            <span>0</span>
+                            <input type="range" 
+                            id="herospeed"
+                            name="speed" 
+                            className="inputHero range" 
+                            min="0"
+                            max="1000"
+                            step="1"
+                            value={values.speed}
+                            onChange={handleChange}
+                            required="required"/>
+                            <span>1000</span>
+                        </div>
                     </div> 
-                    <div>
-                        <label htmlFor="heropower" className="labelHero rangeCont">Power:</label>
-                        <span>0</span>
-                        <input type="range"
-                        id="heropower"
-                        name="power"
-                        className="inputHero range" 
-                        min="0"
-                        max="1000"
-                        step="1"
-                        value={values.power}
-                        onChange={handleChange}
-                        required="required"/>
-                        <span>1000</span>
+                    <div className="rangeCont">
+                        <label htmlFor="heropower" className="labelHero">Power:</label>
+                        <div>
+                            <span>0</span>
+                                <input type="range"
+                                id="heropower"
+                                name="power"
+                                className="inputHero range" 
+                                min="0"
+                                max="1000"
+                                step="1"
+                                value={values.power}
+                                onChange={handleChange}
+                                required="required"/>
+                            <span>1000</span>
+                        </div>
                     </div>
                     <div>
-                        <input type="file" onChange={changeFileHandler} required="required"/>
+                        <input  className="selectFIle" type="file" onChange={changeFileHandler} required="required"/>
                     </div>
-                    <div>
-                        <button type="submit">Create hero</button>
+                    <div className="buttonCont">
+                        <button  className="create" type="submit">Create hero</button>
                     </div>
                     {error&&<div className="error">{error}</div>}
                     

@@ -20,9 +20,43 @@
 }
 
 .rangeCont {
-    margin-right: 15px;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
 }
 
 .range {
-    width: 200px;
+    width: 170px;
+}
+
+.select option {
+    background: rgba(23, 86, 124, 0.9);
+    color: white;
+}
+
+.selectFIle {
+    background: rgba(23, 86, 124, 0.9);
+    color: white;
+    border-radius: 10px;
+    margin: 10px 0
+}
+
+.create {
+    background: rgba(23, 86, 124, 0.9);
+    color: white;
+    border-radius: 10px;
+    border: 2px solid white;
+    text-align: center;
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 14px;
+}
+
+.create:hover {
+    background: white;
+    color:  rgba(23, 86, 124, 0.9);
+}
+
+.buttonCont {
+    text-align: center;
 }
