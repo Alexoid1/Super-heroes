@@ -18,3 +18,11 @@
     color: white;
     font-size: 16px;
 }
+
+.rangeCont {
+    margin-right: 15px;
+}
+
+.range {
+    width: 200px;
+}

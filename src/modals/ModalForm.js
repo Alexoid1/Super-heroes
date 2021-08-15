@@ -157,8 +157,7 @@ const ModalForm = ()=>{
                         <input type="text" 
                         id="heroname"
                         name="heroname"
-                        className="inputHero" 
-                        placeholder="Write Hero Name" 
+                        className="inputHero"
                         value={values.heroname}
                         onChange={handleChange}
                         required="required"/>
@@ -168,8 +167,7 @@ const ModalForm = ()=>{
                         <input type="text" 
                         id="heroalias"
                         name="alias"
-                        className="inputHero" 
-                        placeholder="Write Hero Alias"
+                        className="inputHero"
                         value={values.alias}
                         onChange={handleChange}
                         required="required"/>
@@ -238,52 +236,64 @@ const ModalForm = ()=>{
                         required="required"/>
                     </div>
                     <div>
-                        <label htmlFor="herostrength" className="labelHero">Strength:</label>
-                        <input type="number" 
+                        <label htmlFor="herostrength" className="labelHero rangeCont">Strength:</label>
+                        <span>0</span>
+                        <input type="range" 
                         id="herostrength"
                         name="strength"
-                        className="inputHero" 
-                        min="0" 
-                        maxLength="5" 
+                        className="inputHero range" 
+                        min="0"
+                        max="1000"
+                        step="1"
                         value={values.strength}
                         onChange={handleChange}
                         required="required"/>
+                        <span>1000</span>
                     </div>
                     <div>
-                        <label htmlFor="heroint" className="labelHero">Intelligence:</label>
-                        <input type="number" 
+                        <label htmlFor="heroint" className="labelHero rangeCont">Intelligence:</label>
+                        <span>0</span>
+                        <input type="range" 
                         id="heroint"
                         name="intelligence"
-                        className="inputHero" 
-                        min="0" 
-                        maxLength="5"
+                        className="inputHero range" 
+                        min="0"
+                        max="1000"
+                        step="1"
                         value={values.intelligence}
                         onChange={handleChange}
                         required="required"/>
+                        <span>1000</span>
                     </div>
                     <div>
-                        <label htmlFor="herospeed" className="labelHero">Speed:</label>
-                        <input type="number" 
+                        <label htmlFor="herospeed" className="labelHero rangeCont">Speed:</label>
+                        <span>0</span>
+                        <input type="range" 
                         id="herospeed"
                         name="speed" 
-                        className="inputHero" 
-                        min="0" 
-                        maxLength="5"
+                        className="inputHero range" 
+                        min="0"
+                        max="1000"
+                        step="1"
                         value={values.speed}
                         onChange={handleChange}
                         required="required"/>
+                        <span>1000</span>
                     </div> 
                     <div>
-                        <label htmlFor="heropower" className="labelHero">Power:</label>
-                        <input type="number" 
+                        <label htmlFor="heropower" className="labelHero rangeCont">Power:</label>
+                        <span>0</span>
+                        <input type="range"
                         id="heropower"
                         name="power"
-                        className="inputHero" 
-                        min="0" 
-                        maxLength="5"
+                        className="inputHero range" 
+                        min="0"
+                        max="1000"
+                        step="1"
                         value={values.power}
                         onChange={handleChange}
                         required="required"/>
+                        <span>1000</span>
                     </div>
                     <div>
                         <input type="file" onChange={changeFileHandler} required="required"/>
