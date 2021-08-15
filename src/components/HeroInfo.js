@@ -63,11 +63,11 @@ function HeroInfo({ heroes }) {
                     </p>
                     <p>
                       Height:
-                      {herou.appearance.height[1]}
+                      {herou.appearance.height[0]}
                     </p>
                     <p>
                       Weight:
-                      {herou.appearance.weight[1]}
+                      {herou.appearance.weight[0]}
                     </p>
                     <p>
                       Eye Color:

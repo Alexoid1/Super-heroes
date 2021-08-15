@@ -7,7 +7,22 @@
   border-radius: 7px;
   text-align: center;
   margin: auto;
+  transition: linear 0.5s;
+  font-family: 'Chakra Petch', sans-serif;
 }
+
+.cardHero h5 {
+  font-size: 15px;
+}
+
+.cardHero:hover {
+  transform: scale(1.1);
+}
+
+.cardHero:hover h5 {
+  color: rgb(255, 166, 0);
+}
+
 
 .imgCont {
   background: grey;
@@ -19,8 +34,6 @@
 .linkContainer {
   text-decoration: none;
   color: black;
-  width: 220px;
-  height: 320px;
   display: inline-block;
 }
 
