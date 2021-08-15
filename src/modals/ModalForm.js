@@ -31,6 +31,21 @@ const ModalForm = ()=>{
     useEffect(()=>{
         setFile(null)
         setUploading(false)
+        setValues({
+            heroname: '',
+            alias: '',
+            place: '',
+            occupation: '',
+            heightt: '',
+            weightt: '',
+            gender: '',
+            race: '',
+            strength: '',
+            intelligence: '',
+            aligment: 'good',
+            speed: '',
+            power: ''
+        })
     },[url])
 
 
@@ -50,16 +65,20 @@ const ModalForm = ()=>{
 
     const handleChange = e => {
         const { name, value } = e.target;
-        setValues({
-          ...values,
-          [name]: value
-        });
+        if(value.length<25){
+            setValues({
+                ...values,
+                [name]: value
+            });
+        }
+        
     };
 
     const handleUpload = (e) => {
         e.preventDefault()
         if(file){
             setUploading(true)
+
 
             const collectionRef = projectFirestore.collection("images");
             const storageRef = projectStorage.ref(`images/${file.name}`);
@@ -163,6 +182,7 @@ const ModalForm = ()=>{
                         className="inputHero"
                         value={values.occupation}
                         onChange={handleChange}
+                        required="required"
                         />
                     </div>
                     <div>
@@ -183,7 +203,8 @@ const ModalForm = ()=>{
                         className="inputHero"  
                         value={values.heightt}
                         onChange={handleChange}
-                        required/>
+                        required="required"
+                        />
                     </div>
                     <div>
                         <label htmlFor="heroWeight" className="labelHero">Weight:</label>
@@ -193,7 +214,8 @@ const ModalForm = ()=>{
                         className="inputHero"  
                         value={values.weightt}
                         onChange={handleChange}
-                        required/>
+                        required="required"
+                        />
                     </div>
                     <div>
                         <label htmlFor="heroGender" className="labelHero">Gender:</label>
@@ -202,7 +224,8 @@ const ModalForm = ()=>{
                         name="gender"
                         className="inputHero"     
                         value={values.gender}
-                        onChange={handleChange}/>
+                        onChange={handleChange}
+                        required="required"/>
                     </div>
                     <div>
                         <label htmFor="heroRace" className="labelHero">Race:</label>
@@ -211,7 +234,8 @@ const ModalForm = ()=>{
                         name="race"
                         className="inputHero"     
                         value={values.race}
-                        onChange={handleChange}/>
+                        onChange={handleChange}
+                        required="required"/>
                     </div>
                     <div>
                         <label htmlFor="herostrength" className="labelHero">Strength:</label>
@@ -222,7 +246,8 @@ const ModalForm = ()=>{
                         min="0" 
                         maxLength="5" 
                         value={values.strength}
-                        onChange={handleChange}/>
+                        onChange={handleChange}
+                        required="required"/>
                     </div>
                     <div>
                         <label htmlFor="heroint" className="labelHero">Intelligence:</label>
@@ -233,7 +258,8 @@ const ModalForm = ()=>{
                         min="0" 
                         maxLength="5"
                         value={values.intelligence}
-                        onChange={handleChange}/>
+                        onChange={handleChange}
+                        required="required"/>
                     </div>
                     <div>
                         <label htmlFor="herospeed" className="labelHero">Speed:</label>
@@ -244,7 +270,8 @@ const ModalForm = ()=>{
                         min="0" 
                         maxLength="5"
                         value={values.speed}
-                        onChange={handleChange}/>
+                        onChange={handleChange}
+                        required="required"/>
                     </div> 
                     <div>
                         <label htmlFor="heropower" className="labelHero">Power:</label>
@@ -255,10 +282,11 @@ const ModalForm = ()=>{
                         min="0" 
                         maxLength="5"
                         value={values.power}
-                        onChange={handleChange}/>
+                        onChange={handleChange}
+                        required="required"/>
                     </div>
                     <div>
-                        <input type="file" onChange={changeFileHandler} required/>
+                        <input type="file" onChange={changeFileHandler} required="required"/>
                     </div>
                     <div>
                         <button type="submit">Create hero</button>
