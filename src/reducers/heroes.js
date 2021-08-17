@@ -3,12 +3,14 @@ import {
   FETCH_HEROES_SUCCESS,
   NEXT_HEROES,
   CHANGE_TEXT,
+  CHANGE_AUTH,
   FILTER_CHANGE,
 } from '../action-types';
 
 const initialState = {
   heroes: [],
   loading: false,
+  authorize: false,
   error: '',
   startIndex: 0,
   text: '',
@@ -45,6 +47,11 @@ const heroesReducer = (state = initialState, action) => {
         ...state,
         filter: action.payload,
       };
+    case CHANGE_AUTH:
+      return {
+        ...state,
+        authorize: !state.authorize
+      }
 
     default:
       return state;

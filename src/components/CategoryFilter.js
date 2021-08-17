@@ -60,7 +60,9 @@ const CategoryFilter = ({ changeFilter, onChange }) => {
     'Zombie',
     'Human-Vulcan',
     'Human-Spartoi',
-    'Tamaranean'];
+    'Tamaranean',
+  'Half Demon',
+'Dog Demon'];
   const [text, setText] = useState('All');
 
   const handleTextChange = (e) => {

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import PropTypes from 'prop-types';
 import DotLoader from 'react-spinners/ClipLoader';
-import { projectFirestore } from '../firebase/config'
+import { projectFirestore } from '../service/firebase'
 import {
   nextHeroes,
   fetchHeroesFailure,
@@ -49,7 +49,14 @@ function HeroesCatalogue({
                   documents.push({...doc.data(),id:doc.id})
                 })
                 
-                apiheroes=jsonRes.concat(documents)
+                apiheroes=jsonRes.concat(documents).sort((a,b)=>{
+                  var nameA=a.name.toLowerCase(), nameB=b.name.toLowerCase();
+                  if (nameA < nameB) //sort string ascending
+                    return -1;
+                  if (nameA > nameB)
+                    return 1;
+                  return 0;
+                        });
                 console.log(apiheroes)
                 setHeroes(apiheroes)
                 fetchHeroesSuccess(apiheroes);
@@ -82,7 +89,7 @@ function HeroesCatalogue({
       arr = arr.concat(anex);
     } else if (start < 0) {
       delimiter = start + cardsNumber;
-      arr = array.slice(start, array.length).concat(array.slice(0, delimiter));
+      arr = array.slice(start, array.length).concat(array.slice(0, delimiter))
     } else {
       arr = array.slice(start, start + cardsNumber);
     }
