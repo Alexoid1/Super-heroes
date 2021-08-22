@@ -60,3 +60,17 @@
 .buttonCont {
     text-align: center;
 }
+
+.logogoo {
+    width: 110px;
+
+}
+
+.googleButton {
+    background: rgba(23, 86, 124, 0.9);
+    border-radius: 100%;
+}
+
+.buttonGoCon {
+    text-align: center;
+}

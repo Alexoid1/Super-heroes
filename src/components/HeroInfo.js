@@ -78,7 +78,7 @@ function HeroInfo({ heroes }) {
                       {herou.appearance.hairColor}
                     </p>
                   </div>
-                  <div>
+                  <div className="mobiledisplay">
                     <p>
                       Full Name:
                       {herou.biography.fullName}

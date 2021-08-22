@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { changeFilter } from '../actions/index';
+import { changeFilter, fetchHeroesSuccess } from '../actions/index';
 import './CategoryFilter.css';
 
-const CategoryFilter = ({ changeFilter, onChange }) => {
+const CategoryFilter = ({ changeFilter,fetchHeroesSuccess, onChange}) => {
   const heroesCategories = ['Human',
     'Icthyo Sapien',
     'Ungaran',
@@ -69,6 +69,7 @@ const CategoryFilter = ({ changeFilter, onChange }) => {
     const { target: { value } } = e;
     onChange(value);
     setText(value);
+    fetchHeroesSuccess([])
     changeFilter(value);
   };
 
@@ -103,6 +104,7 @@ CategoryFilter.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({
   changeFilter: (value) => dispatch(changeFilter(value)),
+  fetchHeroesSuccess:(heroes)=>dispatch(fetchHeroesSuccess(heroes)),
 });
 
 const mapStateToProps = (state) => ({

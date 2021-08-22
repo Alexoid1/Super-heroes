@@ -49,14 +49,16 @@ function HeroesCatalogue({
                   documents.push({...doc.data(),id:doc.id})
                 })
                 
-                apiheroes=jsonRes.concat(documents).sort((a,b)=>{
+                apiheroes=jsonRes.concat(documents)
+                //case sort by name
+                /*.sort((a,b)=>{
                   var nameA=a.name.toLowerCase(), nameB=b.name.toLowerCase();
                   if (nameA < nameB) //sort string ascending
                     return -1;
                   if (nameA > nameB)
                     return 1;
                   return 0;
-                        });
+                        });*/
                 console.log(apiheroes)
                 setHeroes(apiheroes)
                 fetchHeroesSuccess(apiheroes);
@@ -136,8 +138,8 @@ function HeroesCatalogue({
   function handleOneDecreseMobile(e) {
     e.preventDefault();
 
-    if (start < 0) {
-      setStart(heroesC - 1);
+    if (start <= 0) {
+      setStart(heroesC.length - 1);
     } else {
       setStart(start - 1);
     }
@@ -147,7 +149,7 @@ function HeroesCatalogue({
   function handleOneIncreseMobile(e) {
     e.preventDefault();
 
-    if (start > heroesC.length - 1) {
+    if (start >= heroesC.length - 1) {
       setStart(0);
     } else {
       setStart(start + 1);
@@ -220,7 +222,7 @@ function HeroesCatalogue({
                 return (
                   <div key={hero.id} className={`${dealCards} deal card${transition}`}>
                     <HeroCard
-                      id={hero.id}
+                      id={hero.id.toString()}
                       image={hero.images.sm}
                       name={hero.name}
                       category={filte}

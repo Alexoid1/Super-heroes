@@ -27,9 +27,3 @@ code {
     monospace;
 }
 
-@media (max-width: 470px) {
-  body{
-    height: 600px;
-    overflow: hidden;
-  }
-}

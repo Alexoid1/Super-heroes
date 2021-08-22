@@ -3,7 +3,8 @@ import { projectStorage, projectFirestore, timestamp,googleAuthProvider } from "
 import ProgressBar2 from '../components/ProgressBar2';
 import { connect } from 'react-redux';
 import { changeAuth } from '../actions/index';
-import './ModalForm.css'
+import './ModalForm.css';
+import googlelogo from '../images/googlelogo.png'
 import socialMediaAuth from '../service/auth';
 
 
@@ -367,7 +368,12 @@ const ModalForm = ({changeAuth,authorize})=>{
         </div>
         )
     }else{
-        comp=(<button type="button" onClick={()=>handleGoogleClick(googleAuthProvider)}>Google</button>)
+        comp=(
+        <div className="buttonGoCon">
+            <button className="googleButton" type="button" onClick={()=>handleGoogleClick(googleAuthProvider)}><img className="logogoo" src={googlelogo} alt='googlelogo'/>
+            </button>
+            <p>Login with Google</p>
+        </div>)
     }
         return comp
 }

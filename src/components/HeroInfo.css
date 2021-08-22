@@ -125,8 +125,9 @@ body {
   }
 
   .hero-container {
-    width: 420px;
+    width: 380px;
     margin: 10px auto;
+
   }
 
   .apparenceC {
@@ -138,5 +139,6 @@ body {
   .powerT {
     width: 300px;
     color: white;
+    
   }
 }
