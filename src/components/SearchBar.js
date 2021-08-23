@@ -36,11 +36,11 @@ const SearchBar = ({ heroes, changeText, onChange }) => {
 SearchBar.propTypes = {
   heroes: PropTypes.shape({
     loading: PropTypes.bool.isRequired,
+    authorize: PropTypes.bool.isRequired,
     heroes: PropTypes.arrayOf(PropTypes.object),
     sHeroes: PropTypes.arrayOf(PropTypes.object),
     error: PropTypes.string.isRequired,
     startIndex: PropTypes.number.isRequired,
-    lastIndex: PropTypes.number.isRequired,
     text: PropTypes.string.isRequired,
   }),
   changeText: PropTypes.func.isRequired,

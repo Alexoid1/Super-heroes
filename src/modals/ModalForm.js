@@ -4,12 +4,13 @@ import {
   projectStorage, projectFirestore, timestamp, googleAuthProvider,
 } from '../service/firebase';
 import ProgressBar2 from '../components/ProgressBar2';
+import PropTypes from 'prop-types';
 import { changeAuth } from '../actions/index';
 import './ModalForm.css';
 import googlelogo from '../images/googlelogo.png';
 import socialMediaAuth from '../service/socialMediaAuth';
 
-const ModalForm = ({ changeAuth, authorize }) => {
+const ModalForm = ({ changeAuth, authorizee }) => {
   const [values, setValues] = useState({
     heroname: '',
     alias: '',
@@ -32,6 +33,8 @@ const ModalForm = ({ changeAuth, authorize }) => {
   const [progress, setProgress] = useState(0);
   const [url, setUrl] = useState(null);
   const [uploading, setUploading] = useState(false);
+  
+  
 
   const imgTypes = ['image/png', 'image/jpeg', 'image/jpg'];
   useEffect(() => {
@@ -157,7 +160,7 @@ const ModalForm = ({ changeAuth, authorize }) => {
   };
 
   let comp;
-  if (authorize) {
+  if (authorizee) {
     comp = (
       <div>
 
@@ -391,8 +394,13 @@ const ModalForm = ({ changeAuth, authorize }) => {
   return comp;
 };
 
+ModalForm.propTypes = {
+    changeAuth: PropTypes.func.isRequired,
+    authorizee: PropTypes.bool.isRequired,
+};
+
 const mapStateToProps = (state) => ({
-  authorize: state.heroes.authorize,
+  authorizee: state.heroes.authorize,
 });
 
 const mapDispatchToProps = (dispatch) => ({

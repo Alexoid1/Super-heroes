@@ -50,7 +50,7 @@ const heroesReducer = (state = initialState, action) => {
     case CHANGE_AUTH:
       return {
         ...state,
-        authorize: !state.authorize,
+        authorize: true,
       };
 
     default:

@@ -273,12 +273,13 @@ HeroesCatalogue.propTypes = {
     heroes: PropTypes.arrayOf(PropTypes.object),
     sHeroes: PropTypes.arrayOf(PropTypes.object),
     error: PropTypes.string.isRequired,
-
+    authorize: PropTypes.bool.isRequired,
     text: PropTypes.string.isRequired,
   }),
 
   nextHeroes: PropTypes.func.isRequired,
-  lastHeroes: PropTypes.func.isRequired,
+  fetchHeroesFailure: PropTypes.func.isRequired,
+  fetchHeroesSuccess: PropTypes.func.isRequired,
 };
 
 HeroesCatalogue.defaultProps = {
