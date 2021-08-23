@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {
-  FaArrowLeft, FaArrowRight
+  FaArrowLeft, FaArrowRight,
 } from 'react-icons/fa';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';

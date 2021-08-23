@@ -1,0 +1,14 @@
+@media (max-width: 570px) {
+    .window {
+        left:20% !important;
+
+    }
+}
+
+@media (max-width: 420px) {
+    .window {
+        left:12% !important;
+        width: 270px !important;
+        top: 10px !important;
+    }
+}

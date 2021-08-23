@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { changeFilter, fetchHeroesSuccess } from '../actions/index';
 import './CategoryFilter.css';
 
-const CategoryFilter = ({ changeFilter,fetchHeroesSuccess, onChange}) => {
+const CategoryFilter = ({ changeFilter, fetchHeroesSuccess, onChange }) => {
   const heroesCategories = ['Human',
     'Icthyo Sapien',
     'Ungaran',
@@ -61,15 +61,15 @@ const CategoryFilter = ({ changeFilter,fetchHeroesSuccess, onChange}) => {
     'Human-Vulcan',
     'Human-Spartoi',
     'Tamaranean',
-  'Half Demon',
-'Dog Demon'];
+    'Half Demon',
+    'Dog Demon'];
   const [text, setText] = useState('All');
 
   const handleTextChange = (e) => {
     const { target: { value } } = e;
     onChange(value);
     setText(value);
-    fetchHeroesSuccess([])
+    fetchHeroesSuccess([]);
     changeFilter(value);
   };
 
@@ -99,12 +99,13 @@ const CategoryFilter = ({ changeFilter,fetchHeroesSuccess, onChange}) => {
 
 CategoryFilter.propTypes = {
   changeFilter: PropTypes.func.isRequired,
+  fetchHeroesSuccess: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
   changeFilter: (value) => dispatch(changeFilter(value)),
-  fetchHeroesSuccess:(heroes)=>dispatch(fetchHeroesSuccess(heroes)),
+  fetchHeroesSuccess: (heroes) => dispatch(fetchHeroesSuccess(heroes)),
 });
 
 const mapStateToProps = (state) => ({

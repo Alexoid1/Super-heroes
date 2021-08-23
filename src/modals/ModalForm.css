@@ -74,3 +74,10 @@
 .buttonGoCon {
     text-align: center;
 }
+
+@media (max-width: 420px) {
+    .inputHero {
+        font-size: 12px;
+    }
+    
+}

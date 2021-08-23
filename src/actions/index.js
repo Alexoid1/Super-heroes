@@ -4,7 +4,7 @@ import {
   CHANGE_TEXT,
   NEXT_HEROES,
   FILTER_CHANGE,
-  CHANGE_AUTH
+  CHANGE_AUTH,
 
 } from '../action-types';
 
@@ -36,4 +36,3 @@ export const changeFilter = (value) => ({
 export const changeAuth = () => ({
   type: CHANGE_AUTH,
 });
-

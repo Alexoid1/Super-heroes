@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import './ProgressBar.css';
 
 function ProgressBar2({ progress }) {
-
-    
   return (
     <div className="container">
       <div className="progressbar-container">
