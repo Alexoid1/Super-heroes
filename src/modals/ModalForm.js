@@ -10,7 +10,7 @@ import './ModalForm.css';
 import googlelogo from '../images/googlelogo.png';
 import socialMediaAuth from '../service/socialMediaAuth';
 
-const ModalForm = ({ changeAuth, authorizee }) => {
+function ModalForm  ({ changeAuth, authorizee }) {
   const [values, setValues] = useState({
     heroname: '',
     alias: '',
@@ -102,12 +102,12 @@ const ModalForm = ({ changeAuth, authorizee }) => {
           name: values.heroname,
           slug: values.heroname,
           powerstats: {
-            intelligence: values.intelligence * 1,
-            strength: values.strength * 1,
-            speed: values.speed * 1,
-            durability: values.strength * 1,
-            power: values.power * 1,
-            combat: values.power * 1,
+            intelligence: values.intelligence*1,
+            strength: values.strength*1,
+            speed: values.speed*1,
+            durability: values.strength*1,
+            power: values.power*1,
+            combat: values.power*1,
           },
           appearance: {
             gender: values.gender,
@@ -265,8 +265,8 @@ const ModalForm = ({ changeAuth, authorizee }) => {
             <label htmlFor="heroaligment" className="labelHero">Aligment:</label>
             <select className="inputHero select" name="aligment" onChange={handleChange} value={values.aligment}>
 
-              <option key value="good">good</option>
-              <option value="bad">bad</option>
+              <option key='good' value="good">good</option>
+              <option key='bad' value="bad">bad</option>
             </select>
           </div>
           <div>
