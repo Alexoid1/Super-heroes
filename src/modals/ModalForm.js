@@ -473,7 +473,7 @@ function ModalForm  ({ changeAuth, authorizee }) {
           </div>
           <div className="buttonGoCon">
           <button className="googleButton" type="button" onClick={() => handleFacebookClick(facebookAuthProvider)}>
-            <img className="logogoo" src={facelogo} alt="googlelogo" />
+            <img className="logogoo" src={facelogo} alt="facelogo" />
           </button>
           <p>Login with Facebook</p>
         </div>
