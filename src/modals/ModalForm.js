@@ -1,19 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import {
-  projectStorage, projectFirestore, timestamp, googleAuthProvider,
+  projectStorage, 
+  projectFirestore, 
+  timestamp, 
+  googleAuthProvider,
+  facebookAuthProvider
 } from '../service/firebase';
 import ProgressBar2 from '../components/ProgressBar2';
 import PropTypes from 'prop-types';
 import { changeAuth } from '../actions/index';
 import './ModalForm.css';
 import googlelogo from '../images/googlelogo.png';
+import facelogo from '../images/facebook.png';
 import socialMediaAuth from '../service/socialMediaAuth';
 
 function ModalForm  ({ changeAuth, authorizee }) {
   const [values, setValues] = useState({
     heroname: '',
     alias: '',
+    alterEgos:'',
     place: '',
     occupation: '',
     eyeColor: '',
@@ -23,8 +29,9 @@ function ModalForm  ({ changeAuth, authorizee }) {
     gender: '',
     race: '',
     strength: '',
-    intelligence: '',
+    intelligence: "100",
     aligment: 'good',
+    publisher:'',
     speed: '',
     power: '',
   });
@@ -34,7 +41,6 @@ function ModalForm  ({ changeAuth, authorizee }) {
   const [url, setUrl] = useState(null);
   const [uploading, setUploading] = useState(false);
   
-  
 
   const imgTypes = ['image/png', 'image/jpeg', 'image/jpg'];
   useEffect(() => {
@@ -43,6 +49,7 @@ function ModalForm  ({ changeAuth, authorizee }) {
     setValues({
       heroname: '',
       alias: '',
+      alterEgos:'',
       place: '',
       occupation: '',
       eyeColor: '',
@@ -54,6 +61,7 @@ function ModalForm  ({ changeAuth, authorizee }) {
       strength: '',
       intelligence: '',
       aligment: 'good',
+      publisher:'',
       speed: '',
       power: '',
     });
@@ -119,11 +127,11 @@ function ModalForm  ({ changeAuth, authorizee }) {
           },
           biography: {
             fullName: values.heroname,
-            alterEgos: 'No alter egos found.',
+            alterEgos: values.alterEgos,
             aliases: [values.alias],
             placeOfBirth: values.place,
             firstAppearance: createdAt,
-            publisher: 'No published',
+            publisher: values.publisher,
             alignment: values.aligment,
           },
           work: {
@@ -150,13 +158,34 @@ function ModalForm  ({ changeAuth, authorizee }) {
     }
   };
 
+  const userStore = (res)=>{
+    const userRef = projectFirestore.collection('users');
+    const createdAt = timestamp();
+    userRef.add({
+      username:res.bc.displayName,
+      email: res.bc.email,
+      lastSession: res.metadata.lastSignInTime,
+      currentTime: createdAt
+    })
+  }
+
   // Google Auth
   const handleGoogleClick = async (provider) => {
     const res = await socialMediaAuth(provider);
 
     if (res.bc.displayName) {
+      userStore(res)
       changeAuth();
     }
+  };
+
+  const handleFacebookClick = async (provider) => {
+    const res = await socialMediaAuth(provider);
+    if (res.bc.displayName) {
+      userStore(res)
+      changeAuth();
+    }
+    
   };
 
   let comp;
@@ -186,7 +215,19 @@ function ModalForm  ({ changeAuth, authorizee }) {
               className="inputHero"
               value={values.alias}
               onChange={handleChange}
-              required="required"
+              
+            />
+          </div>
+          <div>
+            <label htmlFor="heroalter" className="labelHero">Hero Alter Ego:</label>
+            <input
+              type="text"
+              id="heroalter"
+              name="alterEgos"
+              className="inputHero"
+              value={values.alterEgos}
+              onChange={handleChange}
+              
             />
           </div>
           <div>
@@ -270,6 +311,18 @@ function ModalForm  ({ changeAuth, authorizee }) {
             </select>
           </div>
           <div>
+            <label htmlFor="heroPublisher" className="labelHero">Publisher:</label>
+            <input
+              type="text"
+              id="heroPublisher"
+              name="publisher"
+              className="inputHero"
+              value={values.publisher}
+              onChange={handleChange}
+              
+            />
+          </div>
+          <div>
             <label htmlFor="heroheight" className="labelHero">Height:</label>
             <input
               type="text"
@@ -305,7 +358,7 @@ function ModalForm  ({ changeAuth, authorizee }) {
                 min="0"
                 max="1000"
                 step="1"
-                value={values.strength}
+                value={values.strength||'0'}
                 onChange={handleChange}
                 required="required"
               />
@@ -324,7 +377,7 @@ function ModalForm  ({ changeAuth, authorizee }) {
                 min="0"
                 max="1000"
                 step="1"
-                value={values.intelligence}
+                value={values.intelligence||'0'}
                 onChange={handleChange}
                 required="required"
               />
@@ -340,10 +393,10 @@ function ModalForm  ({ changeAuth, authorizee }) {
                 id="herospeed"
                 name="speed"
                 className="inputHero range"
-                min="0"
+                min="-1"
                 max="1000"
                 step="1"
-                value={values.speed}
+                value={values.speed||'0'}
                 onChange={handleChange}
                 required="required"
               />
@@ -362,7 +415,7 @@ function ModalForm  ({ changeAuth, authorizee }) {
                 min="0"
                 max="1000"
                 step="1"
-                value={values.power}
+                value={values.power||'0'}
                 onChange={handleChange}
                 required="required"
               />
@@ -383,11 +436,19 @@ function ModalForm  ({ changeAuth, authorizee }) {
     );
   } else {
     comp = (
-      <div className="buttonGoCon">
-        <button className="googleButton" type="button" onClick={() => handleGoogleClick(googleAuthProvider)}>
-          <img className="logogoo" src={googlelogo} alt="googlelogo" />
-        </button>
-        <p>Login with Google</p>
+      <div className="loginCont">
+         <div className="buttonGoCon">
+            <button className="googleButton" type="button" onClick={() => handleGoogleClick(googleAuthProvider)}>
+              <img className="logogoo" src={googlelogo} alt="googlelogo" />
+            </button>
+            <p>Login with Google</p>
+          </div>
+          <div className="buttonGoCon">
+          <button className="googleButton" type="button" onClick={() => handleFacebookClick(facebookAuthProvider)}>
+            <img className="logogoo" src={facelogo} alt="googlelogo" />
+          </button>
+          <p>Login with Facebook</p>
+        </div>
       </div>
     );
   }
