@@ -29,8 +29,10 @@ function ModalForm  ({ changeAuth, authorizee }) {
     gender: '',
     race: '',
     strength: '',
-    intelligence: "100",
+    intelligence: '',
     aligment: 'good',
+    groupAffiliation: '',
+    relatives: '',
     publisher:'',
     speed: '',
     power: '',
@@ -61,6 +63,8 @@ function ModalForm  ({ changeAuth, authorizee }) {
       strength: '',
       intelligence: '',
       aligment: 'good',
+      groupAffiliation: '',
+      relatives: '',
       publisher:'',
       speed: '',
       power: '',
@@ -81,7 +85,7 @@ function ModalForm  ({ changeAuth, authorizee }) {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (value.length < 25) {
+    if (value.length < 50) {
       setValues({
         ...values,
         [name]: value,
@@ -139,8 +143,8 @@ function ModalForm  ({ changeAuth, authorizee }) {
             base: '-',
           },
           connections: {
-            groupAffiliation: '-',
-            relatives: '-',
+            groupAffiliation: values.groupAffiliation,
+            relatives: values.relatives,
           },
           images: {
             xs: url,
@@ -309,6 +313,30 @@ function ModalForm  ({ changeAuth, authorizee }) {
               <option key='good' value="good">good</option>
               <option key='bad' value="bad">bad</option>
             </select>
+          </div>
+          <div>
+            <label htmlFor="herogroupAffiliation" className="labelHero">Group Affiliation:</label>
+            <input
+              type="text"
+              id="herogroupAffiliation"
+              name="groupAffiliation"
+              className="inputHero"
+              value={values.groupAffiliation}
+              onChange={handleChange}
+              
+            />
+          </div>
+          <div>
+            <label htmlFor="heroRelatives" className="labelHero">Relatives:</label>
+            <input
+              type="text"
+              id="heroRelatives"
+              name="relatives"
+              className="inputHero"
+              value={values.relatives}
+              onChange={handleChange}
+              
+            />
           </div>
           <div>
             <label htmlFor="heroPublisher" className="labelHero">Publisher:</label>
