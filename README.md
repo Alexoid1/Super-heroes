@@ -15,9 +15,10 @@ SuperHeroes is a web application give information about All SuperHeroes and Vill
 - npm
 - CSS
 - ES6.
+- Firebase
 
 ## Live Demo
-[Live Demo Link](https://super-herroes.herokuapp.com/)
+[Live Demo Link](https://heroes-gallery.web.app/#)
 
 
 ### Test
