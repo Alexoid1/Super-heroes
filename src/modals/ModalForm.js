@@ -176,18 +176,26 @@ function ModalForm  ({ changeAuth, authorizee }) {
   // Google Auth
   const handleGoogleClick = async (provider) => {
     const res = await socialMediaAuth(provider);
-
-    if (res.bc.displayName) {
-      userStore(res)
-      changeAuth();
+    try{
+      if (res.bc.displayName) {
+        userStore(res)
+        changeAuth();
+      }
+    }catch(error){
+      setError(error)
     }
+    
   };
 
   const handleFacebookClick = async (provider) => {
     const res = await socialMediaAuth(provider);
-    if (res.bc.displayName) {
-      userStore(res)
-      changeAuth();
+    try{
+      if (res.bc.displayName) {
+        userStore(res)
+        changeAuth();
+      }
+    }catch(error){
+      setError(error)
     }
     
   };
