@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
@@ -16,6 +17,7 @@ import facelogo from '../images/facebook.png';
 import socialMediaAuth from '../service/socialMediaAuth';
 
 function ModalForm({ changeAuth, authorizee }) {
+  const history = useHistory();
   const [values, setValues] = useState({
     heroname: '',
     alias: '',
@@ -179,21 +181,27 @@ function ModalForm({ changeAuth, authorizee }) {
       if (res.bc.displayName) {
         userStore(res);
         changeAuth();
+      }else{
+        history.push('/')
       }
     } catch (error) {
       setError(error);
+      
     }
   };
 
   const handleFacebookClick = async (provider) => {
-    const res = await socialMediaAuth(provider);
+    const re = await socialMediaAuth(provider);
     try {
-      if (res.bc.displayName) {
-        userStore(res);
+      if (re.bc.displayName) {
+        userStore(re);
         changeAuth();
+      }else{
+        history.push('/')
       }
     } catch (error) {
       setError(error);
+
     }
   };
 
