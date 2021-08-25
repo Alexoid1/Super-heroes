@@ -1,9 +1,10 @@
-@media (max-width: 570px) {
+@media (max-width: 720px) {
     .window {
         left:20% !important;
 
     }
 }
+
 
 @media (max-width: 420px) {
     .window {

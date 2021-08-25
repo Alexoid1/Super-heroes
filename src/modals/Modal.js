@@ -20,7 +20,7 @@ const styles = {
     position: 'fixed',
     background: 'rgba(23, 86, 124, 0.9)',
     borderRadius: 5,
-    top: 80,
+    top: 70,
     left: '38%',
     padding: 15,
     boxShadow: 'rgba(0, 0, 0, 0.61)',

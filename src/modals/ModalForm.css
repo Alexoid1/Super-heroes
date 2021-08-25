@@ -4,7 +4,7 @@
     outline: none;
     font-family: 'Chakra Petch', sans-serif;
     color: white;
-    font-size: 16px;
+    font-size: 14px;
     border-bottom: 1px solid rgba(23, 86, 124, 0.9);
     
 }
@@ -62,17 +62,24 @@
 }
 
 .logogoo {
-    width: 110px;
+    width: 90px;
 
 }
 
 .googleButton {
     background: rgba(23, 86, 124, 0.9);
     border-radius: 100%;
+    cursor: pointer;
 }
 
 .buttonGoCon {
     text-align: center;
+    margin-left: 20px;
+}
+
+.loginCont {
+    display: flex;
+    flex-direction: row;
 }
 
 @media (max-width: 420px) {

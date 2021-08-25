@@ -1,19 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import {
-  projectStorage, projectFirestore, timestamp, googleAuthProvider,
+  projectStorage,
+  projectFirestore,
+  timestamp,
+  googleAuthProvider,
+  facebookAuthProvider,
 } from '../service/firebase';
 import ProgressBar2 from '../components/ProgressBar2';
-import PropTypes from 'prop-types';
 import { changeAuth } from '../actions/index';
 import './ModalForm.css';
 import googlelogo from '../images/googlelogo.png';
+import facelogo from '../images/facebook.png';
 import socialMediaAuth from '../service/socialMediaAuth';
 
-function ModalForm  ({ changeAuth, authorizee }) {
+function ModalForm({ changeAuth, authorizee }) {
   const [values, setValues] = useState({
     heroname: '',
     alias: '',
+    alterEgos: '',
     place: '',
     occupation: '',
     eyeColor: '',
@@ -25,6 +31,9 @@ function ModalForm  ({ changeAuth, authorizee }) {
     strength: '',
     intelligence: '',
     aligment: 'good',
+    groupAffiliation: '',
+    relatives: '',
+    publisher: '',
     speed: '',
     power: '',
   });
@@ -33,8 +42,6 @@ function ModalForm  ({ changeAuth, authorizee }) {
   const [progress, setProgress] = useState(0);
   const [url, setUrl] = useState(null);
   const [uploading, setUploading] = useState(false);
-  
-  
 
   const imgTypes = ['image/png', 'image/jpeg', 'image/jpg'];
   useEffect(() => {
@@ -43,6 +50,7 @@ function ModalForm  ({ changeAuth, authorizee }) {
     setValues({
       heroname: '',
       alias: '',
+      alterEgos: '',
       place: '',
       occupation: '',
       eyeColor: '',
@@ -54,6 +62,9 @@ function ModalForm  ({ changeAuth, authorizee }) {
       strength: '',
       intelligence: '',
       aligment: 'good',
+      groupAffiliation: '',
+      relatives: '',
+      publisher: '',
       speed: '',
       power: '',
     });
@@ -73,7 +84,7 @@ function ModalForm  ({ changeAuth, authorizee }) {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (value.length < 25) {
+    if (value.length < 50) {
       setValues({
         ...values,
         [name]: value,
@@ -102,12 +113,12 @@ function ModalForm  ({ changeAuth, authorizee }) {
           name: values.heroname,
           slug: values.heroname,
           powerstats: {
-            intelligence: values.intelligence*1,
-            strength: values.strength*1,
-            speed: values.speed*1,
-            durability: values.strength*1,
-            power: values.power*1,
-            combat: values.power*1,
+            intelligence: values.intelligence * 1,
+            strength: values.strength * 1,
+            speed: values.speed * 1,
+            durability: values.strength * 1,
+            power: values.power * 1,
+            combat: values.power * 1,
           },
           appearance: {
             gender: values.gender,
@@ -119,11 +130,11 @@ function ModalForm  ({ changeAuth, authorizee }) {
           },
           biography: {
             fullName: values.heroname,
-            alterEgos: 'No alter egos found.',
+            alterEgos: values.alterEgos,
             aliases: [values.alias],
             placeOfBirth: values.place,
             firstAppearance: createdAt,
-            publisher: 'No published',
+            publisher: values.publisher,
             alignment: values.aligment,
           },
           work: {
@@ -131,8 +142,8 @@ function ModalForm  ({ changeAuth, authorizee }) {
             base: '-',
           },
           connections: {
-            groupAffiliation: '-',
-            relatives: '-',
+            groupAffiliation: values.groupAffiliation,
+            relatives: values.relatives,
           },
           images: {
             xs: url,
@@ -150,12 +161,39 @@ function ModalForm  ({ changeAuth, authorizee }) {
     }
   };
 
+  const userStore = (res) => {
+    const userRef = projectFirestore.collection('users');
+    const createdAt = timestamp();
+    userRef.add({
+      username: res.bc.displayName,
+      email: res.bc.email,
+      lastSession: res.metadata.lastSignInTime,
+      currentTime: createdAt,
+    });
+  };
+
   // Google Auth
   const handleGoogleClick = async (provider) => {
     const res = await socialMediaAuth(provider);
+    try {
+      if (res.bc.displayName) {
+        userStore(res);
+        changeAuth();
+      }
+    } catch (error) {
+      setError(error);
+    }
+  };
 
-    if (res.bc.displayName) {
-      changeAuth();
+  const handleFacebookClick = async (provider) => {
+    const res = await socialMediaAuth(provider);
+    try {
+      if (res.bc.displayName) {
+        userStore(res);
+        changeAuth();
+      }
+    } catch (error) {
+      setError(error);
     }
   };
 
@@ -186,7 +224,19 @@ function ModalForm  ({ changeAuth, authorizee }) {
               className="inputHero"
               value={values.alias}
               onChange={handleChange}
-              required="required"
+
+            />
+          </div>
+          <div>
+            <label htmlFor="heroalter" className="labelHero">Hero Alter Ego:</label>
+            <input
+              type="text"
+              id="heroalter"
+              name="alterEgos"
+              className="inputHero"
+              value={values.alterEgos}
+              onChange={handleChange}
+
             />
           </div>
           <div>
@@ -265,9 +315,45 @@ function ModalForm  ({ changeAuth, authorizee }) {
             <label htmlFor="heroaligment" className="labelHero">Aligment:</label>
             <select className="inputHero select" name="aligment" onChange={handleChange} value={values.aligment}>
 
-              <option key='good' value="good">good</option>
-              <option key='bad' value="bad">bad</option>
+              <option key="good" value="good">good</option>
+              <option key="bad" value="bad">bad</option>
             </select>
+          </div>
+          <div>
+            <label htmlFor="herogroupAffiliation" className="labelHero">Group Affiliation:</label>
+            <input
+              type="text"
+              id="herogroupAffiliation"
+              name="groupAffiliation"
+              className="inputHero"
+              value={values.groupAffiliation}
+              onChange={handleChange}
+
+            />
+          </div>
+          <div>
+            <label htmlFor="heroRelatives" className="labelHero">Relatives:</label>
+            <input
+              type="text"
+              id="heroRelatives"
+              name="relatives"
+              className="inputHero"
+              value={values.relatives}
+              onChange={handleChange}
+
+            />
+          </div>
+          <div>
+            <label htmlFor="heroPublisher" className="labelHero">Publisher:</label>
+            <input
+              type="text"
+              id="heroPublisher"
+              name="publisher"
+              className="inputHero"
+              value={values.publisher}
+              onChange={handleChange}
+
+            />
           </div>
           <div>
             <label htmlFor="heroheight" className="labelHero">Height:</label>
@@ -305,7 +391,7 @@ function ModalForm  ({ changeAuth, authorizee }) {
                 min="0"
                 max="1000"
                 step="1"
-                value={values.strength}
+                value={values.strength || '0'}
                 onChange={handleChange}
                 required="required"
               />
@@ -324,7 +410,7 @@ function ModalForm  ({ changeAuth, authorizee }) {
                 min="0"
                 max="1000"
                 step="1"
-                value={values.intelligence}
+                value={values.intelligence || '0'}
                 onChange={handleChange}
                 required="required"
               />
@@ -340,10 +426,10 @@ function ModalForm  ({ changeAuth, authorizee }) {
                 id="herospeed"
                 name="speed"
                 className="inputHero range"
-                min="0"
+                min="-1"
                 max="1000"
                 step="1"
-                value={values.speed}
+                value={values.speed || '0'}
                 onChange={handleChange}
                 required="required"
               />
@@ -362,7 +448,7 @@ function ModalForm  ({ changeAuth, authorizee }) {
                 min="0"
                 max="1000"
                 step="1"
-                value={values.power}
+                value={values.power || '0'}
                 onChange={handleChange}
                 required="required"
               />
@@ -383,20 +469,28 @@ function ModalForm  ({ changeAuth, authorizee }) {
     );
   } else {
     comp = (
-      <div className="buttonGoCon">
-        <button className="googleButton" type="button" onClick={() => handleGoogleClick(googleAuthProvider)}>
-          <img className="logogoo" src={googlelogo} alt="googlelogo" />
-        </button>
-        <p>Login with Google</p>
+      <div className="loginCont">
+        <div className="buttonGoCon">
+          <button className="googleButton" type="button" onClick={() => handleGoogleClick(googleAuthProvider)}>
+            <img className="logogoo" src={googlelogo} alt="googlelogo" />
+          </button>
+          <p>Login with Google</p>
+        </div>
+        <div className="buttonGoCon">
+          <button className="googleButton" type="button" onClick={() => handleFacebookClick(facebookAuthProvider)}>
+            <img className="logogoo" src={facelogo} alt="facelogo" />
+          </button>
+          <p>Login with Facebook</p>
+        </div>
       </div>
     );
   }
   return comp;
-};
+}
 
 ModalForm.propTypes = {
-    changeAuth: PropTypes.func.isRequired,
-    authorizee: PropTypes.bool.isRequired,
+  changeAuth: PropTypes.func.isRequired,
+  authorizee: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
