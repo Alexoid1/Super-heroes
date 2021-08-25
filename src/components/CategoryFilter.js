@@ -69,7 +69,7 @@ const CategoryFilter = ({ changeFilter, fetchHeroesSuccess, onChange }) => {
     const { target: { value } } = e;
     onChange(value);
     setText(value);
-    fetchHeroesSuccess([]);
+    
     changeFilter(value);
   };
 

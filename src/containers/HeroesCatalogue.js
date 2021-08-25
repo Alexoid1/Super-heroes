@@ -182,7 +182,7 @@ function HeroesCatalogue({
       her = cloneHeroes.filter((hero) => hero.appearance.race === filte);
     }
     setHeroesC(her);
-    fetchHeroesSuccess(her);
+    
     setStart(0);
   };
 
