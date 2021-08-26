@@ -19,7 +19,7 @@ import CategoryFilter from '../components/CategoryFilter';
 import './HeroesCatalogue.css';
 
 function HeroesCatalogue({
-  fetchHeroesFailure, heroes, filte, fetchHeroesSuccess,fetchFilterHeroes
+  fetchHeroesFailure, heroes, filte, fetchHeroesSuccess, fetchFilterHeroes,
 }) {
   const cardsNumber = 5;
   const [heroess, setHeroes] = useState([]);
@@ -34,7 +34,7 @@ function HeroesCatalogue({
       setHeroes(heroes.heroes);
       fetchHeroesSuccess(heroes.heroes);
       setHeroesC(heroes.heroes);
-      fetchFilterHeroes(heroes.heroes)
+      fetchFilterHeroes(heroes.heroes);
     } else {
       fetch(`${baseUrl}`, { mode: 'cors' })
         .then((res) => {
@@ -63,7 +63,7 @@ function HeroesCatalogue({
                   setHeroes(apiheroes);
                   fetchHeroesSuccess(apiheroes);
                   setHeroesC(apiheroes);
-                  fetchFilterHeroes(apiheroes)
+                  fetchFilterHeroes(apiheroes);
                 });
               return () => unsub();
             });
@@ -185,7 +185,7 @@ function HeroesCatalogue({
       her = cloneHeroes.filter((hero) => hero.appearance.race === filte);
     }
     setHeroesC(her);
-    fetchFilterHeroes(her)
+    fetchFilterHeroes(her);
     setStart(0);
   };
 

@@ -29,12 +29,12 @@ const heroesReducer = (state = initialState, action) => {
         error: '',
       };
     case FETCH_FILTER_HEROES:
-        return {
-          ...state,
-          loading: false,
-          filterHeroes: [...action.payload],
-          error: '',
-        };
+      return {
+        ...state,
+        loading: false,
+        filterHeroes: [...action.payload],
+        error: '',
+      };
     case FETCH_HEROES_FAILURE:
       return {
         ...state,
