@@ -1,3 +1,3 @@
-const baseUrl = 'https://akabab.github.io/superhero-api/api/all.json';
+const baseUrl = process.env.REACT_APP_BASE_URL;
 
 export default baseUrl;
