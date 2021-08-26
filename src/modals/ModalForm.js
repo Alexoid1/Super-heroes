@@ -10,13 +10,13 @@ import {
   facebookAuthProvider,
 } from '../service/firebase';
 import ProgressBar2 from '../components/ProgressBar2';
-import { changeAuth } from '../actions/index';
+import { changeAuth,fetchHeroesSuccess } from '../actions/index';
 import './ModalForm.css';
 import googlelogo from '../images/googlelogo.png';
 import facelogo from '../images/facebook.png';
 import socialMediaAuth from '../service/socialMediaAuth';
 
-function ModalForm({ changeAuth, authorizee }) {
+function ModalForm({ changeAuth, authorizee, fetchHeroesSuccess }) {
   const history = useHistory();
   const [values, setValues] = useState({
     heroname: '',
@@ -158,6 +158,7 @@ function ModalForm({ changeAuth, authorizee }) {
         });
 
         setUrl(url);
+        fetchHeroesSuccess([])
         return true;
       }));
     }
@@ -540,6 +541,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   changeAuth: () => dispatch(changeAuth()),
+  fetchHeroesSuccess:(heroes) => dispatch(fetchHeroesSuccess(heroes)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ModalForm);
