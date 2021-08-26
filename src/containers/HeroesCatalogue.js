@@ -8,6 +8,7 @@ import {
   nextHeroes,
   fetchHeroesFailure,
   fetchHeroesSuccess,
+  fetchFilterHeroes,
 } from '../actions/index';
 import baseUrl from '../helpers/base-url';
 import HeroCard from '../components/HeroCard';
@@ -18,7 +19,7 @@ import CategoryFilter from '../components/CategoryFilter';
 import './HeroesCatalogue.css';
 
 function HeroesCatalogue({
-  fetchHeroesFailure, heroes, filte, fetchHeroesSuccess,
+  fetchHeroesFailure, heroes, filte, fetchHeroesSuccess, fetchFilterHeroes,
 }) {
   const cardsNumber = 5;
   const [heroess, setHeroes] = useState([]);
@@ -33,6 +34,7 @@ function HeroesCatalogue({
       setHeroes(heroes.heroes);
       fetchHeroesSuccess(heroes.heroes);
       setHeroesC(heroes.heroes);
+      fetchFilterHeroes(heroes.heroes);
     } else {
       fetch(`${baseUrl}`, { mode: 'cors' })
         .then((res) => {
@@ -61,6 +63,7 @@ function HeroesCatalogue({
                   setHeroes(apiheroes);
                   fetchHeroesSuccess(apiheroes);
                   setHeroesC(apiheroes);
+                  fetchFilterHeroes(apiheroes);
                 });
               return () => unsub();
             });
@@ -182,7 +185,7 @@ function HeroesCatalogue({
       her = cloneHeroes.filter((hero) => hero.appearance.race === filte);
     }
     setHeroesC(her);
-    fetchHeroesSuccess(her);
+    fetchFilterHeroes(her);
     setStart(0);
   };
 
@@ -289,6 +292,7 @@ const mapDispatchToProps = (dispatch) => ({
   fetchHeroesFailure: () => dispatch(fetchHeroesFailure()),
   nextHeroes: () => dispatch(nextHeroes()),
   fetchHeroesSuccess: (heroes) => dispatch(fetchHeroesSuccess(heroes)),
+  fetchFilterHeroes: (heroes) => dispatch(fetchFilterHeroes(heroes)),
 });
 
 const mapStateToProps = (state) => ({
