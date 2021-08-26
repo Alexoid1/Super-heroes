@@ -411,9 +411,9 @@ function ModalForm({ changeAuth, authorizee }) {
             </label>
           </div>
           <div className="rangeCont">
-            <label htmlFor="herostrength" className="labelHero rangeCont">
-              Strength:
+              <span>Strength:</span>
               <div>
+              <label htmlFor="herostrength" className="labelHero rangeCont">
                 <span>0</span>
                 <input
                   type="range"
@@ -428,36 +428,34 @@ function ModalForm({ changeAuth, authorizee }) {
                   required="required"
                 />
                 <span>1000</span>
-
+                </label>
               </div>
-            </label>
           </div>
           <div className="rangeCont">
-            <label htmlFor="heroint" className="labelHero">
-              Intelligence:
+              <span>Intelligence:</span>
               <div>
-                <span>0</span>
-                <input
-                  type="range"
-                  id="heroint"
-                  name="intelligence"
-                  className="inputHero range"
-                  min="0"
-                  max="1000"
-                  step="1"
-                  value={values.intelligence || '0'}
-                  onChange={handleChange}
-                  required="required"
-                />
-                <span>1000</span>
-
+                <label htmlFor="heroint" className="labelHero">
+                  <span>0</span>
+                  <input
+                    type="range"
+                    id="heroint"
+                    name="intelligence"
+                    className="inputHero range"
+                    min="0"
+                    max="1000"
+                    step="1"
+                    value={values.intelligence || '0'}
+                    onChange={handleChange}
+                    required="required"
+                  />
+                  <span>1000</span>
+                </label>
               </div>
-            </label>
           </div>
           <div className="rangeCont">
-            <label htmlFor="herospeed" className="labelHero">
-              Speed:
+              <span>Speed:</span>
               <div>
+              <label htmlFor="herospeed" className="labelHero">
                 <span>0</span>
                 <input
                   type="range"
@@ -472,14 +470,14 @@ function ModalForm({ changeAuth, authorizee }) {
                   required="required"
                 />
                 <span>1000</span>
-
+                </label>
               </div>
-            </label>
           </div>
           <div className="rangeCont">
-            <label htmlFor="heropower" className="labelHero">
-              Power:
+
+              <span>Power:</span>
               <div>
+              <label htmlFor="heropower" className="labelHero">
                 <span>0</span>
                 <input
                   type="range"
@@ -494,8 +492,9 @@ function ModalForm({ changeAuth, authorizee }) {
                   required="required"
                 />
                 <span>1000</span>
+                </label>
               </div>
-            </label>
+
           </div>
           <div>
             <input className="selectFIle" type="file" onChange={changeFileHandler} required="required" />
