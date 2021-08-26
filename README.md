@@ -9,10 +9,7 @@ SuperHeroes is a web application that shows stats about All SuperHeroes and Vill
 
 - Node.js
 - React
-- React-DOM
-- React-Create-App
 - Redux
-- npm
 - CSS
 - ES6.
 - Firebase
