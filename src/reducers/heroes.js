@@ -1,6 +1,7 @@
 import {
   FETCH_HEROES_FAILURE,
   FETCH_HEROES_SUCCESS,
+  FETCH_FILTER_HEROES,
   NEXT_HEROES,
   CHANGE_TEXT,
   CHANGE_AUTH,
@@ -9,6 +10,7 @@ import {
 
 const initialState = {
   heroes: [],
+  filterHeroes: [],
   loading: false,
   authorize: false,
   error: '',
@@ -26,6 +28,13 @@ const heroesReducer = (state = initialState, action) => {
         heroes: [...action.payload],
         error: '',
       };
+    case FETCH_FILTER_HEROES:
+        return {
+          ...state,
+          loading: false,
+          filterHeroes: [...action.payload],
+          error: '',
+        };
     case FETCH_HEROES_FAILURE:
       return {
         ...state,

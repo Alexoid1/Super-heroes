@@ -45,7 +45,7 @@ MenuHero.defaultProps = {
 };
 
 const mapStateToProps = (state) => ({
-  heroes: state.heroes.heroes,
+  heroes: state.heroes.filterHeroes,
 });
 
 export default connect(mapStateToProps)(MenuHero);

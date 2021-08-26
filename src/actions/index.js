@@ -1,6 +1,7 @@
 import {
   FETCH_HEROES_FAILURE,
   FETCH_HEROES_SUCCESS,
+  FETCH_FILTER_HEROES,
   CHANGE_TEXT,
   NEXT_HEROES,
   FILTER_CHANGE,
@@ -10,6 +11,11 @@ import {
 
 export const fetchHeroesSuccess = (heroes) => ({
   type: FETCH_HEROES_SUCCESS,
+  payload: heroes,
+});
+
+export const fetchFilterHeroes = (heroes) => ({
+  type: FETCH_FILTER_HEROES,
   payload: heroes,
 });
 
