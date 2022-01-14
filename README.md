@@ -13,6 +13,9 @@ SuperHeroes is a web application that shows stats about All SuperHeroes and Vill
 - CSS
 - ES6.
 - Firebase
+- Puppeteer
+- Mocha
+- Chai
 
 ## Live Demo
 [Live Demo Link](https://heroes-gallery.web.app/#)
