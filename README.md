@@ -24,6 +24,10 @@ SuperHeroes is a web application that shows stats about All SuperHeroes and Vill
 ### Test
 - `npm run test`
 
+### Integration Test
+- cd e2e
+- npm run test
+
 ### Prerequisites
 
 Browser
