@@ -7,7 +7,6 @@ SuperHeroes is a web application that shows stats about All SuperHeroes and Vill
 
 ## Built With
 
-- Node.js
 - React
 - Redux
 - CSS
